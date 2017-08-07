@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="关于APP"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@color/weeks"
+        android:background="@color/days"/>
+
+    <LinearLayout
+        android:id="@+id/logo"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/tv1">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <com.example.xiyou3g.playxiyou.MyView.RoundImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:src="@drawable/mobile"
+                app:imageType="round"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                app:borderRadius="270dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <com.example.xiyou3g.playxiyou.MyView.RoundImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:src="@drawable/authorlogo"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                app:imageType="round"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="5dp"
+                app:borderRadius="270dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lin1"
+        android:layout_below="@id/logo"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="适用范围："
+            android:textColor="@color/days"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:id="@+id/textView5" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:text="西邮学子"
+            android:textColor="#535353"
+            android:textSize="14sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin2"
+        android:layout_below="@id/lin1"
+        android:layout_marginTop="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="关于作者："
+            android:textColor="@color/days"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:text="LanceShu"
+            android:textColor="#535353"
+            android:textSize="14sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin3"
+        android:layout_below="@id/lin2"
+        android:layout_marginTop="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="Github："
+            android:textColor="@color/days"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:text="https://github.com/LanceShu"
+            android:textColor="#535353"
+            android:textSize="12sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lin4"
+        android:layout_below="@id/lin3"
+        android:layout_marginTop="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="CSDN博客："
+            android:textColor="@color/days"
+            android:textSize="16sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:text="http://my.csdn.net/shu_lance"
+            android:textColor="#535353"
+            android:textSize="12sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_below="@id/lin4"
+        android:layout_marginTop="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text=" Copyright © 1997-2017  All Rights Reserved "
+        android:gravity="center"
+        android:textSize="10sp"/>
+
+</RelativeLayout>

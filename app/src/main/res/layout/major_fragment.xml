@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/weeks">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="5dp"
+                android:elevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:text="必修课"
+                        android:textSize="22sp"
+                        android:textColor="@color/days"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical|bottom"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="所需学分："
+                            android:textSize="14sp"
+                            android:gravity="bottom"/>
+
+                        <com.chaychan.viewlib.NumberRunningTextView
+                            android:id="@+id/bneed"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="36sp"
+                            android:text="0"
+                            app:textType="num"
+                            android:gravity="bottom|right"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/weeks"/>
+
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="获得学分："
+                            android:textSize="14sp"
+                            android:gravity="bottom"
+                            android:id="@+id/textView2" />
+
+                        <com.chaychan.viewlib.NumberRunningTextView
+                            android:id="@+id/bget"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="24sp"
+                            android:text="0"
+                            android:gravity="bottom|right"
+                            app:textType="num"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="未通过学分："
+                            android:textSize="14sp"
+                            android:gravity="bottom"/>
+
+                        <com.chaychan.viewlib.NumberRunningTextView
+                            android:id="@+id/bunget"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="24sp"
+                            android:text="0"
+                            android:gravity="bottom|right"
+                            app:textType="num"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="还需学分："
+                            android:textSize="14sp"
+                            android:gravity="bottom"/>
+
+                        <com.chaychan.viewlib.NumberRunningTextView
+                            android:id="@+id/bwant"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="24sp"
+                            android:text="0"
+                            android:gravity="bottom|right"
+                            app:textType="num"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_marginLeft="2dp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="5dp"
+                android:elevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="18dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:text="选修课"
+                        android:textSize="20sp"
+                        android:textColor="@color/days"
+                        android:textStyle="bold"
+                        android:gravity="center_vertical|bottom"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="所需学分："
+                            android:textSize="14sp"
+                            android:gravity="bottom"/>
+
+                        <com.chaychan.viewlib.NumberRunningTextView
+                            android:id="@+id/xneed"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="32sp"
+                            android:text="0"
+                            app:textType="num"
+                            android:gravity="bottom|right"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/weeks"/>
+
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="获得学分："
+                            android:textSize="14sp"
+                            android:gravity="bottom"/>
+
+                        <com.chaychan.viewlib.NumberRunningTextView
+                            android:id="@+id/xget"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="20sp"
+                            android:text="0"
+                            android:gravity="bottom|right"
+                            app:textType="num"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="未通过学分："
+                            android:textSize="14sp"
+                            android:gravity="bottom"
+                            android:id="@+id/textView3" />
+
+                        <com.chaychan.viewlib.NumberRunningTextView
+                            android:id="@+id/xunget"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="20sp"
+                            android:text="0"
+                            android:gravity="bottom|right"
+                            app:textType="num"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="还需学分："
+                            android:textSize="14sp"
+                            android:gravity="bottom"
+                            android:id="@+id/textView4" />
+
+                        <com.chaychan.viewlib.NumberRunningTextView
+                            android:id="@+id/xwant"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:textSize="20sp"
+                            android:text="0"
+                            android:gravity="bottom|right"
+                            app:textType="num"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

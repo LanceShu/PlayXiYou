@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="3dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="5dp"
+        android:elevation="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/projectdan"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="18dp"/>
+
+                <TextView
+                    android:id="@+id/courname"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="课程名"
+                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:textColor="#292929"
+                    android:textStyle="bold"
+                    android:maxLines="1"
+                    android:ellipsize="marquee"/>
+
+                <TextView
+                    android:id="@+id/courstatus"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="选必修"
+                    android:textSize="14sp"
+                    android:gravity="center|left"
+                    android:textColor="#353535"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="课程号："
+                    android:textSize="14sp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/courid"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="课程号"
+                    android:textSize="14sp"
+                    android:gravity="center|left"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="学分："
+                    android:textSize="14sp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/courscore"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="4.0"
+                    android:textSize="14sp"
+                    android:gravity="center|left"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="绩点："
+                    android:textSize="14sp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/courgpa"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="4.0-0.0"
+                    android:textSize="14sp"
+                    android:gravity="center|left"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="校院考："
+                    android:textSize="14sp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/courteam"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="校考"
+                    android:textSize="14sp"
+                    android:gravity="center|left"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#d2d2d2"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+
+</LinearLayout>

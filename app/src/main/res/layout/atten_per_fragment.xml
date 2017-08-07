@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|enterAlways|snap">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="@drawable/alback"/>
+
+                <com.example.xiyou3g.playxiyou.MyView.RoundImageView
+                    android:id="@+id/attend_image"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/schoollogo"
+                    app:imageType="round"
+                    app:borderRadius="30dp"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="18dp"
+                android:background="@color/weeks">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="个人信息"
+                    android:textColor="@color/days"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="姓名："
+                        android:textSize="16sp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/aname"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:gravity="center|left"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.03"
+                        android:text="性别："
+                        android:textSize="16sp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/asex"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:gravity="center|left"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="学号："
+                        android:textSize="16sp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/anum"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:gravity="center|left"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="学院："
+                        android:textSize="16sp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/aacade"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:gravity="center|left"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="手机号："
+                        android:textSize="16sp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/aphone"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:gravity="center|left"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="专业："
+                        android:textSize="16sp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/amajor"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:gravity="center|left"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="班级："
+                        android:textSize="16sp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/aclass"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:gravity="center|left"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="身份："
+                        android:textSize="16sp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/aidentify"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:gravity="center|left"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_marginTop="18dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/days"/>
+
+                <TextView
+                    android:layout_marginTop="18dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="课程信息"
+                    android:textColor="@color/days"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="暂无内容"
+                        android:textSize="18sp"
+                        android:gravity="center"/>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_marginTop="18dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/days"/>
+
+                <TextView
+                    android:layout_marginTop="18dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="本学期考勤统计"
+                    android:textColor="@color/days"
+                    android:textSize="16sp"
+                    android:gravity="center_vertical"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="暂无内容"
+                        android:textSize="18sp"
+                        android:gravity="center"/>
+
+                    <android.support.v7.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_marginTop="18dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/days"/>
+
+                <Button
+                    android:id="@+id/aexit"
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:text="注销"
+                    android:textSize="16sp"
+                    android:textColor="#fff"
+                    android:backgroundTint="@color/days"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
+
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/class1"
+        android:title="雁塔校区18层楼" />
+
+    <item
+        android:id="@+id/class2"
+        android:title="长安校区基础教学楼B楼" />
+
+    <item
+        android:id="@+id/class3"
+        android:title="长安校区基础教学楼A楼" />
+
+    <item
+        android:id="@+id/class4"
+        android:title="长安校区东区逸夫楼" />
+
+    <item
+        android:id="@+id/class5"
+        android:title="一号实验楼" />
+
+    <item
+        android:id="@+id/class6"
+        android:title="西区" />
+
+    <item
+        android:id="@+id/class7"
+        android:title="2号实验楼" />
+</menu>

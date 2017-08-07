@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/days">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/back"
+            android:layout_marginLeft="18dp"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="东区教室导航"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/guiderecycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:background="@color/weeks">
+
+        <EditText
+            android:id="@+id/guidecontent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="请输入东区教室号(例如：ff203):"
+            android:textSize="14sp"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/guidesend"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="发送"
+            android:textSize="14sp"
+            android:backgroundTint="@color/colorAccent"
+            android:textColor="#fff"/>
+
+    </LinearLayout>
+
+</LinearLayout>

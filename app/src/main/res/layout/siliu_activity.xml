@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/weeks">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/days">
+
+        <ImageView
+            android:id="@+id/sback"
+            android:layout_width="30dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/back"
+            android:layout_marginLeft="18dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="四六级查询"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/weeks" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="64dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/idWrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/ailiu_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="请输入15位准考证号：" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/clear"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center|bottom"
+            android:src="@mipmap/clear_icon"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"
+            />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/figure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0/15"
+        android:textSize="16sp"
+        android:gravity="center|right"
+        android:layout_marginRight="18dp"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/nameWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="6dp">
+
+        <EditText
+            android:id="@+id/ailiu_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入您的姓名：" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/siliu_find"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="18dp"
+        android:text="查询"
+        android:textSize="18sp"
+        android:textColor="@color/weeks"
+        android:backgroundTint="@color/days"/>
+
+</LinearLayout>

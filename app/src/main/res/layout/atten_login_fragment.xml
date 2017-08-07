@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/days">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="智慧教室"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_centerInParent="true"
+            android:textColor="#fff" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/atab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#5693b7"
+            app:tabIndicatorColor="#fff"
+            app:tabSelectedTextColor="#fff"></android.support.design.widget.TabLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/aviewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        </android.support.v4.view.ViewPager>
+
+    </LinearLayout>
+
+</LinearLayout>

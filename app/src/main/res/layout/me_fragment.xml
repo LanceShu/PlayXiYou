@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="190dp">
+
+                <ImageView
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@drawable/schoolplace"/>
+
+                <com.example.xiyou3g.playxiyou.MyView.RoundImageView
+                    android:id="@+id/logo"
+                    android:layout_marginTop="110dp"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    app:imageType="round"
+                    app:borderRadius="180dp"
+                    android:src="@drawable/schoollogo"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/layout1"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/stuname"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:gravity="center|left"
+                    android:textColor="#545454"
+                    android:paddingLeft="18dp" />
+
+                <TextView
+                    android:id="@+id/stunum"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:gravity="center|left"
+                    android:paddingLeft="18dp"
+                    android:textColor="#545454" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="18dp"
+                    android:background="#dfdfdf"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:text="常用功能"
+                android:gravity="center_vertical"
+                android:textSize="14sp"
+                android:textColor="#7b7b7b"
+                android:paddingLeft="18dp" />
+
+                <LinearLayout
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@mipmap/me_user"
+                        android:layout_marginLeft="18dp"
+                        android:layout_gravity="center"
+                        android:id="@+id/imageView" />
+
+                    <TextView
+                    android:id="@+id/stuinfo"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:text="个人信息"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical"
+                    android:textColor="#404040"/>
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="26dp"
+                        android:src="@mipmap/classplace"
+                        android:layout_marginLeft="18dp"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/place"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
+                        android:text="东区教室导航"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical"
+                        android:textColor="#404040"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@mipmap/siliu"
+                    android:layout_marginLeft="18dp"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/siliu"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:text="四六级查询"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical"
+                    android:textColor="#404040"/>
+
+            </LinearLayout>
+
+
+                <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="18dp"
+                android:background="#dfdfdf"/>
+
+             </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:text="帮助与设置"
+                    android:gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:textColor="#7b7b7b"
+                    android:paddingLeft="18dp" />
+
+                <LinearLayout
+                    android:layout_marginTop="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="35dp"
+                        android:src="@mipmap/help"
+                        android:layout_marginLeft="18dp"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/help"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
+                        android:text="帮助说明"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical"
+                        android:textColor="#404040"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@mipmap/question"
+                        android:layout_marginLeft="18dp"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/question"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
+                        android:text="疑问BUG"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical"
+                        android:textColor="#404040"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="22dp"
+                        android:src="@mipmap/about"
+                        android:layout_marginLeft="18dp"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/about"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
+                        android:text="关于APP"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical"
+                        android:textColor="#404040"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="22dp"
+                        android:src="@mipmap/exit"
+                        android:layout_marginLeft="18dp"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/exit"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
+                        android:text="切换用户"
+                        android:textSize="14sp"
+                        android:gravity="center_vertical"
+                        android:textColor="#404040"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="18dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="18dp"
+                    android:background="#dfdfdf"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

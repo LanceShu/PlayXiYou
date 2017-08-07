@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/alback">
+
+    <ImageView
+        android:id="@+id/aback"
+        android:layout_width="25dp"
+        android:layout_height="20dp"
+        android:src="@mipmap/aback"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="36dp"/>
+
+        <ImageView
+            android:id="@+id/alback"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/atitle"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:text="智慧教室门户"
+            android:textColor="@color/days"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginTop="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/atitle"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/atten_loginback"
+            android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/auser"
+            android:layout_marginLeft="10dp"/>
+
+        <EditText
+            android:id="@+id/aname"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:hint="请输入用户名"
+            android:textColorHint="@color/days"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/days"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:inputType="number"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/layout1"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/atten_loginback"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/apass"
+                android:layout_marginLeft="10dp"/>
+
+            <EditText
+                android:id="@+id/apass"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="请输入密码"
+                android:textColorHint="@color/days"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/days"
+                android:layout_marginRight="10dp"
+                android:background="@null"
+                android:inputType="textPassword"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/layout2"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/atten_loginback"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/acode"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.2"
+                android:hint="请输入验证码"
+                android:textColorHint="@color/days"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="@color/days"
+                android:layout_marginLeft="10dp"
+                android:background="@null"
+                android:inputType="number"/>
+
+            <ImageView
+                android:id="@+id/acodeimage"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/codeloading" />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/layout3"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/remember"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/days"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Remember Me~"
+            android:textSize="18sp"
+            android:textColor="@color/days"
+            android:gravity="center|left"/>
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout4"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/alogin"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:background="@drawable/atten_button"
+                android:backgroundTint="@color/days"
+                android:text="登录"
+                android:textSize="20sp"
+                android:textColor="#fff"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                android:background="#00000000"/>
+
+            <Button
+                android:id="@+id/ahelp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:background="@drawable/atten_button"
+                android:backgroundTint="@color/colorAccent"
+                android:text="帮助?"
+                android:textSize="20sp"
+                android:textColor="#fff"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+
+
+</RelativeLayout>

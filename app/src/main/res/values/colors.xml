@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#b79856</color>
+    <color name="weeks">#efefef</color>
+    <color name="days">#5693b7</color>
+    <color name="team1">#5693b7</color>
+    <color name="team2">#5688b7</color>
+    <color name="team3">#567eb7</color>
+    <color name="team4">#5676b7</color>
+    <color name="team5">#566eb7</color>
+    <color name="team6">#5668b7</color>
+    <color name="team7">#565bb7</color>
+    <color name="team8">#6356b7</color>
+</resources>
