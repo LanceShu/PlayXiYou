@@ -1,23 +1,18 @@
 package com.example.xiyou3g.playxiyou.Activity;
 
-import android.Manifest;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.preference.PreferenceManager;
-import android.support.annotation.CheckResult;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.text.method.HideReturnsTransformationMethod;
@@ -41,23 +36,19 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.xiyou3g.playxiyou.DataBean.ProjectBean;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetCourseData;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetPerInfo;
-import com.example.xiyou3g.playxiyou.HttpRequest.GetProjectData;
 import com.example.xiyou3g.playxiyou.MeFragment.GuideActivity;
 import com.example.xiyou3g.playxiyou.R;
+import com.example.xiyou3g.playxiyou.Utils.HandleCourseData;
 
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -98,8 +89,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         mqueue = Volley.newRequestQueue(this);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = pref.edit();
         initWight();                    //实例化控件;
 
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what){
+                    case COURSE_CACHE:
+                        editor.putString("EduCoures", String.valueOf(msg.obj));
+                        editor.apply();
+                        break;
+                }
+            }
+        };
     }
 
     private void initWight() {
@@ -114,11 +117,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         codeCheck.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
         remberPass = (CheckBox) findViewById(R.id.remember_pass);
 
-        boolean isRemeber = pref.getBoolean("remember",false);
-        if(isRemeber){
+        boolean isRemem = pref.getBoolean("remember",false);
+        if(isRemem){
             username.setText(pref.getString("username",""));
             password.setText(pref.getString("password",""));
             remberPass.setChecked(true);
+            isStu = pref.getString("username","");
         }
 
         initCodeImage();
@@ -203,7 +207,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             student_name = student_name.substring(0, student_name.length() - 2);
                             Log.e("student_name:", student_name);
 
-                            new Thread(new GetPerInfo()).start();       //获取个人信息;
+                            new GetPerInfo();                           //获取个人信息;
                             getCurrentCourse();                         //获取当前课表;
 
                             builder.setMessage("欢迎您，"+student_name+"同学！");
@@ -284,7 +288,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.siliu:
-                                Intent intent1 = new Intent(LoginActivity.this, SiliuActivity.class);
+                                Intent intent1 = new Intent(LoginActivity.this, SiliuActivitySe.class);
                                 startActivity(intent1, ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
                                 break;
                             case R.id.guide:
@@ -304,7 +308,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH)+1;
-        new Thread(new GetCourseData(year,month,1)).start();
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if(isStu.equals(username.getText().toString())){
+            String s = preferences.getString("EduCoures","null");
+            HandleCourseData.handleCourse(s);
+            isCache = true;
+        }else{
+            new GetCourseData(year,month,1);
+            isCache = false;
+        }
+
     }
 
     @Override
@@ -333,4 +346,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             finish();
         }
     }
+
 }

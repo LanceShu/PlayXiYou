@@ -154,7 +154,7 @@ public class ScoreFragment extends Fragment {
             @Override
             public void onRefresh() {
                 isrefresh = 1;
-                new Thread(new GetScoreData(Year,Team)).start();              //获取成绩信息;
+                new GetScoreData(Year,Team);              //获取成绩信息;
             }
         });
 

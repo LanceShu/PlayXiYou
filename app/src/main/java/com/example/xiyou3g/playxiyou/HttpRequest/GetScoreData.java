@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.xiyou3g.playxiyou.DataBean.ScoreBean;
+import com.example.xiyou3g.playxiyou.Utils.HandleScoreData;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -25,7 +26,7 @@ import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
  * Created by Lance on 2017/7/15.
  */
 
-public class GetScoreData implements Runnable {
+public class GetScoreData{
 
     private String year;
     private String team;
@@ -33,10 +34,6 @@ public class GetScoreData implements Runnable {
     public GetScoreData(String year,String team){
         this.year = year;
         this.team = team;
-    }
-
-    @Override
-    public void run() {
         get_Score();
     }
 
@@ -49,14 +46,12 @@ public class GetScoreData implements Runnable {
            StringRequest stringRequest1 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                @Override
                public void onResponse(String s) {
-                   //repsone_content = s;
                    Document document1 = Jsoup.parse(s);
-                   Log.e("success","111111111111111111111");
                    __viewstate[0] = document1.select("input[name=__VIEWSTATE]").val();
                    try {
                        __viewstate[0] = URLEncoder.encode(__viewstate[0],"GBK");
                    } catch (UnsupportedEncodingException e) {
-                       Log.e("error","123456789");
+
                    }
                    Log.e("viewstate",__viewstate[0]);
                }
@@ -87,24 +82,12 @@ public class GetScoreData implements Runnable {
                    StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                        @Override
                        public void onResponse(String s) {
-                           Document document = Jsoup.parse(s);
-                           Elements tr = document.getElementsByTag("tr");
-                           for(int i =5;i<tr.size()-7;i++){
-//                    Log.e("tr.content",tr.get(i)+"");
-                               Elements td = tr.get(i).getElementsByTag("td");
-                               ScoreBean scoreBean = new ScoreBean();
-                               scoreBean.setsName(td.get(3).text());
-                               scoreBean.setsChengji(td.get(8).text());
-                               scoreBean.setsScore(td.get(7).text());
-                               scoreBean.setsGpa(td.get(6).text());
-                               scoreBean.setsTeam(td.get(4).text());
-                               scoreBean.setsPlace(td.get(12).text());
-                               scoreBeanList.add(scoreBean);
-                               Log.e("chengji","--"+scoreBean.getsName()+"==="+scoreBean.getsChengji());
-                           }
-                           Message message = Message.obtain();
-                           message.what = UPDATE_SCORE;
-                           handler.sendMessage(message);
+                           Message msg = Message.obtain();
+                           msg.what = SCORE_CACHE;
+                           msg.obj = s;
+                           handler.sendMessage(msg);
+                           Log.e("mainactivitycache3",msg.what+"");
+                           HandleScoreData.handleScore(s);
                        }
                    }, new Response.ErrorListener() {
                        @Override
@@ -136,6 +119,4 @@ public class GetScoreData implements Runnable {
            },500);
        }
     }
-
-
 }

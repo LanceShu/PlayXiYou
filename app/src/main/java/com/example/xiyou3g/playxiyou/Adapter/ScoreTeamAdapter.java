@@ -56,9 +56,9 @@ public class ScoreTeamAdapter extends RecyclerView.Adapter<ScoreTeamAdapter.View
                     public void run() {
                         Year = year.getYear();
                         Team = year.getTeam();
-                        new GetScoreData(year.getYear(),year.getTeam()).run();
+                        new GetScoreData(year.getYear(),year.getTeam());
                     }
-                },500);
+                },150);
             }
         });
 

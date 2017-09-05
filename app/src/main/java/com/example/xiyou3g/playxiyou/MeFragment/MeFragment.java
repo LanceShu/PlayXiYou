@@ -5,32 +5,24 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import com.example.xiyou3g.playxiyou.Activity.LoginActivity;
-import com.example.xiyou3g.playxiyou.Activity.MainActivity;
-import com.example.xiyou3g.playxiyou.Activity.PersInfoActivity;
 import com.example.xiyou3g.playxiyou.Activity.SiliuActivity;
+import com.example.xiyou3g.playxiyou.Activity.SiliuActivitySe;
 import com.example.xiyou3g.playxiyou.Adapter.HelpAdapter;
 import com.example.xiyou3g.playxiyou.Adapter.QueAdpater;
-import com.example.xiyou3g.playxiyou.EduFragment.EduFragment;
 import com.example.xiyou3g.playxiyou.MyView.RoundImageView;
 import com.example.xiyou3g.playxiyou.R;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -186,7 +178,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
                 mdialog.show();
                 break;
             case R.id.siliu:
-                Intent intent1 = new Intent(getContext(), SiliuActivity.class);
+                Intent intent1 = new Intent(getContext(), SiliuActivitySe.class);
                 startActivity(intent1,ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
                 break;
             case R.id.help:

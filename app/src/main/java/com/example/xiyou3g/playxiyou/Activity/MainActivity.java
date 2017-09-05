@@ -1,8 +1,10 @@
 package com.example.xiyou3g.playxiyou.Activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -33,6 +35,7 @@ import com.example.xiyou3g.playxiyou.HttpRequest.GetScoreData;
 import com.example.xiyou3g.playxiyou.MeFragment.MeFragment;
 import com.example.xiyou3g.playxiyou.R;
 import com.example.xiyou3g.playxiyou.SportFragment.SportFragment;
+import com.example.xiyou3g.playxiyou.Utils.HandleScoreData;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -59,21 +62,47 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private FrameLayout frameLayout;
     private BottomNavigationBar bottomNavigationBar;
 
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = preferences.edit();
         initWight();
 
         getCurrentYearAndTeam();                                              //获取当前的学年与学期;
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ViewStatelist = getVisState(ViewStatelist);                   //获取培养计划的头_VISTSTE;
-                new Thread(new GetScoreData(Year,Team)).start();              //获取成绩信息;
-            }
-        },1500);
+        ViewStatelist = getVisState(ViewStatelist);                           //获取培养计划的头_VISTSTE;
+        getScoreData();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("mainactivitycache5","666666666");
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what){
+                    case SCORE_CACHE:
+                        editor.putString("CacheScore", String.valueOf(msg.obj));
+                        editor.apply();
+                        break;
+                }
+            }
+        };
+    }
+
+    private void getScoreData() {
+        if(isCache){
+            String s = PreferenceManager.getDefaultSharedPreferences(this).getString("CacheScore","null");
+            HandleScoreData.handleScore(s);
+        }else{
+            new GetScoreData(Year,Team);                                //获取成绩信息;
+        }
     }
 
     private List<String> getVisState(final List<String> list) {
@@ -140,13 +169,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         currentScore = Year+"   第"+Team+"学期";
     }
 
-    private void getCurrentCourse() {
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH)+1;
-        new Thread(new GetCourseData(year,month,1)).start();
-    }
-
     private void initWight() {
 
         if(stuname.equals("null")){
@@ -159,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         frameLayout = (FrameLayout) findViewById(R.id.main_container);
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.main_bottom);
         bottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.jiaowu,"教务处"))
-//                .addItem(new BottomNavigationItem(R.mipmap.tiyu,"体育部"))
+                .addItem(new BottomNavigationItem(R.mipmap.tiyu,"体育部"))
                 .addItem(new BottomNavigationItem(R.mipmap.kaoqin,"智慧考勤"))
                 .addItem(new BottomNavigationItem(R.mipmap.me,"个人信息"))
                 .setFirstSelectedPosition(0)
@@ -190,17 +212,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
             case 0:
                 replaceFragment(new EduFragment());
                 break;
-//            case 1:
-//                replaceFragment(new SportFragment());
-//                break;
             case 1:
+                replaceFragment(new SportFragment());
+                break;
+            case 2:
 //                if(islogin == 0){
                     replaceFragment(new AttendUnlogFragment());
 //                }else{
 //                    replaceFragment(new AttendLogFragment());
 //                }
                 break;
-            case 2:
+            case 3:
                 replaceFragment(new MeFragment());
                 break;
         }

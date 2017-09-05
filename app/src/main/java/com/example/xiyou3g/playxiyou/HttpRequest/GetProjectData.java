@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.xiyou3g.playxiyou.DataBean.ProjectBean;
+import com.example.xiyou3g.playxiyou.Utils.HandleProjectData;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -24,7 +25,7 @@ import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
  * Created by Lance on 2017/7/14.
  */
 
-public class GetProjectData implements Runnable {
+public class GetProjectData {
 
     private int team;
     private List<String> list = new ArrayList<>();
@@ -32,10 +33,6 @@ public class GetProjectData implements Runnable {
     public GetProjectData(int team, List<String> list){
         this.team = team;
         this.list = list;
-    }
-
-    @Override
-    public void run() {
         get_Project();
     }
 
@@ -46,23 +43,7 @@ public class GetProjectData implements Runnable {
             StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String s) {
-                    Document document = Jsoup.parse(s);
-                    Elements tr = document.getElementsByTag("tr");
-                    for(int i =4;i<tr.size()-25;i++){
-                        Elements td = tr.get(i).getElementsByTag("td");
-                        ProjectBean projectBean = new ProjectBean();
-                        projectBean.setCname(td.get(1).text());
-
-                        Log.e("project name   "+ team,td.get(1).text());
-
-                        projectBean.setCstatue(td.get(5).text());
-                        projectBean.setCid(td.get(0).text());
-                        projectBean.setCscore(td.get(2).text());
-                        projectBean.setCgpa(td.get(3).text());
-                        projectBean.setCteam(td.get(4).text());
-                        proList.get(team-1).add(projectBean);
-
-                    }
+                    HandleProjectData.handleProject(s,team);
                 }
             }, new Response.ErrorListener() {
                 @Override

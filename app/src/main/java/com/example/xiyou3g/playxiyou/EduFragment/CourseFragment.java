@@ -21,13 +21,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.example.xiyou3g.playxiyou.HttpRequest.GetCourseData;
-import com.example.xiyou3g.playxiyou.HttpRequest.GetScoreData;
 import com.example.xiyou3g.playxiyou.R;
 
 import java.util.Calendar;
 
 import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.sYear;
 
 /**
  * Created by Lance on 2017/7/12.
@@ -134,7 +132,7 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
                     initTeam();
                     setCourse();
                 }
-            },200);
+            },150);
         }
     }
 
@@ -415,7 +413,7 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
                 Log.e("click","team1");
                 courseList.clear();
                 container.removeAllViews();
-                new Thread(new GetCourseData(startYear1,endYear1,iteam1,0)).start();
+                new GetCourseData(startYear1,endYear1,iteam1,0);
                 dialog = new ProgressDialog(getContext());
                 dialog.setMessage("正在努力加载...");
                 dialog.show();
@@ -431,7 +429,7 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
                 Log.e("click","team2");
                 courseList.clear();
                 container.removeAllViews();
-                new Thread(new GetCourseData(startYear2,endYear2,iteam2,1)).start();
+                new GetCourseData(startYear2,endYear2,iteam2,1);
                 dialog = new ProgressDialog(getContext());
                 dialog.setMessage("正在努力加载...");
                 dialog.show();

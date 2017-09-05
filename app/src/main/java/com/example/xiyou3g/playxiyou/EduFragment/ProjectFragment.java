@@ -62,7 +62,7 @@ public class ProjectFragment extends Fragment implements CardStackView.ItemExpen
         for(int i =1;i<=8;i++){
             List<ProjectBean> projectBeen = new ArrayList<>();
             proList.add(projectBeen);
-            new Thread(new GetProjectData(i,list)).start();
+            new GetProjectData(i,list);
         }
     }
 
@@ -85,7 +85,7 @@ public class ProjectFragment extends Fragment implements CardStackView.ItemExpen
             public void run() {
                 testStackAdapter.updateData(Arrays.asList(item));
             }
-        },200);
+        },150);
     }
 
     @Override

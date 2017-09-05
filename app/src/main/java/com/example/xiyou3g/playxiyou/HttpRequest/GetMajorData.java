@@ -9,6 +9,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.xiyou3g.playxiyou.DataBean.MajorBean;
+import com.example.xiyou3g.playxiyou.Utils.HandleMajorData;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -25,21 +26,19 @@ import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
  * Created by Lance on 2017/7/17.
  */
 
-public class GetMajorData implements Runnable{
+public class GetMajorData{
 
     private String viewState = "";
     final String url = "http://222.24.62.120/xscjcx.aspx?xh="+loginName+"&xm="+stuname+"&gnmkdm=N121605";
 
-    @Override
-    public void run() {
-
+    public GetMajorData(){
         getMajorVIEWSTATE();                        //获取VIEWSTATE;
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 getMajor();
             }
-        },2000);
+        },500);
     }
 
     private void getMajorVIEWSTATE(){
@@ -89,36 +88,7 @@ public class GetMajorData implements Runnable{
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String s) {
-                            Document document = Jsoup.parse(s);
-                            Elements tr = document.getElementsByTag("tr");
-                            Log.e("GetMajorSuccess",tr.get(4).getElementsByTag("tr").size()+"");
-                            Elements tr1 = tr.get(4).getElementsByTag("tr");
-                            if(tr.get(4).getElementsByTag("tr").size() == 15){
-                                for(int i = 2;i<4;i++){
-                                    Elements td = tr1.get(i).getElementsByTag("td");
-                                    MajorBean majorBean = new MajorBean();
-                                    majorBean.setmNeedScore(td.get(1).text());
-                                    majorBean.setmGetScore(td.get(2).text());
-                                    majorBean.setmUngetScore(td.get(3).text());
-                                    majorBean.setmWantScore(td.get(4).text());
-                                    majorBeanList.add(majorBean);
-                                    Log.e("majorbean",majorBean.getmNeedScore()+" "+majorBean.getmGetScore()+" "+majorBean.getmUngetScore()+" "+majorBean.getmWantScore());
-                                }
-                            }else{
-                                for(int i = 2;i<5;i = i+2){
-                                    Elements td = tr1.get(i).getElementsByTag("td");
-                                    MajorBean majorBean = new MajorBean();
-                                    majorBean.setmNeedScore(td.get(1).text());
-                                    majorBean.setmGetScore(td.get(2).text());
-                                    majorBean.setmUngetScore(td.get(3).text());
-                                    majorBean.setmWantScore(td.get(4).text());
-                                    majorBeanList.add(majorBean);
-                                    Log.e("majorbean",majorBean.getmNeedScore()+" "+majorBean.getmGetScore()+" "+majorBean.getmUngetScore()+" "+majorBean.getmWantScore());
-                                }
-                            }
-                            Message message = Message.obtain();
-                            message.what = 5;
-                            handler.sendMessage(message);
+                            HandleMajorData.handleMajor(s);
                         }
                     }, new Response.ErrorListener() {
                 @Override

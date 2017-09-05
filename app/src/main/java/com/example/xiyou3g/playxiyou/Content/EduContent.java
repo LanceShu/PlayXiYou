@@ -23,7 +23,14 @@ import java.util.Map;
 
 public class EduContent {
 
+    public static final int COURSE_CACHE = 331;
+    public static final int SCORE_CACHE = 332;
+
     static public int isAllRequest = 1;
+    public static boolean isCache = false;       //是否缓存;
+    public static String isStu = "";
+
+    public static Context loginContext;
 
     static public int UPDATE_COURSE = 1;
     static public int UPDATE_SCORE = 2;

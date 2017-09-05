@@ -55,6 +55,7 @@
                 android:src="@mipmap/user"/>
 
             <EditText
+                android:maxLength="8"
                 android:id="@+id/username"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -135,6 +136,7 @@
                     android:src="@mipmap/codecheck"/>
 
                 <EditText
+                    android:maxLength="4"
                     android:id="@+id/codeedit"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"

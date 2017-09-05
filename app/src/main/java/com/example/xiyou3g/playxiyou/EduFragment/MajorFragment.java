@@ -102,7 +102,7 @@ public class MajorFragment extends Fragment {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    new GetMajorData().run();
+                    new GetMajorData();
                 }
             },800);
         }

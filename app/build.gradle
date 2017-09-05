@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 25
@@ -37,4 +39,7 @@ dependencies {
     compile 'com.loopeer.library:cardstack:1.0.2'
     compile 'com.github.chaychan:PowerfulViewLibrary:1.1.0'
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:1.1.1'
+    compile 'org.jetbrains.anko:anko-sdk25:0.10.0-beta-1'
+    compile 'org.jetbrains.anko:anko-appcompat-v7:0.10.0-beta-1'
 }

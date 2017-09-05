@@ -8,6 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.xiyou3g.playxiyou.Utils.HandlePerInfo;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,9 +21,9 @@ import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
  * Created by Lance on 2017/7/14.
  */
 
-public class GetPerInfo implements Runnable {
-    @Override
-    public void run() {
+public class GetPerInfo {
+
+    public GetPerInfo(){
         getPersonInfo();
     }
 
@@ -32,21 +33,7 @@ public class GetPerInfo implements Runnable {
            StringRequest stringRequest = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
                @Override
                public void onResponse(String s) {
-                   Log.e("noteacher",s.contains("你还没有进行本学期的课堂教学质量评价")+"");
-                   if(!s.contains("你还没有进行本学期的课堂教学质量评价")){
-                       Document document = Jsoup.parse(s);
-                       stuname = document.getElementById("xm").text();
-                       stuid = document.getElementById("xh").text();
-                       stuacademy = document.getElementById("lbl_xy").text();
-                       stumajor = document.getElementById("lbl_zymc").text();
-                       stuclass = document.getElementById("lbl_xzb").text();
-                       stueducation = document.getElementById("lbl_CC").text();
-                       stuSex = document.getElementById("lbl_xb").text();
-                       stuYear = document.getElementById("lbl_dqszj").text();
-                       Log.e("person2222222",stuname+"--"+stuid+"--"+stuacademy+"--"+stumajor+"--"+stuclass+"--"+stueducation);
-                   }else{
-                       stuname = "null";
-                   }
+                   HandlePerInfo.handlePer(s);
                }
            }, new Response.ErrorListener() {
                @Override
