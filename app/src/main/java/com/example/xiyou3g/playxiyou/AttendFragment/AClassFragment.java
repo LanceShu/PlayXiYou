@@ -25,6 +25,7 @@ import com.example.xiyou3g.playxiyou.Adapter.AClassAdapter;
 import com.example.xiyou3g.playxiyou.DataBean.ClassroomBean;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetAttendClass;
 import com.example.xiyou3g.playxiyou.R;
+import com.example.xiyou3g.playxiyou.Utils.HandleAttClass;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -147,29 +148,7 @@ public class AClassFragment extends Fragment {
 
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
-                    try {
-                        JSONObject jsonObject = new JSONObject(response.body().string());
-                        Log.e("attend classroom success",""+jsonObject);
-                        if(jsonObject.getBoolean("IsSucceed")){
-                            JSONArray jsonArray = jsonObject.getJSONArray("Obj");
-                            for(int i = 0;i<jsonArray.length();i++){
-                                JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                                ClassroomBean classroomBean = new ClassroomBean();
-                                classroomBean.setCname(jsonObject1.getString("ROOMNUM"));
-                                classroomBean.setCplace(jsonObject1.getJSONObject("Build").getString("NAME"));
-                                classroomBean.setCflow(jsonObject1.getInt("ROOMFLOW")+"");
-                                classroomBean.setCcount(jsonObject1.getInt("USERCOUNT")+"");
-                                Log.e("attend classroom success",classroomBean.getCname()+" "+classroomBean.getCplace()+" "+classroomBean.getCflow()+" "+classroomBean.getCcount());
-                                classroomBeanList.add(classroomBean);
-                            }
-                            Message message = new Message();
-                            message.what = 9;
-                            attenHandler.sendMessage(message);
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    HandleAttClass.INSTANCE.handleAttClass(response);
                 }
             });
         } catch (JSONException e) {
