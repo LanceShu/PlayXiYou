@@ -11,10 +11,19 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.example.xiyou3g.playxiyou.HttpRequest.GetAttendCheck;
 import com.example.xiyou3g.playxiyou.R;
+import com.example.xiyou3g.playxiyou.Utils.HandleAttCheck;
 
+import java.io.IOException;
 import java.util.Calendar;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+
 import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
+import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
 
 /**
  * Created by Lance on 2017/7/20.
@@ -54,7 +63,11 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
         month = calendar.get(Calendar.MONTH)+1;
         day = calendar.get(Calendar.DAY_OF_MONTH);
         if(month <10){
-            return year+"-"+"0"+month+"-"+day;
+            if(day < 10){
+                return year+"-"+"0"+month+"-"+"0"+day;
+            }else{
+                return year+"-"+"0"+month+"-"+day;
+            }
         }
         return year+"-"+month+"-"+day;
     }
@@ -122,9 +135,17 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
                     }
                 }else{
                     if(month<10){
-                        startdate.setText(year+"-0"+month+"-"+(day-7));
+                        if(day < 10){
+                            startdate.setText(year+"-0"+month+"-"+"0"+(day-7));
+                        }else{
+                            startdate.setText(year+"-0"+month+"-"+(day-7));
+                        }
                     }else {
-                        startdate.setText(year+"-"+month+"-"+(day-7));
+                        if(day < 10){
+                            startdate.setText(year+"-"+month+"-"+"0"+(day-7));
+                        }else{
+                            startdate.setText(year+"-"+month+"-"+(day-7));
+                        }
                     }
                 }
                 enddata.setText(current);
@@ -134,13 +155,25 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
             case R.id.month:
                 switch (month){
                     case 1:
-                        startdate.setText((year-1)+"-"+12+"-"+day);
+                        if(day < 10){
+                            startdate.setText((year-1)+"-"+12+"-"+"0"+day);
+                        }else{
+                            startdate.setText((year-1)+"-"+12+"-"+day);
+                        }
                         break;
                     default:
                         if(month<10){
-                            startdate.setText(year+"-0"+(month-1)+"-"+day);
+                            if(day < 10){
+                                startdate.setText(year+"-0"+(month-1)+"-"+"0"+day);
+                            }else{
+                                startdate.setText(year+"-0"+(month-1)+"-"+day);
+                            }
                         }else {
-                            startdate.setText(year+"-"+(month-1)+"-"+day);
+                            if(day <10){
+                                startdate.setText(year+"-"+(month-1)+"-"+"0"+day);
+                            }else{
+                                startdate.setText(year+"-"+(month-1)+"-"+day);
+                            }
                         }
                         break;
                 }
@@ -165,9 +198,26 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
                     Status = 3;
                 }
                 Flag = setFlag(Flag);
-                Log.e("attend check","WaterDate="+WaterDate+"&Status="+Status+"&Flag="+Flag+"&page="+page+"&rows="+rows);
+                String data = "WaterDate="+WaterDate+"&Status="+Status+"&Flag="+Flag+"&page="+page+"&rows="+rows;
+                Log.e("attend",data);
+                getAttendCheeck(WaterDate,Status,Flag,page,rows,attenCookie);               //获取考勤信息;
                 break;
         }
+    }
+
+    private void getAttendCheeck(String waterDate, int status, String flag, int page, int rows, String attenCookie) {
+
+        GetAttendCheck.INSTANCE.getAttendCheck(waterDate, status, flag, page, rows, attenCookie, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("GetAttendCheck",e.toString());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                HandleAttCheck.INSTANCE.hanleAttCheck(response);
+            }
+        });
     }
 
     private String setFlag(String flag) {

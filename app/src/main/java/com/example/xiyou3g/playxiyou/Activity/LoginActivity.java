@@ -78,6 +78,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Boolean isCanSee = false;
     private int flag;
     private byte[] imagebytes;
+    private String cStuname = "";       //缓存的学生名字;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -85,6 +86,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.login_activity);
 
         islogin = 0;
+        cStuname = "";
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         mqueue = Volley.newRequestQueue(this);
@@ -122,7 +124,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             username.setText(pref.getString("username",""));
             password.setText(pref.getString("password",""));
             remberPass.setChecked(true);
-            isStu = pref.getString("username","");
+            cStuname = pref.getString("username","");
         }
 
         initCodeImage();
@@ -188,6 +190,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 initCodeImage();
                 break;
             case R.id.login:
+
+                if(cStuname.equals(username.getText().toString())){
+                    isCache = true;
+                }else{
+                    isCache = false;
+                }
 
                 final String url = "http://222.24.62.120/default2.aspx";
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -309,13 +317,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH)+1;
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if(isStu.equals(username.getText().toString())){
+        if(isCache){
             String s = preferences.getString("EduCoures","null");
             HandleCourseData.handleCourse(s);
-            isCache = true;
         }else{
             new GetCourseData(year,month,1);
-            isCache = false;
         }
 
     }

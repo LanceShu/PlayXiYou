@@ -136,7 +136,6 @@ public class AttenLoginActivity extends AppCompatActivity implements View.OnClic
                                 if(jsonObject.getBoolean("IsSucceed")){
 
                                     islogin = 1;
-
                                     Log.e("attend cookie",attenCookie);
                                     JSONObject jsonObject1 = jsonObject.getJSONObject("Obj");
                                     Log.e("attend obj",jsonObject1+"");
