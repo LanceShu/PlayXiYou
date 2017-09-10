@@ -57,6 +57,7 @@
 
         <EditText
             android:id="@+id/aname"
+            android:maxLength="8"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -118,6 +119,7 @@
 
             <EditText
                 android:id="@+id/acode"
+                android:maxLength="5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1.2"
