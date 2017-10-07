@@ -23,6 +23,8 @@ import com.example.xiyou3g.playxiyou.R;
 import com.example.xiyou3g.playxiyou.Utils.HandleAttCheck;
 import com.example.xiyou3g.playxiyou.Utils.LogUtils;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -51,6 +53,7 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
     private CheckBox late;
     private CheckBox absence;
     private Button find;
+    private TextView isCheckData;
 
     private int year;
     private int month;
@@ -74,6 +77,11 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
                 super.handleMessage(msg);
                 switch (msg.what){
                     case 71:
+                        if(checkBeanList.size() > 0){
+                            isCheckData.setVisibility(View.GONE);
+                        }else{
+                            isCheckData.setVisibility(View.VISIBLE);
+                        }
                         checkAdapter = new CheckAdapter(getContext(),checkBeanList);
                         checkRecycler.setAdapter(checkAdapter);
                         break;
@@ -114,6 +122,7 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
         late = (CheckBox) view.findViewById(R.id.late);
         absence = (CheckBox) view.findViewById(R.id.absence);
         find = (Button) view.findViewById(R.id.find);
+        isCheckData = (TextView) view.findViewById(R.id.isCheckData);
 
         checkRecycler = (RecyclerView) view.findViewById(R.id.check_recycler);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
