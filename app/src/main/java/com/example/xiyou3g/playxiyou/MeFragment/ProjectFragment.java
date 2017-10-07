@@ -1,4 +1,4 @@
-package com.example.xiyou3g.playxiyou.EduFragment;
+package com.example.xiyou3g.playxiyou.MeFragment;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -45,6 +45,8 @@ public class ProjectFragment extends Fragment implements CardStackView.ItemExpen
 
     private CardStackView cardStackView;
     private TestStackAdapter testStackAdapter;
+    private  int flag = 0;
+    private int i =0;
 
     private static Integer[] item = new Integer[]{R.color.team1,R.color.team2,R.color.team3,
             R.color.team4,R.color.team5,R.color.team6,R.color.team7,R.color.team8};
@@ -54,6 +56,10 @@ public class ProjectFragment extends Fragment implements CardStackView.ItemExpen
     public void onAttach(Context context) {
         super.onAttach(context);
         if(!stuname.equals("null")){
+            dialog = new ProgressDialog(getContext());
+            dialog.setCanceledOnTouchOutside(false);
+            dialog.setMessage("正在努力加载...");
+            dialog.show();
             getAllProject(ViewStatelist);                        //获取全部培养计划信息;
         }
     }
@@ -69,8 +75,30 @@ public class ProjectFragment extends Fragment implements CardStackView.ItemExpen
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.project_fragment,container,false);
+        final View view = inflater.inflate(R.layout.project_fragment,container,false);
         initWight(view);
+        if(majorBeanList.size()!=0){
+            initWight(view);
+            if(flag == 1){
+                dialog.dismiss();
+                flag = 0;
+            }
+        }
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what){
+                    case 6:
+                        i++;
+                        if(i == 8){
+                            initWight(view);
+                            dialog.dismiss();
+                        }
+                        flag = 0;
+                        break;
+                }
+            }
+        };
         return view;
     }
 

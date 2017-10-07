@@ -38,7 +38,7 @@ public class GetMajorData{
             public void run() {
                 getMajor();
             }
-        },500);
+        },250);
     }
 
     private void getMajorVIEWSTATE(){

@@ -1,22 +1,32 @@
 package com.example.xiyou3g.playxiyou.AttendFragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.xiyou3g.playxiyou.Adapter.CheckAdapter;
+import com.example.xiyou3g.playxiyou.DataBean.CheckBean;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetAttendCheck;
 import com.example.xiyou3g.playxiyou.R;
 import com.example.xiyou3g.playxiyou.Utils.HandleAttCheck;
+import com.example.xiyou3g.playxiyou.Utils.LogUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -47,6 +57,9 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
     private int day;
     private String current;
 
+    private RecyclerView checkRecycler;
+    private CheckAdapter checkAdapter ;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,6 +67,19 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
         current = getCurrentDay();
 
         initWight(view);
+
+        attenHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case 71:
+                        checkAdapter = new CheckAdapter(getContext(),checkBeanList);
+                        checkRecycler.setAdapter(checkAdapter);
+                        break;
+                }
+            }
+        };
         return view;
     }
 
@@ -68,8 +94,13 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
             }else{
                 return year+"-"+"0"+month+"-"+day;
             }
+        }else{
+            if(day < 10){
+                return year+"-"+month+"-"+"0"+day;
+            }else{
+                return year+"-"+month+"-"+day;
+            }
         }
-        return year+"-"+month+"-"+day;
     }
 
     private void initWight(View view) {
@@ -83,6 +114,13 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
         late = (CheckBox) view.findViewById(R.id.late);
         absence = (CheckBox) view.findViewById(R.id.absence);
         find = (Button) view.findViewById(R.id.find);
+
+        checkRecycler = (RecyclerView) view.findViewById(R.id.check_recycler);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        checkRecycler.setLayoutManager(linearLayoutManager);
+        checkAdapter = new CheckAdapter(getContext(),checkBeanList);
+        checkRecycler.setAdapter(checkAdapter);
 
         today.setChecked(true);
         startdate.setText(current);
@@ -136,13 +174,21 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
                 }else{
                     if(month<10){
                         if(day < 10){
-                            startdate.setText(year+"-0"+month+"-"+"0"+(day-7));
+                            if(day == 7){
+                                startdate.setText(year+"-0"+month+"-"+"01");
+                            }else{
+                                startdate.setText(year+"-0"+month+"-"+"0"+(day-7));
+                            }
                         }else{
                             startdate.setText(year+"-0"+month+"-"+(day-7));
                         }
                     }else {
                         if(day < 10){
-                            startdate.setText(year+"-"+month+"-"+"0"+(day-7));
+                            if(day == 7){
+                                startdate.setText(year+"-"+month+"-"+"01");
+                            }else{
+                                startdate.setText(year+"-"+month+"-"+"0"+(day-7));
+                            }
                         }else{
                             startdate.setText(year+"-"+month+"-"+(day-7));
                         }
@@ -162,7 +208,7 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
                         }
                         break;
                     default:
-                        if(month<10){
+                        if(month<=10){
                             if(day < 10){
                                 startdate.setText(year+"-0"+(month-1)+"-"+"0"+day);
                             }else{
@@ -189,7 +235,7 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
                 int  Status = 1;
                 String Flag = "";
                 int page = 1;
-                int rows = 50;
+                int rows = 30;
                 if(today.isChecked()){
                     Status = 1;
                 }else if(week.isChecked()){

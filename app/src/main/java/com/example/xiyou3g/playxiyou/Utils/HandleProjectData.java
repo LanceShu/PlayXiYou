@@ -1,5 +1,6 @@
 package com.example.xiyou3g.playxiyou.Utils;
 
+import android.os.Message;
 import android.util.Log;
 
 import com.example.xiyou3g.playxiyou.DataBean.ProjectBean;
@@ -8,6 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import static com.example.xiyou3g.playxiyou.Content.EduContent.handler;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.proList;
 
 /**
@@ -34,5 +36,8 @@ public class HandleProjectData {
             proList.get(team-1).add(projectBean);
 
         }
+        Message message = Message.obtain();
+        message.what = 6;
+        handler.sendMessage(message);
     }
 }

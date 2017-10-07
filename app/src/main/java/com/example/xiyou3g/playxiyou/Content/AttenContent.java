@@ -3,6 +3,7 @@ package com.example.xiyou3g.playxiyou.Content;
 import android.os.Handler;
 
 import com.example.xiyou3g.playxiyou.DataBean.AttendPerBean;
+import com.example.xiyou3g.playxiyou.DataBean.CheckBean;
 import com.example.xiyou3g.playxiyou.DataBean.ClassroomBean;
 import com.example.xiyou3g.playxiyou.DataBean.SiliuBean;
 
@@ -25,4 +26,7 @@ public class AttenContent {
 
     static public SiliuBean siliuBean = new SiliuBean();
     static public int isGet = 0;
+
+    //考勤情况的记录;
+    public static List<CheckBean> checkBeanList = new ArrayList<>();
 }

@@ -40,6 +40,8 @@
             android:windowSoftInputMode="stateAlwaysVisible"/>
         <activity android:name=".MeFragment.GuideActivity"/>
         <activity android:name=".Activity.SiliuActivitySe"/>
+        <activity android:name=".MeFragment.ProjectActivity"/>
+        <activity android:name=".MeFragment.MajortActivity"/>
 
         <!--<service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"></service>-->
     </application>

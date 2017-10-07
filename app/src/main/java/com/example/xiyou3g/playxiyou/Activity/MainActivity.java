@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     private List<String> getVisState(final List<String> list) {
         list.clear();
-        for(int i = 0;i<2;i++){
+        for(int i = 0;i<3;i++){
             String url = "http://222.24.62.120/pyjh.aspx?xh="+loginName+"&xm="+student_name+"&gnmkdm=N121607";
             final String[] __viewstate = new String[1];
             StringRequest stringRequest1 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

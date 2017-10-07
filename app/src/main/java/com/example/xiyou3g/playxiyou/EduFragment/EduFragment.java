@@ -12,11 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.xiyou3g.playxiyou.Adapter.EduAdapter;
-import com.example.xiyou3g.playxiyou.HttpRequest.GetScoreData;
+import com.example.xiyou3g.playxiyou.MeFragment.MajorFragment;
+import com.example.xiyou3g.playxiyou.MeFragment.ProjectFragment;
 import com.example.xiyou3g.playxiyou.R;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -34,9 +34,13 @@ public class EduFragment extends Fragment{
     private List<Fragment> fragmentList;
     private List<String> tabList;
 
+    //课程表的Fragment;
     private CourseFragment courseFragment;
+    //成绩查询的Fragment；
     private ScoreFragment scoreFragment;
+    //培养计划的Fragment;
     private ProjectFragment projectFragment;
+    //学分统计的Fragment;
     private MajorFragment majorFragment;
 
     @Override
@@ -58,26 +62,26 @@ public class EduFragment extends Fragment{
 
         courseFragment = new CourseFragment();
         scoreFragment = new ScoreFragment();
-        projectFragment = new ProjectFragment();
-        majorFragment = new MajorFragment();
+//        projectFragment = new ProjectFragment();
+//        majorFragment = new MajorFragment();
 
         fragmentList = new ArrayList<>();
         fragmentList.add(courseFragment);
         fragmentList.add(scoreFragment);
-        fragmentList.add(projectFragment);
-        fragmentList.add(majorFragment);
+//        fragmentList.add(projectFragment);
+//        fragmentList.add(majorFragment);
 
         tabList = new ArrayList<>();
         tabList.add("课程表");
         tabList.add("成绩查询");
-        tabList.add("培养计划");
-        tabList.add("学分统计");
+//        tabList.add("培养计划");
+//        tabList.add("学分统计");
 
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
         tabLayout.addTab(tabLayout.newTab().setText(tabList.get(0)));
         tabLayout.addTab(tabLayout.newTab().setText(tabList.get(1)));
-        tabLayout.addTab(tabLayout.newTab().setText(tabList.get(2)));
-        tabLayout.addTab(tabLayout.newTab().setText(tabList.get(3)));
+//        tabLayout.addTab(tabLayout.newTab().setText(tabList.get(2)));
+//        tabLayout.addTab(tabLayout.newTab().setText(tabList.get(3)));
 
         eduAdapter = new EduAdapter(getChildFragmentManager(),fragmentList,tabList);
         viewPager.setAdapter(eduAdapter);

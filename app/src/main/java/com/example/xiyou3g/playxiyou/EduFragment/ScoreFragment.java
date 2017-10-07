@@ -101,6 +101,7 @@ public class ScoreFragment extends Fragment {
         return view;
     }
 
+    //学期的各学期的成绩;
     private void getYearAndTeam() {
         yearList.clear();
         sYear = Integer.parseInt(stuYear);
@@ -119,11 +120,11 @@ public class ScoreFragment extends Fragment {
                 scoreYearAndTeam2.setTeam("2");
                 yearList.add(scoreYearAndTeam2);
             }
-            sYear = sYear + 1;
-            ScoreYearAndTeam scoreYearAndTeam1 = new ScoreYearAndTeam();
-            scoreYearAndTeam1.setYear(sYear+"-"+(sYear+1));
-            scoreYearAndTeam1.setTeam("1");
-            yearList.add(scoreYearAndTeam1);
+//            sYear = sYear + 1;
+//            ScoreYearAndTeam scoreYearAndTeam1 = new ScoreYearAndTeam();
+//            scoreYearAndTeam1.setYear(sYear+"-"+(sYear+1));
+//            scoreYearAndTeam1.setTeam("1");
+//            yearList.add(scoreYearAndTeam1);
         }else{
             for(int i =0;i<year - sYear;i++){
                 sYear = sYear + i;

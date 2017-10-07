@@ -41,6 +41,8 @@ public class MeFragment extends Fragment implements View.OnClickListener{
 
     private TextView stuinfo;
     private TextView siliu;
+    private TextView project;
+    private TextView major;
     private TextView place;
     private TextView help;
     private TextView question;
@@ -121,6 +123,10 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         stuNum = (TextView) view.findViewById(R.id.stunum);
         stuinfo = (TextView) view.findViewById(R.id.stuinfo);
         siliu = (TextView) view.findViewById(R.id.siliu);
+
+        project = (TextView) view.findViewById(R.id.project);
+        major = (TextView) view.findViewById(R.id.major);
+
         place = (TextView) view.findViewById(R.id.place);
         help = (TextView) view.findViewById(R.id.help);
         question = (TextView) view.findViewById(R.id.question);
@@ -133,6 +139,8 @@ public class MeFragment extends Fragment implements View.OnClickListener{
 
         stuinfo.setOnClickListener(this);
         siliu.setOnClickListener(this);
+        project.setOnClickListener(this);
+        major.setOnClickListener(this);
         place.setOnClickListener(this);
         help.setOnClickListener(this);
         question.setOnClickListener(this);
@@ -180,6 +188,14 @@ public class MeFragment extends Fragment implements View.OnClickListener{
             case R.id.siliu:
                 Intent intent1 = new Intent(getContext(), SiliuActivitySe.class);
                 startActivity(intent1,ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
+                break;
+            case R.id.project:
+                Intent proIntent = new Intent(getContext(),ProjectActivity.class);
+                startActivity(proIntent);
+                break;
+            case R.id.major:
+                Intent majorIntent = new Intent(getContext(),MajortActivity.class);
+                startActivity(majorIntent);
                 break;
             case R.id.help:
                 BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(getContext());

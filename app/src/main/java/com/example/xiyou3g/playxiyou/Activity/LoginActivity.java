@@ -191,11 +191,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.login:
 
-                if(cStuname.equals(username.getText().toString())){
-                    isCache = true;
-                }else{
-                    isCache = false;
-                }
+//                if(cStuname.equals(username.getText().toString())){
+//                    isCache = true;
+//                }else{
+//                    isCache = false;
+//                }
 
                 final String url = "http://222.24.62.120/default2.aspx";
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);

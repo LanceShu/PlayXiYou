@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/checkCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="5dp"
+        android:elevation="5dp"
+        android:backgroundTint="@color/weeks">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="6dp">
+
+            <TextView
+                android:id="@+id/WaterDate"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:text="WaterDate"
+                android:gravity="center_vertical"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#aeaeae"/>
+
+            <TextView
+                android:id="@+id/S_Name"
+                android:layout_marginTop="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:text="S_Name"
+                android:gravity="center_vertical"
+                android:textSize="24sp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:text="课程代码："
+                    android:gravity="center_vertical"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/S_Code"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:text="S_Code"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:text="节次："
+                    android:gravity="center_vertical"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/JT_No"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="24dp"
+                    android:text="JT_No"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:text="教室："
+                    android:gravity="center_vertical"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/RoomNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"
+                    android:text="RoomNum"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:text="楼栋："
+                    android:gravity="center_vertical"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/BName"
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"
+                    android:text="BName"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:text="考勤状态："
+                    android:gravity="center_vertical"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/Status"
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"
+                    android:text="Status"
+                    android:gravity="center_vertical"
+                    android:textSize="16sp"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+
+                <Button
+                    android:id="@+id/appeal"
+                    android:text="申诉"
+                    android:textColor="#fff"
+                    android:backgroundTint="@color/days"
+                    android:layout_width="120dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="16dp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
