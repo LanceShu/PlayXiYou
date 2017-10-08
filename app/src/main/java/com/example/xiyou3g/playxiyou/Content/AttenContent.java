@@ -4,6 +4,7 @@ import android.os.Handler;
 
 import com.example.xiyou3g.playxiyou.DataBean.AttendPerBean;
 import com.example.xiyou3g.playxiyou.DataBean.CheckBean;
+import com.example.xiyou3g.playxiyou.DataBean.CheckInforBean;
 import com.example.xiyou3g.playxiyou.DataBean.ClassroomBean;
 import com.example.xiyou3g.playxiyou.DataBean.SiliuBean;
 
@@ -29,4 +30,7 @@ public class AttenContent {
 
     //考勤情况的记录;
     public static List<CheckBean> checkBeanList = new ArrayList<>();
+
+    //基本信息->考勤统计表;
+    public static List<CheckInforBean> CheckInforList = new ArrayList<>();
 }

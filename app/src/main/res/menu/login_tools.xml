@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/attend"
+        android:title="智慧教室"/>
+
     <item android:id="@+id/siliu"
         android:title="四六级查询"/>
 
     <item android:id="@+id/guide"
         android:title="东区教室导航"/>
+
 
 </menu>

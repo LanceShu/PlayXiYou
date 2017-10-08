@@ -295,6 +295,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
+                            case R.id.attend:
+                                Intent attIntent = new Intent(LoginActivity.this,AttenLoginActivity.class);
+                                startActivity(attIntent,ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());
+                                break;
                             case R.id.siliu:
                                 Intent intent1 = new Intent(LoginActivity.this, SiliuActivitySe.class);
                                 startActivity(intent1, ActivityOptions.makeSceneTransitionAnimation(LoginActivity.this).toBundle());

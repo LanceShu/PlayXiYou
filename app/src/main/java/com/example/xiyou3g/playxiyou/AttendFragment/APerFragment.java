@@ -2,6 +2,7 @@ package com.example.xiyou3g.playxiyou.AttendFragment;
 
 import android.app.ActivityOptions;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,7 +24,17 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.xiyou3g.playxiyou.Activity.AttenLoginActivity;
 import com.example.xiyou3g.playxiyou.Activity.MainActivity;
+import com.example.xiyou3g.playxiyou.HttpRequest.GetCheckInfor;
 import com.example.xiyou3g.playxiyou.R;
+import com.example.xiyou3g.playxiyou.Utils.HandleCheckInfor;
+import com.example.xiyou3g.playxiyou.Utils.LogUtils;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+
 import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
 
@@ -44,6 +55,23 @@ public class APerFragment extends Fragment {
     private TextView aclass;
     private TextView aidenti;
     private Button aexit;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        LogUtils.INSTANCE.e("Attend:","success");
+        GetCheckInfor.INSTANCE.getCheckInfor(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                HandleCheckInfor.INSTANCE.handleCheckInfor(response);
+            }
+        });
+    }
 
     @Nullable
     @Override

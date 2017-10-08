@@ -30,12 +30,15 @@ import com.example.xiyou3g.playxiyou.HttpRequest.GetAttenLogin;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetAttendCode;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetAttendClass;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetAttendPer;
+import com.example.xiyou3g.playxiyou.HttpRequest.GetCheckInfor;
 import com.example.xiyou3g.playxiyou.R;
+import com.example.xiyou3g.playxiyou.Utils.LogUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -130,7 +133,6 @@ public class AttenLoginActivity extends AppCompatActivity implements View.OnClic
                         public void onResponse(Call call, Response response) throws IOException {
 //                            Log.e("atten success",response.body().string());
                             String res = response.body().string();
-                            Log.e("atten success",res);
                             try {
                                 JSONObject jsonObject = new JSONObject(res);
                                 if(jsonObject.getBoolean("IsSucceed")){
@@ -171,6 +173,8 @@ public class AttenLoginActivity extends AppCompatActivity implements View.OnClic
                                         @Override
                                         public void onResponse(Call call, Response response) throws IOException {
                                             String body = response.body().string();
+                                            //LogUtils.INSTANCE.e("AttendPerInfor:",body);
+
                                             Document document = Jsoup.parse(body);
                                             Elements dl = document.getElementsByTag("dd");
 //                                            Log.e("attend per success",dl.toString());
@@ -182,7 +186,12 @@ public class AttenLoginActivity extends AppCompatActivity implements View.OnClic
                                             attendPerBean.setMajor(dl.get(5).text());
                                             attendPerBean.setClassroom(dl.get(6).text());
                                             attendPerBean.setIdentity(dl.get(7).text());
-                                            Log.e("attend attendBean success",attendPerBean.getName());
+
+                                            /*Elements td = document.getElementsByTag("td");
+                                            for(int i = 0;i<td.size();i++){
+                                                coursesList.add(td.get(i).text());
+                                                //LogUtils.INSTANCE.e("courseInfor",coursesList.get(i));
+                                            }*/
                                         }
                                     });
 
