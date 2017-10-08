@@ -3,6 +3,7 @@ package com.example.xiyou3g.playxiyou.Utils
 import android.os.Message
 import android.util.Log
 import com.example.xiyou3g.playxiyou.Content.AttenContent
+import com.example.xiyou3g.playxiyou.Content.EduContent
 import com.example.xiyou3g.playxiyou.DataBean.CheckBean
 import okhttp3.Response
 import org.json.JSONArray
@@ -15,6 +16,9 @@ import java.util.ArrayList
 object HandleAttCheck{
 
     fun hanleAttCheck(respone: Response){
+
+        LogUtils.e("getAttendCheck3:","success")
+
         AttenContent.checkBeanList.clear()
         val responseBody = respone.body().string()
         Log.e("GetAttendCheck",responseBody)
@@ -40,8 +44,8 @@ object HandleAttCheck{
             }
             LogUtils.e("checkBeanListSize:",AttenContent.checkBeanList.size.toString())
             val message = Message()
-            message.what = 71
-            AttenContent.attenHandler.sendMessage(message)
+            message.what = 91
+            EduContent.handler.sendMessage(message)
         }
     }
 }

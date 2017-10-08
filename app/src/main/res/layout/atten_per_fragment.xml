@@ -223,9 +223,68 @@
                     android:textSize="16sp"
                     android:gravity="center_vertical"/>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="match_parent"
+                        android:text="课程名称"
+                        android:gravity="center"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:text="总计"
+                        android:gravity="center"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:text="应到"
+                        android:textColor="@color/days"
+                        android:gravity="center"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:text="正常"
+                        android:textColor="#8dce6f"
+                        android:gravity="center"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:text="迟到"
+                        android:textColor="#ceae6f"
+                        android:gravity="center"
+                        android:textSize="14sp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:text="缺勤"
+                        android:textColor="#ce726f"
+                        android:gravity="center"
+                        android:textSize="14sp"/>
+
+                </LinearLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="240dp">
+                    android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/isCheckInfor"
@@ -236,9 +295,9 @@
                         android:gravity="center"/>
 
                     <android.support.v7.widget.RecyclerView
+                        android:id="@+id/checkRec"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone">
+                        android:layout_height="wrap_content">
 
                     </android.support.v7.widget.RecyclerView>
 

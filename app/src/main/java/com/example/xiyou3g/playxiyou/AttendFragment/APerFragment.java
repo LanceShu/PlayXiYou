@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +27,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.xiyou3g.playxiyou.Activity.AttenLoginActivity;
 import com.example.xiyou3g.playxiyou.Activity.MainActivity;
+import com.example.xiyou3g.playxiyou.Adapter.CheckInforAdapter;
+import com.example.xiyou3g.playxiyou.Content.AttenContent;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetCheckInfor;
 import com.example.xiyou3g.playxiyou.R;
 import com.example.xiyou3g.playxiyou.Utils.HandleCheckInfor;
@@ -56,21 +61,28 @@ public class APerFragment extends Fragment {
     private TextView aidenti;
     private Button aexit;
 
+    private TextView isHasCheckInfor;
+    private RecyclerView checkList;
+    private CheckInforAdapter adapter;
+    public static Handler checkHandler;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         LogUtils.INSTANCE.e("Attend:","success");
-        GetCheckInfor.INSTANCE.getCheckInfor(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
+        if(CheckList.size() == 0){
+            GetCheckInfor.INSTANCE.getCheckInfor(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    e.printStackTrace();
+                }
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                HandleCheckInfor.INSTANCE.handleCheckInfor(response);
-            }
-        });
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    HandleCheckInfor.INSTANCE.handleCheckInfor(response);
+                }
+            });
+        }
     }
 
     @Nullable
@@ -78,6 +90,25 @@ public class APerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.atten_per_fragment,container,false);
         initWight(view);
+
+        checkHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                switch (msg.what){
+                    case 72:
+                        LogUtils.INSTANCE.e("checkInfor:",CheckList.size()+"  "+CheckList.get(2).getCourseName());
+                        if(CheckList.size() > 0){
+                            isHasCheckInfor.setVisibility(View.GONE);
+                            checkList.setVisibility(View.VISIBLE);
+                        }
+                        adapter = new CheckInforAdapter(CheckList);
+                        checkList.setAdapter(adapter);
+                        break;
+                }
+            }
+        };
+
         return view;
     }
 
@@ -92,6 +123,21 @@ public class APerFragment extends Fragment {
         aclass = (TextView) view.findViewById(R.id.aclass);
         aidenti = (TextView) view.findViewById(R.id.aidentify);
         aexit = (Button) view.findViewById(R.id.aexit);
+        isHasCheckInfor = (TextView) view.findViewById(R.id.isCheckInfor);
+
+        if(CheckList.size() > 0){
+            isHasCheckInfor.setVisibility(View.GONE);
+        }else{
+            isHasCheckInfor.setVisibility(View.VISIBLE);
+        }
+
+        //考勤信息统计RecycleView;
+        checkList = (RecyclerView) view.findViewById(R.id.checkRec);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        checkList.setLayoutManager(linearLayoutManager);
+        adapter = new CheckInforAdapter(CheckList);
+        checkList.setAdapter(adapter);
 
         aexit.setOnClickListener(new View.OnClickListener() {
             @Override

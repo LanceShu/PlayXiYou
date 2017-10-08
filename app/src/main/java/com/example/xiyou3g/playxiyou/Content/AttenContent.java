@@ -32,5 +32,8 @@ public class AttenContent {
     public static List<CheckBean> checkBeanList = new ArrayList<>();
 
     //基本信息->考勤统计表;
-    public static List<CheckInforBean> CheckInforList = new ArrayList<>();
+    public static List<CheckInforBean> CheckList = new ArrayList<>();
+
+    //判断是否第一次进入智慧教室;
+    public static boolean isFirst = true;
 }

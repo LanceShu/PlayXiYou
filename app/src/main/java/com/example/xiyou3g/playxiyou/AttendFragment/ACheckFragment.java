@@ -1,5 +1,7 @@
 package com.example.xiyou3g.playxiyou.AttendFragment;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -71,12 +73,13 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
 
         initWight(view);
 
-        attenHandler = new Handler(){
+        handler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 switch (msg.what){
-                    case 71:
+                    case 91:
+                        LogUtils.INSTANCE.e("getAttendCheck1:","success");
                         if(checkBeanList.size() > 0){
                             isCheckData.setVisibility(View.GONE);
                         }else{
@@ -88,6 +91,7 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
                 }
             }
         };
+
         return view;
     }
 
@@ -261,6 +265,8 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
     }
 
     private void getAttendCheeck(String waterDate, int status, String flag, int page, int rows, String attenCookie) {
+
+        LogUtils.INSTANCE.e("2:","success");
 
         GetAttendCheck.INSTANCE.getAttendCheck(waterDate, status, flag, page, rows, attenCookie, new Callback() {
             @Override
