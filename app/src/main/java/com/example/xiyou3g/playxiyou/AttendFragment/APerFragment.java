@@ -14,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,6 +29,7 @@ import com.bumptech.glide.Glide;
 import com.example.xiyou3g.playxiyou.Activity.AttenLoginActivity;
 import com.example.xiyou3g.playxiyou.Activity.MainActivity;
 import com.example.xiyou3g.playxiyou.Adapter.CheckInforAdapter;
+import com.example.xiyou3g.playxiyou.Adapter.PieAdapter;
 import com.example.xiyou3g.playxiyou.Content.AttenContent;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetCheckInfor;
 import com.example.xiyou3g.playxiyou.R;
@@ -66,6 +68,9 @@ public class APerFragment extends Fragment {
     private CheckInforAdapter adapter;
     public static Handler checkHandler;
 
+    private RecyclerView chartsRecycler;
+    private PieAdapter pieAdapter;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -97,13 +102,15 @@ public class APerFragment extends Fragment {
                 super.handleMessage(msg);
                 switch (msg.what){
                     case 72:
-                        LogUtils.INSTANCE.e("checkInfor:",CheckList.size()+"  "+CheckList.get(2).getCourseName());
+                        //LogUtils.INSTANCE.e("checkInfor:",CheckList.size()+"  "+CheckList.get(2).getCourseName());
                         if(CheckList.size() > 0){
                             isHasCheckInfor.setVisibility(View.GONE);
                             checkList.setVisibility(View.VISIBLE);
                         }
                         adapter = new CheckInforAdapter(CheckList);
                         checkList.setAdapter(adapter);
+                        pieAdapter = new PieAdapter(CheckList);
+                        chartsRecycler.setAdapter(pieAdapter);
                         break;
                 }
             }
@@ -136,8 +143,19 @@ public class APerFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         checkList.setLayoutManager(linearLayoutManager);
-        adapter = new CheckInforAdapter(CheckList);
-        checkList.setAdapter(adapter);
+
+        //图表的考勤信息统计Charts;
+        chartsRecycler = (RecyclerView) view.findViewById(R.id.chartsRecycleView);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+        chartsRecycler.setLayoutManager(gridLayoutManager);
+
+        if(CheckList.size()>0){
+            adapter = new CheckInforAdapter(CheckList);
+            checkList.setAdapter(adapter);
+            pieAdapter = new PieAdapter(CheckList);
+            chartsRecycler.setAdapter(pieAdapter);
+        }
+
 
         aexit.setOnClickListener(new View.OnClickListener() {
             @Override

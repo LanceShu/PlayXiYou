@@ -283,15 +283,16 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:layout_marginTop="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/isCheckInfor"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:text="暂无内容"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:gravity="center"/>
 
                     <android.support.v7.widget.RecyclerView
@@ -302,6 +303,69 @@
                     </android.support.v7.widget.RecyclerView>
 
                 </RelativeLayout>
+
+                <TextView
+                    android:layout_marginTop="18dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/days"/>
+
+                <LinearLayout
+                    android:layout_marginTop="18dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="15dp"
+                        android:background="#78cc63"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1.5"
+                        android:layout_height="15dp"
+                        android:textColor="#78cc63"
+                        android:text="正常(%)"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="15dp"
+                        android:background="#ccb563"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1.5"
+                        android:layout_height="15dp"
+                        android:textColor="#ccb563"
+                        android:text="迟到(%)"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="15dp"
+                        android:background="#cc6563"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1.5"
+                        android:layout_height="15dp"
+                        android:textColor="#cc6563"
+                        android:text="缺勤(%)"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/chartsRecycleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
 
                 <TextView
                     android:layout_marginTop="18dp"
