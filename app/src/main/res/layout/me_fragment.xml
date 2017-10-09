@@ -27,14 +27,14 @@
 
                 <com.example.xiyou3g.playxiyou.MyView.RoundImageView
                     android:id="@+id/logo"
-                    android:layout_marginTop="110dp"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center_horizontal"
                     app:imageType="round"
                     app:borderRadius="180dp"
-                    android:src="@drawable/schoollogo"/>
+                    android:src="@drawable/doubi"/>
 
             </RelativeLayout>
 
