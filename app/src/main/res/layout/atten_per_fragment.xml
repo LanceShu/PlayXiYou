@@ -328,6 +328,7 @@
                         android:layout_height="15dp"
                         android:textColor="#78cc63"
                         android:text="正常(%)"
+                        android:textSize="14sp"
                         android:gravity="center"/>
 
                     <TextView
@@ -342,6 +343,7 @@
                         android:layout_height="15dp"
                         android:textColor="#ccb563"
                         android:text="迟到(%)"
+                        android:textSize="14sp"
                         android:gravity="center"/>
 
                     <TextView
@@ -356,6 +358,7 @@
                         android:layout_height="15dp"
                         android:textColor="#cc6563"
                         android:text="缺勤(%)"
+                        android:textSize="14sp"
                         android:gravity="center"/>
 
                 </LinearLayout>

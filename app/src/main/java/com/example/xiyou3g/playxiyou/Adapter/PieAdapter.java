@@ -2,6 +2,7 @@ package com.example.xiyou3g.playxiyou.Adapter;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +27,12 @@ public class PieAdapter extends RecyclerView.Adapter<PieAdapter.ViewHolder> {
 
     private List<CheckInforBean> checkInforBeanList = new ArrayList<>();
 
-    private int shouldAttend;
-    private int attend;
-    private int late;
-    private int absence;
+    private float shouldAttend;
+    private float attend;
+    private float late;
+    private float absence;
     private PieChartData pieChartData;
-    private List<SliceValue> sliceValues = new ArrayList<>();
+    private List<SliceValue> sliceValues;
 
     public PieAdapter(List<CheckInforBean> checkInforBeen){
         checkInforBeanList = checkInforBeen;
@@ -48,20 +49,33 @@ public class PieAdapter extends RecyclerView.Adapter<PieAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         CheckInforBean checkInforBean = checkInforBeanList.get(position);
         shouldAttend = Integer.parseInt(checkInforBean.getShouldAttend());
-        attend = Integer.parseInt(checkInforBean.getAttend());
-        late = Integer.parseInt(checkInforBean.getLate());
-        absence = Integer.parseInt(checkInforBean.getAbsence());
+        attend = Float.parseFloat(checkInforBean.getAttend());
+        late = Float.parseFloat(checkInforBean.getLate());
+        absence = Float.parseFloat(checkInforBean.getAbsence());
 
-        holder.chartView.setOnValueTouchListener(selectListener);
-        setPieChartData(shouldAttend,attend,late,absence);
-        initPieCharts();
+        LogUtils.INSTANCE.e("position1:","success");
+
+        //LogUtils.INSTANCE.e("sliceValuesSize:",position+"  "+sliceValues.get(2)+"");
+        initPieCharts(checkInforBean.getCourseName(),holder.chartView);
+
         holder.chartView.setPieChartData(pieChartData);
-        holder.chartView.setValueSelectionEnabled(true);
+        holder.chartView.setValueSelectionEnabled(false);
         holder.chartView.setAlpha(0.9f);
         holder.chartView.setCircleFillRatio(1f);
+        holder.chartView.setOnValueTouchListener(selectListener);
+
     }
 
-    private void initPieCharts() {
+    private void initPieCharts(String courseName,PieChartView chartView) {
+
+        sliceValues = new ArrayList<>();
+        sliceValues.clear();
+
+        sliceValues.add(new SliceValue(attend, Color.parseColor("#78cc63")));
+        sliceValues.add(new SliceValue(late, Color.parseColor("#ccb563")));
+        sliceValues.add(new SliceValue(absence , Color.parseColor("#cc6563")));
+
+        LogUtils.INSTANCE.e("position3:","success");
         pieChartData = new PieChartData();
         pieChartData.setHasLabels(true);
         pieChartData.setHasLabelsOnlyForSelected(false);
@@ -70,21 +84,15 @@ public class PieAdapter extends RecyclerView.Adapter<PieAdapter.ViewHolder> {
         pieChartData.setValues(sliceValues);
         pieChartData.setCenterCircleColor(Color.WHITE);
         pieChartData.setCenterCircleScale(0.5f);
-    }
+        pieChartData.setCenterText1(courseName);
+        pieChartData.setCenterText1FontSize(10);
+        pieChartData.setCenterText1Color(Color.GRAY);
 
-    private void setPieChartData(int shouldAttend, int attend, int late, int absence) {
-        sliceValues.clear();
-
-        LogUtils.INSTANCE.e("attend:",attend+"");
-        LogUtils.INSTANCE.e("late:",late+"");
-        LogUtils.INSTANCE.e("absence:",absence+"");
-
-        SliceValue attendSliceValue = new SliceValue((float) 14, Color.parseColor("#78cc63"));
-        sliceValues.add(attendSliceValue);
-        SliceValue lateSliceValue = new SliceValue((float) 13, Color.parseColor("#ccb563"));
-        sliceValues.add(lateSliceValue);
-        SliceValue absenceSliceValue = new SliceValue((float) 0, Color.parseColor("#cc6563"));
-        sliceValues.add(absenceSliceValue);
+//        chartView.setPieChartData(pieChartData);
+//        chartView.setValueSelectionEnabled(false);
+//        chartView.setAlpha(0.9f);
+//        chartView.setCircleFillRatio(1f);
+//        chartView.setOnValueTouchListener(selectListener);
     }
 
     @Override
