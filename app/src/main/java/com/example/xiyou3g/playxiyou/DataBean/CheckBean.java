@@ -6,13 +6,59 @@ package com.example.xiyou3g.playxiyou.DataBean;
 
 public class CheckBean {
 
+    //刷卡时间;
     private String WaterDate;
+    //课程名称;
     private String S_Name;
+    //课程代码;
     private String S_Code;
+    //课程节次;
     private String JT_No;
+    //课程教室;
     private String RoomNum;
+    //教室所在地;
     private String BName;
+    //状态;
     private String Status;
+
+    //课程编号;
+    private int Class_No;
+    private int SBH;
+    private int RBH;
+    //学期;
+    private String Term_No;
+
+    public void setClass_No(int class_No) {
+        Class_No = class_No;
+    }
+
+    public void setRBH(int RBH) {
+        this.RBH = RBH;
+    }
+
+    public void setSBH(int SBH) {
+        this.SBH = SBH;
+    }
+
+    public void setTerm_No(String term_No) {
+        Term_No = term_No;
+    }
+
+    public int getClass_No() {
+        return Class_No;
+    }
+
+    public int getRBH() {
+        return RBH;
+    }
+
+    public int getSBH() {
+        return SBH;
+    }
+
+    public String getTerm_No() {
+        return Term_No;
+    }
 
     public String getBName() {
         return BName;

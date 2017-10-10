@@ -6,8 +6,9 @@
     android:orientation="vertical"
     android:paddingTop="3dp"
     android:paddingBottom="3dp"
-    android:paddingLeft="12dp"
-    android:paddingRight="12dp">
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+    android:background="@android:color/transparent">
 
     <android.support.v7.widget.CardView
         android:id="@+id/checkCard"
@@ -26,19 +27,17 @@
             <TextView
                 android:id="@+id/WaterDate"
                 android:layout_width="match_parent"
-                android:layout_height="18dp"
+                android:layout_height="24dp"
                 android:text="WaterDate"
+                android:paddingLeft="16dp"
                 android:gravity="center_vertical"
-                android:textSize="12sp"/>
-
-            <TextView
-                android:layout_marginTop="2dp"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#aeaeae"/>
+                android:textSize="12sp"
+                android:textColor="#fff"
+                android:background="@drawable/appeal_dialog_header_back"/>
 
             <TextView
                 android:id="@+id/S_Name"
+                android:paddingLeft="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="26dp"
                 android:layout_marginTop="2dp"
@@ -47,6 +46,7 @@
                 android:textSize="18sp" />
 
             <LinearLayout
+                android:paddingLeft="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_marginTop="6dp"
@@ -71,6 +71,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:paddingLeft="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:orientation="horizontal">
@@ -94,6 +95,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:paddingLeft="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:orientation="horizontal">
@@ -116,6 +118,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:paddingLeft="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:orientation="horizontal">
@@ -138,6 +141,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:paddingLeft="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:orientation="horizontal">

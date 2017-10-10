@@ -304,4 +304,10 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
         }
         return flag;
     }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        checkBeanList.clear();
+    }
 }

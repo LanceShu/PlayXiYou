@@ -31,6 +31,7 @@ object HandleAttCheck{
             for(i in 0 until rowsArrays.length()){
                 LogUtils.e("rows",rowsArrays.get(rowsArrays.length()-1-i).toString())
                 val rows = JSONObject(rowsArrays.get(rowsArrays.length()-1-i).toString())
+                LogUtils.e("rows:",rows.toString())
                 val checkBean = CheckBean()
                 checkBean.waterDate = rows.getString("WaterDate")
                 checkBean.s_Name = rows.getString("S_Name")
@@ -39,6 +40,11 @@ object HandleAttCheck{
                 checkBean.roomNum = rows.getString("RoomNum")
                 checkBean.bName = rows.getString("BName")
                 checkBean.status = rows.getString("Status")
+
+                checkBean.class_No = rows.getInt("Class_No")
+                checkBean.sbh = rows.getInt("SBH")
+                checkBean.rbh = rows.getInt("RBH")
+                checkBean.term_No = rows.getString("Term_No")
                 AttenContent.checkBeanList.add(checkBean)
                 LogUtils.e("S_Name",checkBean.s_Name)
             }
