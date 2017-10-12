@@ -203,7 +203,12 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
                                 startdate.setText(year+"-"+month+"-"+"0"+(day-7));
                             }
                         }else{
-                            startdate.setText(year+"-"+month+"-"+(day-7));
+                            if(day >= 17){
+                                startdate.setText(year+"-"+month+"-"+(day-7));
+                            }else{
+                                startdate.setText(year+"-"+month+"-0"+(day-7));
+                            }
+
                         }
                     }
                 }

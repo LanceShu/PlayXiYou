@@ -6,8 +6,8 @@
     android:orientation="vertical"
     android:paddingTop="3dp"
     android:paddingBottom="3dp"
-    android:paddingLeft="6dp"
-    android:paddingRight="6dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
     android:background="@android:color/transparent">
 
     <android.support.v7.widget.CardView
@@ -22,7 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="6dp">
+
+            android:background="@drawable/check_item">
 
             <TextView
                 android:id="@+id/WaterDate"
