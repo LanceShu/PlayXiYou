@@ -270,7 +270,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     @Override
                     public byte[] getBody() throws AuthFailureError {
-                        return ("__VIEWSTATE=dDwtNTE2MjI4MTQ7Oz5O9kSeYykjfN0r53Yqhqckbvd83A==&txtUserName=" +loginName
+                        return ("__VIEWSTATE=dDwxNTMxMDk5Mzc0Ozs%2BlYSKnsl%2FmKGQ7CKkWFJpv0btUa8%3D&txtUserName=" +loginName
                                 +"&Textbox1=&TextBox2=" +loginPassword
                                 +"&txtSecretCode=" +loginCheckCode
                                 +"&RadioButtonList1=%D1%A7%C9%FA&Button1=&lbLanguage=&hidPdrs=&hidsc=").getBytes();
