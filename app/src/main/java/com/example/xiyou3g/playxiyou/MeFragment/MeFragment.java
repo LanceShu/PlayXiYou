@@ -152,7 +152,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.stuinfo:
-                final Dialog mdialog = new Dialog(getContext());
+                final Dialog mdialog = new Dialog(getContext(),R.style.DialogTheme);
                 mdialog.setContentView(R.layout.person_activity);
                 ImageView sImag = (ImageView) mdialog.findViewById(R.id.stusex);
                 TextView sname = (TextView) mdialog.findViewById(R.id.sname);
