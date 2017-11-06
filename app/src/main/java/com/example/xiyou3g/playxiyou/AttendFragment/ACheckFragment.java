@@ -65,6 +65,8 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
     private RecyclerView checkRecycler;
     private CheckAdapter checkAdapter ;
 
+    private ProgressDialog progressDialog;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -146,6 +148,9 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
         today.setOnClickListener(this);
         week.setOnClickListener(this);
         mon.setOnClickListener(this);
+
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading...");
 
     }
 
@@ -264,6 +269,7 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
                 Flag = setFlag(Flag);
                 String data = "WaterDate="+WaterDate+"&Status="+Status+"&Flag="+Flag+"&page="+page+"&rows="+rows;
                 Log.e("attend",data);
+                progressDialog.show();
                 getAttendCheeck(WaterDate,Status,Flag,page,rows,attenCookie);               //获取考勤信息;
                 break;
         }
@@ -282,6 +288,7 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 HandleAttCheck.INSTANCE.hanleAttCheck(response);
+                progressDialog.dismiss();
             }
         });
     }
