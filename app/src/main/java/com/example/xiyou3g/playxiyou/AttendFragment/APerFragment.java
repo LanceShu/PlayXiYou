@@ -132,6 +132,21 @@ public class APerFragment extends Fragment {
         aexit = (Button) view.findViewById(R.id.aexit);
         isHasCheckInfor = (TextView) view.findViewById(R.id.isCheckInfor);
 
+        aimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dialog dialog = new Dialog(getContext(),R.style.DialogTheme);
+                dialog.setContentView(R.layout.look_imageview);
+                ImageView lookView = (ImageView) dialog.findViewById(R.id.originView);
+                Glide.with(getContext())
+                        .load("http://jwkq.xupt.edu.cn:8080/Common/GetPhotoByBH?xh="+attendPerBean.getNum())
+                        .fitCenter()
+                        .into(lookView);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.show();
+            }
+        });
+
         if(CheckList.size() > 0){
             isHasCheckInfor.setVisibility(View.GONE);
         }else{
