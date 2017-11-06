@@ -137,6 +137,17 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         stuName.setText(stuclass);
         stuNum.setText(stuname);
 
+        logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Dialog dialog = new Dialog(getContext(),R.style.DialogTheme);
+                dialog.setContentView(R.layout.look_imageview);
+                ImageView view1 = (ImageView) dialog.findViewById(R.id.originView);
+                view1.setImageResource(R.drawable.doubi);
+                dialog.show();
+            }
+        });
+
         stuinfo.setOnClickListener(this);
         siliu.setOnClickListener(this);
         project.setOnClickListener(this);
