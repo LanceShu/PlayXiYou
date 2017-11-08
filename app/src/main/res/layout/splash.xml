@@ -5,18 +5,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
+        android:id="@+id/splash_back"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/timg"
+        android:src="@drawable/galaxy"
         android:scaleType="centerCrop"/>
 
     <com.example.xiyou3g.playxiyou.MyView.RoundImageView
         android:id="@+id/logo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="90dp"
         android:src="@drawable/schoollogo"
         app:borderRadius="360dp"
         app:imageType="round" />
@@ -29,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="西邮游"
-        android:textSize="28sp"
+        android:textSize="24sp"
         android:textStyle="normal"
         android:textColor="#fff"/>
 
