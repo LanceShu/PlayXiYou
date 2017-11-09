@@ -25,8 +25,6 @@ import okhttp3.Response;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private ImageView background;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
