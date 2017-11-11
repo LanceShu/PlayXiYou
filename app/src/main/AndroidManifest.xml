@@ -25,18 +25,28 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activity.LoginActivity"/>
+        <activity android:name=".Activity.LoginActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Activity.MainActivity"
-            android:windowSoftInputMode="adjustPan"/>
-        <activity android:name=".Activity.PersInfoActivity"/>
-        <activity android:name=".Activity.AttenLoginActivity"/>
-        <activity android:name=".Activity.AttendActivity"/>
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.PersInfoActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.AttenLoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.AttendActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Activity.SiliuActivity"
-            android:windowSoftInputMode="stateAlwaysVisible"/>
-        <activity android:name=".MeFragment.GuideActivity"/>
-        <activity android:name=".Activity.SiliuActivitySe"/>
-        <activity android:name=".MeFragment.ProjectActivity"/>
-        <activity android:name=".MeFragment.MajortActivity"/>
+            android:windowSoftInputMode="stateAlwaysVisible"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MeFragment.GuideActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activity.SiliuActivitySe"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MeFragment.ProjectActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MeFragment.MajortActivity"
+            android:screenOrientation="portrait"/>
 
         <!--<service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote"></service>-->
     </application>
