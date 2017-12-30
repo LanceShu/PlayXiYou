@@ -214,7 +214,6 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
                 FrameLayout.LayoutParams flp = new FrameLayout.LayoutParams(flWidth, (int) (100*density));
                 flp.setMargins(x*flWidth, (int)(y*100*density),0,0);
                 fl.setLayoutParams(flp);
-//                fl.setBackgroundResource(item[(int) ((Math.random()*1000)%7)]);
                 fl.setBackgroundResource(item[courseList.get(i).getcColor()%10]);
 
                 TextView tv = new TextView(getContext());
