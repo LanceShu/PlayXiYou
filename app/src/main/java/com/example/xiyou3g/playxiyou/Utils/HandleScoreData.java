@@ -24,22 +24,8 @@ public class HandleScoreData {
     public static void handleScore(String s){
         Document document = Jsoup.parse(s);
         String scoreInfo = document.select("input[name=__VIEWSTATE]").val();
-//        Log.e("score111:", scoreInfo);
         String str = new String(Base64.decode(scoreInfo.getBytes(), Base64.DEFAULT));
         handleDecodeFile(str);
-//        Elements tr = document.getElementsByTag("tr");
-//        for(int i =5;i<tr.size()-7;i++){
-//            Elements td = tr.get(i).getElementsByTag("td");
-//            ScoreBean scoreBean = new ScoreBean();
-//            scoreBean.setsName(td.get(3).text());
-//            scoreBean.setsChengji(td.get(8).text());
-//            scoreBean.setsScore(td.get(7).text());
-//            scoreBean.setsGpa(td.get(6).text());
-//            scoreBean.setsTeam(td.get(4).text());
-//            scoreBean.setsPlace(td.get(12).text());
-//            scoreBeanList.add(scoreBean);
-////            Log.e("chengji","--"+scoreBean.getsName()+"==="+scoreBean.getsChengji());
-//        }
         Message message = Message.obtain();
         message.what = UPDATE_SCORE;
         handler.sendMessage(message);
