@@ -48,7 +48,7 @@ public class GetCourseData {
             endYear = year +1;
             team = 1;
         }
-        if(month <3){
+        if(month < 3){
             startYear = year -1;
             endYear = year;
             team = 1;

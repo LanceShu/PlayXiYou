@@ -35,8 +35,9 @@ public class HandleMajorData {
                 Log.e("majorbean",majorBean.getmNeedScore()+" "+majorBean.getmGetScore()+" "+majorBean.getmUngetScore()+" "+majorBean.getmWantScore());
             }
         }else{
-            for(int i = 2;i<5;i = i+2){
+            for(int i = 2;i<5;i ++){
                 Elements td = tr1.get(i).getElementsByTag("td");
+                Log.e("majorbean111", td+"");
                 MajorBean majorBean = new MajorBean();
                 majorBean.setmNeedScore(td.get(1).text());
                 majorBean.setmGetScore(td.get(2).text());

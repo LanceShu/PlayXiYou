@@ -41,13 +41,17 @@
                     android:gravity="center|left"
                     android:textStyle="bold"
                     android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:scrollHorizontally="true"
+                    android:marqueeRepeatLimit="marquee_forever"
                     android:singleLine="true" />
 
                 <TextView
                     android:id="@+id/sfinalscore"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="1.2"
                     android:text="最终成绩"
                     android:textSize="14sp"
                     android:gravity="center|left"
@@ -222,6 +226,10 @@
                     android:textSize="12sp"
                     android:gravity="center|left"
                     android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:scrollHorizontally="true"
+                    android:marqueeRepeatLimit="marquee_forever"
                     android:singleLine="true" />
             </LinearLayout>
 

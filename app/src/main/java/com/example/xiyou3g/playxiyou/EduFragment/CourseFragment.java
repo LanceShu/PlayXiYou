@@ -138,7 +138,8 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH)+1;
-        if(month>=8 && month <9){
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        if((month >= 7 && day > 20) && month < 9){
             team1.setText(year+"-"+(year+1)+" 第一学期");
             team2.setText((year-1)+"-"+year+" 第二学期");
             startYear1 = year;
@@ -156,7 +157,7 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
             startYear1 = year-1;
             endYear1 = year;
             iteam1 = 2;
-        }else if(month>=3 && month<8){
+        }else if(month >= 3 && month < 8){
             team2.setText((year -1)+"-"+year+" 第二学期");
             team1.setText((year - 1)+"-"+year+" 第一学期");
             startYear2 = year-1;
@@ -165,7 +166,7 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
             startYear1 = year-1;
             endYear1 = year;
             iteam1 = 1;
-        }else if(month <3){
+        }else if(month < 3){
             team2.setText((year-1)+"-"+year+" 第一学期");
             team1.setText((year-2)+"-"+(year-1)+" 第二学期");
             startYear2 = year-1;

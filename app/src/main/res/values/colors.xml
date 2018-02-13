@@ -13,4 +13,7 @@
     <color name="team6">#5668b7</color>
     <color name="team7">#565bb7</color>
     <color name="team8">#6356b7</color>
+    <color name="pass_major">#56b7a0</color>
+    <color name="not_pass_major">#b75656</color>
+    <color name="need_major">#b79256</color>
 </resources>
