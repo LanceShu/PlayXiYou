@@ -9,8 +9,8 @@ android {
         applicationId "com.example.xiyou3g.playxiyou"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 3
-        versionName "2.1.0"
+        versionCode 4
+        versionName "2.4.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
