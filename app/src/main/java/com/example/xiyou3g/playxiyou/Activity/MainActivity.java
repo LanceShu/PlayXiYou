@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e("mainactivitycache5","666666666");
+//        Log.e("mainactivitycache5","666666666");
         handler = new Handler(){
             @Override
             public void handleMessage(Message msg) {

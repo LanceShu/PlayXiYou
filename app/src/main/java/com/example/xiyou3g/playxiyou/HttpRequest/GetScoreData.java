@@ -10,6 +10,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.xiyou3g.playxiyou.DataBean.ScoreBean;
+import com.example.xiyou3g.playxiyou.DataBean.ScoreInfo;
+import com.example.xiyou3g.playxiyou.DataBean.StuScoreInfo;
 import com.example.xiyou3g.playxiyou.Utils.HandleScoreData;
 
 import org.jsoup.Jsoup;
@@ -18,7 +20,9 @@ import org.jsoup.select.Elements;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
 
@@ -48,6 +52,7 @@ public class GetScoreData{
                public void onResponse(String s) {
                    Document document1 = Jsoup.parse(s);
                    __viewstate[0] = document1.select("input[name=__VIEWSTATE]").val();
+                   Log.e("viewstate111",__viewstate[0]);
                    try {
                        __viewstate[0] = URLEncoder.encode(__viewstate[0],"GBK");
                    } catch (UnsupportedEncodingException e) {
@@ -119,4 +124,5 @@ public class GetScoreData{
            },500);
        }
     }
+
 }

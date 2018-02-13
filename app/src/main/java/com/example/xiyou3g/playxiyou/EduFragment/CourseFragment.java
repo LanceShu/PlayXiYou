@@ -93,7 +93,6 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.course_fragment,container,false);
-
         initWight(view);
         return view;
     }
@@ -125,7 +124,6 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
             isData.setVisibility(View.VISIBLE);
         }else{
             setCalender();
-
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -180,12 +178,10 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
     }
 
     private void setCourse() {
-
         int x = 0;
         int y = 0;
         color = 0;
         for(int i=0;i<courseList.size();i++){
-
             if(courseList.get(i).getcName().equals("")){
                 FrameLayout fl = new FrameLayout(getContext());
                 int flWidth = (int) ((width - (45 * density))/7);
