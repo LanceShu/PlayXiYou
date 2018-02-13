@@ -44,7 +44,7 @@ public class GetScoreData{
     private void get_Score(){
        synchronized (this){
 
-           scoreBeanList.clear();
+           scoreInfos.clear();
            final String[] __viewstate = new String[1];
            final String url = "http://222.24.62.120/xscjcx.aspx?xh="+loginName+"&xm="+student_name+"&gnmkdm=N121605";
            StringRequest stringRequest1 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

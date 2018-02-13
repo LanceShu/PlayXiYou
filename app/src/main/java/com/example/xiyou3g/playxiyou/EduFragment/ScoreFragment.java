@@ -168,7 +168,7 @@ public class ScoreFragment extends Fragment {
             linearLayoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
             scoreRecyc.setLayoutManager(linearLayoutManager2);
 
-            scoreAdapter = new ScoreAdapter(scoreBeanList);
+            scoreAdapter = new ScoreAdapter(scoreInfos);
             scoreRecyc.setAdapter(scoreAdapter);
 
             select = new ArrayList<>();

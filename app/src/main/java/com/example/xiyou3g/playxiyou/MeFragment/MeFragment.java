@@ -281,7 +281,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         courseList.clear();
-                        scoreBeanList.clear();
+                        scoreInfos.clear();
                         proList.clear();
                         majorBeanList.clear();
                         ViewStatelist.clear();

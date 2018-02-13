@@ -40,19 +40,103 @@
                     android:textSize="14sp"
                     android:gravity="center|left"
                     android:textStyle="bold"
-                    android:maxLines="1"
-                    android:ellipsize="marquee"/>
+                    android:ellipsize="marquee"
+                    android:singleLine="true" />
 
                 <TextView
-                    android:id="@+id/schengji"
+                    android:id="@+id/sfinalscore"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="成绩"
+                    android:text="最终成绩"
                     android:textSize="14sp"
                     android:gravity="center|left"
                     android:layout_marginLeft="10dp"/>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="编号："
+                    android:textSize="12sp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/snum"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="3.0"
+                    android:textSize="12sp"
+                    android:gravity="center|left"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="期末："
+                    android:textSize="12sp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/sendscore"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="4.0-0.0"
+                    android:textSize="12sp"
+                    android:gravity="center|left"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="平时："
+                    android:textSize="12sp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/scomscore"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="3.0"
+                    android:textSize="12sp"
+                    android:gravity="center|left"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="期中："
+                    android:textSize="12sp"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/smidscore"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="4.0-0.0"
+                    android:textSize="12sp"
+                    android:gravity="center|left"/>
             </LinearLayout>
 
             <LinearLayout
@@ -71,7 +155,7 @@
                     android:gravity="center"/>
 
                 <TextView
-                    android:id="@+id/sscore"
+                    android:id="@+id/sgpa"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -88,7 +172,7 @@
                     android:gravity="center"/>
 
                 <TextView
-                    android:id="@+id/sgpa"
+                    android:id="@+id/scredit"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -113,7 +197,7 @@
                     android:gravity="center"/>
 
                 <TextView
-                    android:id="@+id/steam"
+                    android:id="@+id/stype"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -130,15 +214,15 @@
                     android:gravity="center"/>
 
                 <TextView
-                    android:id="@+id/splace"
+                    android:id="@+id/scollege"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="计算机学院"
                     android:textSize="12sp"
                     android:gravity="center|left"
-                    android:maxLines="1"
-                    android:ellipsize="marquee"/>
+                    android:ellipsize="marquee"
+                    android:singleLine="true" />
             </LinearLayout>
 
         </LinearLayout>

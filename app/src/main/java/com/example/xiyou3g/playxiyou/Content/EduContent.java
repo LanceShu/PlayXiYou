@@ -11,6 +11,7 @@ import com.example.xiyou3g.playxiyou.DataBean.CourseBean;
 import com.example.xiyou3g.playxiyou.DataBean.MajorBean;
 import com.example.xiyou3g.playxiyou.DataBean.ProjectBean;
 import com.example.xiyou3g.playxiyou.DataBean.ScoreBean;
+import com.example.xiyou3g.playxiyou.DataBean.ScoreInfo;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,7 +45,7 @@ public class EduContent {
     static public String student_name;  //姓名;
 
     static public List<CourseBean> courseList = new ArrayList<>();
-    static public List<ScoreBean> scoreBeanList = new ArrayList<>();
+    static public List<ScoreInfo> scoreInfos = new ArrayList<>();
     static public String course_content = null;
     static public String currentScore = "";
     static public int sYear = 0;
