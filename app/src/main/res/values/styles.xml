@@ -33,7 +33,6 @@
         <item name="android:backgroundDimEnabled">true</item>
         //背景
         <item name="android:windowBackground">@android:color/transparent</item>
-
     </style>
 
     <style name="AppStartLoadTranslucent" parent="AppTheme">

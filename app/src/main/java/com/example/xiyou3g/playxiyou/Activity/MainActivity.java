@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     private void initWight() {
 
-        if(stuname.equals("null")){
+        if(stuname.equals("null") || stuname == null){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("温馨提示：");
             builder.setMessage("您还未进行教师评价，因此暂无内容展示，请您先到官网进行教师评价，谢谢！");

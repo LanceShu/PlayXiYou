@@ -30,8 +30,6 @@
         <activity android:name=".Activity.MainActivity"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Activity.PersInfoActivity"
-            android:screenOrientation="portrait"/>
         <activity android:name=".Activity.AttenLoginActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activity.AttendActivity"
