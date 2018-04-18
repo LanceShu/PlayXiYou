@@ -1,5 +1,6 @@
 package com.example.xiyou3g.playxiyou.AttendFragment;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import com.example.xiyou3g.playxiyou.Utils.LogUtils;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -67,6 +69,8 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
 
     private ProgressDialog progressDialog;
 
+    private ACheckHandler checkHandler;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -74,11 +78,24 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
         current = getCurrentDay();
 
         initWight(view);
+        checkHandler = new ACheckHandler(isCheckData, checkAdapter);
+        return view;
+    }
 
-        handler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
+    static class ACheckHandler extends Handler {
+        private WeakReference<TextView> checkData;
+        private WeakReference<CheckAdapter> adapter;
+
+        ACheckHandler (TextView checkData, CheckAdapter adapter) {
+            this.checkData = new WeakReference<>(checkData);
+            this.adapter = new WeakReference<>(adapter);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            TextView isCheckData = checkData.get();
+            CheckAdapter checkAdapter = adapter.get();
+            if (isCheckData != null && checkAdapter != null) {
                 switch (msg.what){
                     case 91:
                         LogUtils.INSTANCE.e("getAttendCheck1:","success");
@@ -87,14 +104,11 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
                         }else{
                             isCheckData.setVisibility(View.VISIBLE);
                         }
-                        checkAdapter = new CheckAdapter(getContext(),checkBeanList);
-                        checkRecycler.setAdapter(checkAdapter);
+                        checkAdapter.notifyDataSetChanged();
                         break;
                 }
             }
-        };
-
-        return view;
+        }
     }
 
     private String getCurrentDay() {
@@ -154,6 +168,7 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -321,5 +336,11 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
     public void onAttach(Context context) {
         super.onAttach(context);
         checkBeanList.clear();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        checkHandler.removeCallbacksAndMessages(0);
     }
 }

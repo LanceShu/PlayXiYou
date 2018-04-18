@@ -47,6 +47,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.ref.WeakReference;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,7 +58,8 @@ import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
 import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
 
 /**
- * Created by Lance on 2017/7/12.
+ * Created by Lance
+ * on 2017/7/12.
  */
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
@@ -80,6 +82,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private byte[] imagebytes;
     private String cStuname = "";       //缓存的学生名字;
 
+    private LoginHanlder loginHanlder;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,20 +95,37 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         mqueue = Volley.newRequestQueue(this);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
-        editor = pref.edit();
         initWight();                    //实例化控件;
 
-        handler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
+        loginHanlder = new LoginHanlder(pref.edit(), this);
+    }
+
+    static class LoginHanlder extends Handler {
+        private WeakReference<LoginActivity> activity;
+        private WeakReference<SharedPreferences.Editor> editor;
+
+        LoginHanlder (LoginActivity activity) {
+            this.activity = new WeakReference<>(activity);
+        }
+
+        LoginHanlder (SharedPreferences.Editor editor, LoginActivity activity) {
+            this.activity = new WeakReference<>(activity);
+            this.editor = new WeakReference<>(editor);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            LoginActivity loginActivity = activity.get();
+            SharedPreferences.Editor loginEditor = editor.get();
+            if (activity != null && loginEditor != null) {
                 switch (msg.what){
                     case COURSE_CACHE:
-                        editor.putString("EduCoures", String.valueOf(msg.obj));
-                        editor.apply();
+                        loginEditor.putString("EduCoures", String.valueOf(msg.obj));
+                        loginEditor.apply();
                         break;
                 }
             }
-        };
+        }
     }
 
     private void initWight() {
@@ -177,14 +198,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.passSee:
                 if(isCanSee){
-                    isCanSee = false;
                     passSee.setImageResource(R.mipmap.eye_cant_see);
                     password.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }else{
-                    isCanSee = true;
                     passSee.setImageResource(R.mipmap.eyes_can_see);
                     password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
+                isCanSee = !isCanSee;
                 break;
             case R.id.codeCheck:
                 initCodeImage();
@@ -342,7 +362,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void exitClick() {
         Timer timer;
-        if(isExit == false){
+        if(!isExit){
             isExit = true;
             Snackbar.make(login,"再按一次退出程序",Snackbar.LENGTH_SHORT).show();
             timer = new Timer();
@@ -357,4 +377,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        loginHanlder.removeCallbacksAndMessages(0);
+    }
 }

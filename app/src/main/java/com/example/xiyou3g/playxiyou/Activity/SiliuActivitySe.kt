@@ -8,7 +8,8 @@ import com.example.xiyou3g.playxiyou.R
 import kotlinx.android.synthetic.main.siliu_info.*
 
 /**
- * Created by Lance on 2017/9/5.
+ * Created by Lance
+ * on 2017/9/5.
  */
 
 class SiliuActivitySe : AppCompatActivity(){

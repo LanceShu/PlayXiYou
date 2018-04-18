@@ -1,6 +1,7 @@
 package com.example.xiyou3g.playxiyou.EduFragment;
 
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -28,7 +29,8 @@ import java.util.Calendar;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
 
 /**
- * Created by Lance on 2017/7/12.
+ * Created by Lance
+ * on 2017/7/12.
  */
 
 public class CourseFragment extends Fragment implements View.OnClickListener{
@@ -79,13 +81,15 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics dm = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(dm);
-        width = dm.widthPixels;                 //屏幕宽度像素；
-        height = dm.heightPixels;               //屏幕高度像素;
-        density = dm.density;                   //屏幕密度;
-        int densityDpi = dm.densityDpi;
-        screenWidth = (int) (width/density);
-        screenHeight = (int) (height/density);
+        if (wm.getDefaultDisplay() != null) {
+            wm.getDefaultDisplay().getMetrics(dm);
+            width = dm.widthPixels;                 //屏幕宽度像素；
+            height = dm.heightPixels;               //屏幕高度像素;
+            density = dm.density;                   //屏幕密度;
+            int densityDpi = dm.densityDpi;
+            screenWidth = (int) (width/density);
+            screenHeight = (int) (height/density);
+        }
         Log.e("screen=======",screenWidth+"   "+screenHeight);
     }
 
@@ -130,18 +134,19 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
                     initTeam();
                     setCourse();
                 }
-            },150);
+            },100);
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void initTeam() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH)+1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         if((month >= 7 && day > 20) && month < 9){
-            team1.setText(year+"-"+(year+1)+" 第一学期");
-            team2.setText((year-1)+"-"+year+" 第二学期");
+            team1.setText(year+"-" + (year+1) + " 第一学期");
+            team2.setText((year-1) + "-" + year + " 第二学期");
             startYear1 = year;
             endYear1 = year+1;
             iteam1 = 1;
@@ -149,8 +154,8 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
             endYear2 = year;
             iteam2 = 2;
         }else if(month >= 9){
-            team2.setText(year+"-"+(year+1)+" 第一学期");
-            team1.setText((year-1)+"-"+year+" 第二学期");
+            team2.setText(year+"-" + (year+1) + " 第一学期");
+            team1.setText((year-1) + "-" + year + " 第二学期");
             startYear2 = year;
             endYear2 = year+1;
             iteam2 = 1;
@@ -158,8 +163,8 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
             endYear1 = year;
             iteam1 = 2;
         }else if(month >= 3 && month < 8){
-            team2.setText((year -1)+"-"+year+" 第二学期");
-            team1.setText((year - 1)+"-"+year+" 第一学期");
+            team2.setText((year -1) + "-" + year + " 第二学期");
+            team1.setText((year - 1) + "-" + year + " 第一学期");
             startYear2 = year-1;
             endYear2 = year;
             iteam2 = 2;
@@ -167,8 +172,8 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
             endYear1 = year;
             iteam1 = 1;
         }else if(month < 3){
-            team2.setText((year-1)+"-"+year+" 第一学期");
-            team1.setText((year-2)+"-"+(year-1)+" 第二学期");
+            team2.setText((year-1) + "-" + year + " 第一学期");
+            team1.setText((year-2) + "-" + (year-1) + " 第二学期");
             startYear2 = year-1;
             endYear2 = year;
             iteam2 = 1;
@@ -178,6 +183,7 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void setCourse() {
         int x = 0;
         int y = 0;
@@ -219,7 +225,7 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
                 tv.setTextColor(Color.WHITE);
                 tv.setGravity(Gravity.CENTER);
                 Log.e("current course=====",courseList.get(i).getcName()+" "+courseList.get(i).getcTeacher()+" "+courseList.get(i).getcPlace());
-                tv.setText(courseList.get(i).getcName()+"\n"+courseList.get(i).getcTeacher()+"\n"+courseList.get(i).getcPlace());
+                tv.setText(courseList.get(i).getcName() + "\n" + courseList.get(i).getcTeacher() + "\n" + courseList.get(i).getcPlace());
                 tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,10);
                 tv.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -243,6 +249,7 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void setCalender() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);

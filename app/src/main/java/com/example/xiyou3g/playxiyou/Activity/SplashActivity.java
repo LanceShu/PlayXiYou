@@ -20,7 +20,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by Lance on 2017/11/7.
+ * Created by Lance
+ * on 2017/11/7.
  */
 
 public class SplashActivity extends AppCompatActivity {
@@ -37,7 +38,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
+                Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 SplashActivity.this.startActivity(intent);
                 SplashActivity.this.finish();
             }

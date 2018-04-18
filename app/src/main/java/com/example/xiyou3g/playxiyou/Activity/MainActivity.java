@@ -1,5 +1,6 @@
 package com.example.xiyou3g.playxiyou.Activity;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,7 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import com.android.volley.AuthFailureError;
@@ -24,13 +24,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
-import com.example.xiyou3g.playxiyou.AttendFragment.AttendLogFragment;
 import com.example.xiyou3g.playxiyou.AttendFragment.AttendUnlogFragment;
-import com.example.xiyou3g.playxiyou.DataBean.ProjectBean;
 import com.example.xiyou3g.playxiyou.EduFragment.EduFragment;
-import com.example.xiyou3g.playxiyou.HttpRequest.GetCourseData;
-import com.example.xiyou3g.playxiyou.HttpRequest.GetMajorData;
-import com.example.xiyou3g.playxiyou.HttpRequest.GetProjectData;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetScoreData;
 import com.example.xiyou3g.playxiyou.MeFragment.MeFragment;
 import com.example.xiyou3g.playxiyou.R;
@@ -41,8 +36,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.ref.WeakReference;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -50,27 +45,38 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
-import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.SCORE_CACHE;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.Team;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.ViewStatelist;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.Year;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.cookies;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.currentScore;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.fragmentManager;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.handler;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.isCache;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.loginName;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.mqueue;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.popupWindow;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.student_name;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.stuname;
 
 /**
- * Created by Lance on 2017/7/12.
+ * Created by Lance
+ * on 2017/7/12.
  */
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener{
-
-    private FrameLayout frameLayout;
     private BottomNavigationBar bottomNavigationBar;
 
     private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
+
+    private MainHandler mainHandler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        editor = preferences.edit();
         initWight();
 
         getCurrentYearAndTeam();                                              //获取当前的学年与学期;
@@ -79,21 +85,36 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     }
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     protected void onResume() {
         super.onResume();
 //        Log.e("mainactivitycache5","666666666");
-        handler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
+        mainHandler = new MainHandler(this, preferences.edit());
+    }
+
+    static class MainHandler extends Handler {
+        private WeakReference<MainActivity> activity;
+        private WeakReference<SharedPreferences.Editor> editor;
+
+        MainHandler (MainActivity activity, SharedPreferences.Editor editor) {
+            this.activity = new WeakReference<>(activity);
+            this.editor = new WeakReference<>(editor);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            MainActivity mainActivity = activity.get();
+            SharedPreferences.Editor mainEditor = editor.get();
+            if (mainActivity != null && mainEditor != null) {
                 switch (msg.what){
                     case SCORE_CACHE:
-                        editor.putString("CacheScore", String.valueOf(msg.obj));
-                        editor.apply();
+                        mainEditor.putString("CacheScore", String.valueOf(msg.obj));
+                        mainEditor.apply();
                         break;
                 }
             }
-        };
+        }
     }
 
     private void getScoreData() {
@@ -107,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     private List<String> getVisState(final List<String> list) {
         list.clear();
-        for(int i = 0;i<3;i++){
+        for(int i = 0; i < 3; i++){
             String url = "http://222.24.62.120/pyjh.aspx?xh="+loginName+"&xm="+student_name+"&gnmkdm=N121607";
             final String[] __viewstate = new String[1];
             StringRequest stringRequest1 = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -178,7 +199,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
             builder.setPositiveButton("好的",null).create().show();
         }
 
-        frameLayout = (FrameLayout) findViewById(R.id.main_container);
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.main_bottom);
         bottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.jiaowu,"教务处"))
                 .addItem(new BottomNavigationItem(R.mipmap.tiyu,"体育部"))
@@ -189,17 +209,18 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         bottomNavigationBar.initialise();
         bottomNavigationBar.setPadding(0,10,0,0);
         bottomNavigationBar.setTabSelectedListener(this);
-        replaceFragment(new EduFragment());
+        addFragment(new EduFragment());
     }
 
-    public void replaceFragment(final Fragment fragment){
+    public void replaceFragment(Fragment fragment){
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.main_container,fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 
-    public void addFragment(final Fragment fragment){
+    public void addFragment(Fragment fragment){
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(R.id.main_container,fragment);
@@ -250,7 +271,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     private void exitClick() {
         Timer timer;
-        if(isExit == false){
+        if(!isExit){
             isExit = true;
             Snackbar.make(bottomNavigationBar,"再按一次退出程序",Snackbar.LENGTH_SHORT).show();
             timer = new Timer();
@@ -279,5 +300,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mainHandler.removeCallbacksAndMessages(0);
     }
 }

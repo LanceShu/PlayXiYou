@@ -84,12 +84,12 @@ public class SiliuActivity extends AppCompatActivity implements View.OnClickList
                     clear.setVisibility(View.GONE);
                 }
 
-                if(idWrapper.getEditText().getText().length() != 15){
+                if(idWrapper.getEditText().getText() != null && idWrapper.getEditText().getText().length() != 15){
                     figure.setTextColor(Color.RED);
                 }else{
                     figure.setTextColor(Color.BLACK);
                 }
-                figure.setText(s.length()+"/15");
+                figure.setText(s.length() + "/15");
             }
 
             @Override

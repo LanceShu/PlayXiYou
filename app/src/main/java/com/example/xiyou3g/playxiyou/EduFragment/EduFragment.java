@@ -20,7 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Lance on 2017/7/12.
+ * Created by Lance
+ * on 2017/7/12.
  */
 
 public class EduFragment extends Fragment{

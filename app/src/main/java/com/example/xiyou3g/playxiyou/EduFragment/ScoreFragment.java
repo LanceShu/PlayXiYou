@@ -26,13 +26,16 @@ import com.example.xiyou3g.playxiyou.Adapter.ScoreTeamAdapter;
 import com.example.xiyou3g.playxiyou.DataBean.ScoreYearAndTeam;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetScoreData;
 import com.example.xiyou3g.playxiyou.R;
+
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
 
 /**
- * Created by Lance on 2017/7/12.
+ * Created by Lance
+ * on 2017/7/12.
  *
  */
 
@@ -77,9 +80,9 @@ public class ScoreFragment extends Fragment {
             public void handleMessage(Message msg) {
                 switch (msg.what){
                     case 2:
-                            initWight(view);
-                            Log.e("accept success","666666666666");
-                            dialog.dismiss();
+                        initWight(view);
+                        Log.e("accept success","666666666666");
+                        dialog.dismiss();
                         break;
                     case 4:
                         dialog = new ProgressDialog(getContext());

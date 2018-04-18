@@ -21,7 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Lance on 2017/7/22.
+ * Created by Lance
+ * on 2017/7/22.
  */
 
 public class AttendActivity extends AppCompatActivity {
