@@ -1,8 +1,6 @@
 package com.example.xiyou3g.playxiyou.MeFragment;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,16 +11,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.xiyou3g.playxiyou.Adapter.GuideAdapter;
-import com.example.xiyou3g.playxiyou.Content.MeContent;
 import com.example.xiyou3g.playxiyou.DataBean.GuideBean;
 import com.example.xiyou3g.playxiyou.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import static com.example.xiyou3g.playxiyou.Content.MeContent.*;
+
+import static com.example.xiyou3g.playxiyou.Content.MeContent.RECIVE_TYPE;
+import static com.example.xiyou3g.playxiyou.Content.MeContent.SEND_TYPE;
 
 /**
- * Created by Lance on 2017/8/2.
+ * Created by Lance
+ * on 2017/8/2.
  */
 
 public class GuideActivity extends AppCompatActivity implements View.OnClickListener{
@@ -35,16 +35,6 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
     private List<GuideBean> guideBeanList = new ArrayList<>();
     private GuideAdapter guideAdapter;
 
-    private Handler mhandler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what){
-                case 1:
-                    initWight();
-                    break;
-            }
-        }
-    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
