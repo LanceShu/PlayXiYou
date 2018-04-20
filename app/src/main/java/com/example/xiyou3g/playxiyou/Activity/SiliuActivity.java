@@ -21,24 +21,42 @@ import android.widget.TextView;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetSiliuData;
 import com.example.xiyou3g.playxiyou.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
 
 /**
- * Created by Lance on 2017/7/23.
+ * Created by Lance
+ * on 2017/7/23.
  */
 
-public class SiliuActivity extends AppCompatActivity implements View.OnClickListener{
+public class SiliuActivity extends AppCompatActivity {
 
-    private TextInputLayout idWrapper;
-    private TextInputLayout nameWrapper;
+    @BindView(R.id.idWrapper)
+    TextInputLayout idWrapper;
 
-    private ImageView back;
-    private EditText id;
-    private EditText name;
-    private TextView figure;
-    private Button find;
+    @BindView(R.id.nameWrapper)
+    TextInputLayout nameWrapper;
 
-    private ImageView clear;
+    @BindView(R.id.sback)
+    ImageView back;
+
+    @BindView(R.id.ailiu_id)
+    EditText id;
+
+    @BindView(R.id.ailiu_name)
+    EditText name;
+
+    @BindView(R.id.figure)
+    TextView figure;
+
+    @BindView(R.id.siliu_find)
+    Button find;
+
+    @BindView(R.id.clear)
+    ImageView clear;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,22 +66,11 @@ public class SiliuActivity extends AppCompatActivity implements View.OnClickList
 //        slide.setDuration(500);
 //        getWindow().setEnterTransition(slide);
         setContentView(R.layout.siliu_activity);
-
+        ButterKnife.bind(this);
         initWight();
     }
 
     private void initWight() {
-        idWrapper = (TextInputLayout) findViewById(R.id.idWrapper);
-        nameWrapper = (TextInputLayout) findViewById(R.id.nameWrapper);
-        id = (EditText) findViewById(R.id.ailiu_id);
-        name = (EditText) findViewById(R.id.ailiu_name);
-        find = (Button) findViewById(R.id.siliu_find);
-        figure = (TextView) findViewById(R.id.figure);
-        back = (ImageView) findViewById(R.id.sback);
-        clear = (ImageView) findViewById(R.id.clear);
-
-        clear.setOnClickListener(this);
-
         id.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -97,61 +104,57 @@ public class SiliuActivity extends AppCompatActivity implements View.OnClickList
 
             }
         });
-
-        back.setOnClickListener(this);
-        find.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.siliu_find:
-                String sid = idWrapper.getEditText().getText().toString();
-                String sname = nameWrapper.getEditText().getText().toString();
-                if(sid.length()>15){
-                    idWrapper.setError("准考证号大于15位！");
-                }else if(sid.length()<15){
-                    idWrapper.setError("准考证号小于15位！");
-                }else if(sname.length() == 0){
-                    nameWrapper.setError("姓名不能为空！");
-                }else if(sname.length()<2){
-                    nameWrapper.setError("请至少输入姓名的前两位！");
-                }else{
-                    final ProgressDialog dialog = new ProgressDialog(this);
-                    dialog.setTitle("温馨提示：");
-                    dialog.setMessage("正在努力加载...");
-                    dialog.show();
-                    idWrapper.setErrorEnabled(false);
-                    nameWrapper.setErrorEnabled(false);
-                    GetSiliuData.getSiliu(sid,sname);
-                    attenHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            dialog.dismiss();
-                            if(isGet == 1){
-                                Dialog dialog = new Dialog(SiliuActivity.this);
-                                dialog.setContentView(R.layout.siliu_info);
-                                initDialog(dialog);
-                                dialog.create();
-                                dialog.show();
-                            }else{
-                                AlertDialog.Builder builder = new AlertDialog.Builder(SiliuActivity.this);
-                                builder.setTitle("温习提示：");
-                                builder.setMessage("请确认准考证号与姓名是否正确！");
-                                builder.setPositiveButton("好的",null).create().show();
-                            }
-                        }
-                    },800);
-                }
-                break;
-            case R.id.sback:
-                finish();
-                break;
-            case R.id.clear:
-                id.setText("");
-                break;
+    @OnClick(R.id.clear)
+    void clear() {
+        id.setText("");
+    }
 
+    @OnClick(R.id.siliu_find)
+    void siliuFind() {
+        String sid = idWrapper.getEditText().getText().toString();
+        String sname = nameWrapper.getEditText().getText().toString();
+        if(sid.length()>15){
+            idWrapper.setError("准考证号大于15位！");
+        }else if(sid.length()<15){
+            idWrapper.setError("准考证号小于15位！");
+        }else if(sname.length() == 0){
+            nameWrapper.setError("姓名不能为空！");
+        }else if(sname.length()<2){
+            nameWrapper.setError("请至少输入姓名的前两位！");
+        }else{
+            final ProgressDialog dialog = new ProgressDialog(this);
+            dialog.setTitle("温馨提示：");
+            dialog.setMessage("正在努力加载...");
+            dialog.show();
+            idWrapper.setErrorEnabled(false);
+            nameWrapper.setErrorEnabled(false);
+            GetSiliuData.getSiliu(sid,sname);
+            attenHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    dialog.dismiss();
+                    if(isGet == 1){
+                        Dialog dialog = new Dialog(SiliuActivity.this);
+                        dialog.setContentView(R.layout.siliu_info);
+                        initDialog(dialog);
+                        dialog.create();
+                        dialog.show();
+                    }else{
+                        AlertDialog.Builder builder = new AlertDialog.Builder(SiliuActivity.this);
+                        builder.setTitle("温习提示：");
+                        builder.setMessage("请确认准考证号与姓名是否正确！");
+                        builder.setPositiveButton("好的",null).create().show();
+                    }
+                }
+            },800);
         }
+    }
+
+    @OnClick(R.id.sback)
+    void sback() {
+        finish();
     }
 
     private void initDialog(final Dialog dialog) {

@@ -15,7 +15,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
-import android.widget.FrameLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -52,7 +51,6 @@ import static com.example.xiyou3g.playxiyou.Content.EduContent.Year;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.cookies;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.currentScore;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.fragmentManager;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.handler;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.isCache;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.loginName;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.mqueue;
@@ -89,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     @Override
     protected void onResume() {
         super.onResume();
-//        Log.e("mainactivitycache5","666666666");
         mainHandler = new MainHandler(this, preferences.edit());
     }
 
@@ -191,7 +188,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     }
 
     private void initWight() {
-
         if(stuname.equals("null") || stuname == null){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("温馨提示：");
