@@ -15,7 +15,8 @@ import java.util.List;
 import static com.example.xiyou3g.playxiyou.Content.MeContent.*;
 
 /**
- * Created by Lance on 2017/8/2.
+ * Created by Lance
+ * on 2017/8/2.
  */
 
 public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.GuideViewHolder> {
@@ -59,7 +60,7 @@ public class GuideAdapter extends RecyclerView.Adapter<GuideAdapter.GuideViewHol
         private LinearLayout leftlayout;
         private LinearLayout rightlayout;
 
-        public GuideViewHolder(View view) {
+        GuideViewHolder(View view) {
             super(view);
             leftmsg = (TextView) view.findViewById(R.id.left_msg);
             rightmsg = (TextView) view.findViewById(R.id.right_msg);

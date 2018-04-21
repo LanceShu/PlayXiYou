@@ -13,14 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Lance on 2017/7/14.
+ * Created by Lance
+ * on 2017/7/14.
  */
 
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHolder> {
 
     private List<ProjectBean> projectBeanList = new ArrayList<>();
 
-    public ProjectAdapter(List<ProjectBean> projectBeen){
+    ProjectAdapter(List<ProjectBean> projectBeen){
         projectBeanList = projectBeen;
     }
 

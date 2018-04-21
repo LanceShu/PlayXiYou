@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Lance on 2017/10/8.
+ * Created by Lance
+ * on 2017/10/8.
  */
 
 public class CheckInforAdapter extends RecyclerView.Adapter<CheckInforAdapter.ViewHolder> {

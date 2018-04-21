@@ -3,13 +3,10 @@ package com.example.xiyou3g.playxiyou.Adapter;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Message;
-import android.support.annotation.UiThread;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -18,14 +15,12 @@ import android.widget.Toast;
 
 import com.example.xiyou3g.playxiyou.Content.AttenContent;
 import com.example.xiyou3g.playxiyou.DataBean.CheckBean;
-import com.example.xiyou3g.playxiyou.DataBean.CheckInforBean;
 import com.example.xiyou3g.playxiyou.HttpRequest.RequestAppeal;
 import com.example.xiyou3g.playxiyou.R;
 import com.example.xiyou3g.playxiyou.Utils.LogUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,7 +31,8 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 /**
- * Created by Lance on 2017/10/7.
+ * Created by Lance
+ * on 2017/10/7.
  */
 
 public class CheckAdapter extends RecyclerView.Adapter<CheckAdapter.ViewHolder> {

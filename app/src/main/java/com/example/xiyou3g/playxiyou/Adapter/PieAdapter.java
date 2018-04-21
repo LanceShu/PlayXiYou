@@ -20,7 +20,8 @@ import lecho.lib.hellocharts.model.SliceValue;
 import lecho.lib.hellocharts.view.PieChartView;
 
 /**
- * Created by Lance on 2017/10/8.
+ * Created by Lance
+ * on 2017/10/8.
  */
 
 public class PieAdapter extends RecyclerView.Adapter<PieAdapter.ViewHolder> {
@@ -53,9 +54,6 @@ public class PieAdapter extends RecyclerView.Adapter<PieAdapter.ViewHolder> {
         late = Float.parseFloat(checkInforBean.getLate());
         absence = Float.parseFloat(checkInforBean.getAbsence());
 
-        LogUtils.INSTANCE.e("position1:","success");
-
-        //LogUtils.INSTANCE.e("sliceValuesSize:",position+"  "+sliceValues.get(2)+"");
         initPieCharts(checkInforBean.getCourseName(),holder.chartView);
 
         holder.chartView.setPieChartData(pieChartData);
@@ -87,12 +85,6 @@ public class PieAdapter extends RecyclerView.Adapter<PieAdapter.ViewHolder> {
         pieChartData.setCenterText1(courseName);
         pieChartData.setCenterText1FontSize(10);
         pieChartData.setCenterText1Color(Color.GRAY);
-
-//        chartView.setPieChartData(pieChartData);
-//        chartView.setValueSelectionEnabled(false);
-//        chartView.setAlpha(0.9f);
-//        chartView.setCircleFillRatio(1f);
-//        chartView.setOnValueTouchListener(selectListener);
     }
 
     @Override

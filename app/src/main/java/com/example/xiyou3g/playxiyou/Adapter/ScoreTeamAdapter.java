@@ -1,6 +1,5 @@
 package com.example.xiyou3g.playxiyou.Adapter;
 
-import android.graphics.Color;
 import android.os.Message;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -16,10 +15,15 @@ import com.example.xiyou3g.playxiyou.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
+
+import static com.example.xiyou3g.playxiyou.Content.EduContent.Team;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.Year;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.currentScore;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.handler;
 
 /**
- * Created by Lance on 2017/7/15.
+ * Created by Lance
+ * on 2017/7/15.
  */
 
 public class ScoreTeamAdapter extends RecyclerView.Adapter<ScoreTeamAdapter.ViewHolder> {

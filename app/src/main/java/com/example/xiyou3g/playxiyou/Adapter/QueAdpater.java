@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Lance on 2017/7/25.
+ * Created by Lance
+ * on 2017/7/25.
  */
 
 public class QueAdpater extends RecyclerView.Adapter<QueAdpater.QueViewHolder> {
@@ -49,7 +50,7 @@ public class QueAdpater extends RecyclerView.Adapter<QueAdpater.QueViewHolder> {
         private TextView que;
         private TextView answer;
 
-        public QueViewHolder(View view) {
+        QueViewHolder(View view) {
             super(view);
             que = (TextView) view.findViewById(R.id.left_msg);
             answer = (TextView) view.findViewById(R.id.right_msg);

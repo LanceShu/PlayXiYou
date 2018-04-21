@@ -13,12 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Lance on 2017/7/21.
+ * Created by Lance
+ * on 2017/7/21.
  */
 
 public class AClassAdapter extends RecyclerView.Adapter<AClassAdapter.ViewHolder> {
 
-    List<ClassroomBean> classroomBeanList = new ArrayList<>();
+    private List<ClassroomBean> classroomBeanList = new ArrayList<>();
 
     public AClassAdapter(List<ClassroomBean> classroomBeen){
         classroomBeanList = classroomBeen;

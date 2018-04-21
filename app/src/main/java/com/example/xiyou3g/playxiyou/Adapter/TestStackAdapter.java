@@ -15,7 +15,8 @@ import com.loopeer.cardstack.StackAdapter;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
 
 /**
- * Created by Lance on 2017/7/14.
+ * Created by Lance
+ * on 2017/7/14.
  */
 
 public class TestStackAdapter extends StackAdapter<Integer> {
@@ -50,7 +51,7 @@ public class TestStackAdapter extends StackAdapter<Integer> {
         RecyclerView recyclerView;
         TextView isData;
 
-        public ColorItemViewHolder(View view) {
+        ColorItemViewHolder(View view) {
             super(view);
             mLayout = view.findViewById(R.id.frame_list_card_item);
             mContainerContent = view.findViewById(R.id.container_list_content);
@@ -64,7 +65,7 @@ public class TestStackAdapter extends StackAdapter<Integer> {
             mContainerContent.setVisibility(b ? View.VISIBLE : View.GONE);
         }
 
-        public void onBind(Integer data, int position) {
+        void onBind(Integer data, int position) {
             mLayout.getBackground().setColorFilter(ContextCompat.getColor(getContext(), data), PorterDuff.Mode.SRC_IN);
             if(position == 0){
                 mTextTitle.setText("第一学期");
@@ -93,10 +94,7 @@ public class TestStackAdapter extends StackAdapter<Integer> {
                 ProjectAdapter projectAdapter = new ProjectAdapter(proList.get(position));
                 recyclerView.setAdapter(projectAdapter);
             }
-
         }
-
     }
-
 
 }

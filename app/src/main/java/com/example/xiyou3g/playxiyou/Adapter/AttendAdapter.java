@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Lance on 2017/7/20.
+ * Created by Lance
+ * on 2017/7/20.
  */
 
 public class AttendAdapter extends FragmentPagerAdapter {
 
-    List<Fragment> fragmentList = new ArrayList<>();
-    List<String> tabList = new ArrayList<>();
+    private List<Fragment> fragmentList = new ArrayList<>();
+    private List<String> tabList = new ArrayList<>();
 
     public AttendAdapter(FragmentManager fm,List<Fragment> fragments,List<String> tabList) {
         super(fm);

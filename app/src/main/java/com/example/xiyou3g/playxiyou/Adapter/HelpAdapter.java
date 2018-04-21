@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Lance on 2017/7/24.
+ * Created by Lance
+ * on 2017/7/24.
  */
 
 public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.HelpViewHolder> {
@@ -45,7 +46,7 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.HelpViewHolder
 
         private TextView helptv;
 
-        public HelpViewHolder(View view) {
+        HelpViewHolder(View view) {
             super(view);
             helptv = (TextView) view.findViewById(R.id.help_tv);
         }
