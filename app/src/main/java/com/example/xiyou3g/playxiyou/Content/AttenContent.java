@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Lance on 2017/7/18.
+ * Created by Lance
+ * on 2017/7/18.
  */
 
 public class AttenContent {

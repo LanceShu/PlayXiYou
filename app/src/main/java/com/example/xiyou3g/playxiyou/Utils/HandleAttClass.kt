@@ -2,6 +2,7 @@ package com.example.xiyou3g.playxiyou.Utils
 
 import android.os.Message
 import android.util.Log
+import com.example.xiyou3g.playxiyou.AttendFragment.AClassFragment
 
 import com.example.xiyou3g.playxiyou.DataBean.ClassroomBean
 
@@ -17,7 +18,8 @@ import com.example.xiyou3g.playxiyou.Content.AttenContent.attenHandler
 import com.example.xiyou3g.playxiyou.Content.AttenContent.classroomBeanList
 
 /**
- * Created by Lance on 2017/9/6.
+ * Created by Lance
+ * on 2017/9/6.
  */
 
 object HandleAttClass {
@@ -40,7 +42,7 @@ object HandleAttClass {
                 }
                 val message = Message()
                 message.what = 9
-                attenHandler.sendMessage(message)
+                AClassFragment.aClassHandler.sendMessage(message)
             }
 
         } catch (e: JSONException) {

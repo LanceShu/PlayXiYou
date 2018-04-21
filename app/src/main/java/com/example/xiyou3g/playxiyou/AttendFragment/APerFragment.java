@@ -9,15 +9,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,48 +23,75 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.xiyou3g.playxiyou.Activity.AttenLoginActivity;
-import com.example.xiyou3g.playxiyou.Activity.MainActivity;
 import com.example.xiyou3g.playxiyou.Adapter.CheckInforAdapter;
 import com.example.xiyou3g.playxiyou.Adapter.PieAdapter;
-import com.example.xiyou3g.playxiyou.Content.AttenContent;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetCheckInfor;
 import com.example.xiyou3g.playxiyou.R;
 import com.example.xiyou3g.playxiyou.Utils.HandleCheckInfor;
 import com.example.xiyou3g.playxiyou.Utils.LogUtils;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
+import static com.example.xiyou3g.playxiyou.Content.AttenContent.CheckList;
+import static com.example.xiyou3g.playxiyou.Content.AttenContent.attendPerBean;
+import static com.example.xiyou3g.playxiyou.Content.AttenContent.islogin;
 
 /**
- * Created by Lance on 2017/7/20.
+ * Created by Lance
+ * on 2017/7/20.
  */
 
 public class APerFragment extends Fragment {
+    @BindView(R.id.attend_image)
+    ImageView aimage;
 
-    private View view;
-    private ImageView aimage;
-    private TextView aname;
-    private TextView asex;
-    private TextView anum;
-    private TextView aacadem;
-    private TextView aphone;
-    private TextView amajor;
-    private TextView aclass;
-    private TextView aidenti;
-    private Button aexit;
+    @BindView(R.id.aname)
+    TextView aname;
 
-    private TextView isHasCheckInfor;
-    private RecyclerView checkList;
+    @BindView(R.id.asex)
+    TextView asex;
+
+    @BindView(R.id.anum)
+    TextView anum;
+
+    @BindView(R.id.aacade)
+    TextView aacadem;
+
+    @BindView(R.id.aphone)
+    TextView aphone;
+
+    @BindView(R.id.amajor)
+    TextView amajor;
+
+    @BindView(R.id.aclass)
+    TextView aclass;
+
+    @BindView(R.id.aidentify)
+    TextView aidenti;
+
+    @BindView(R.id.aexit)
+    Button aexit;
+
+    @BindView(R.id.isCheckInfor)
+    TextView isHasCheckInfor;
+
+    //考勤信息统计RecycleView;
+    @BindView(R.id.checkRec)
+    RecyclerView checkList;
+
+    //图表的考勤信息统计Charts;
+    @BindView(R.id.chartsRecycleView)
+    RecyclerView chartsRecycler;
+
     private CheckInforAdapter adapter;
-    public static Handler checkHandler;
-
-    private RecyclerView chartsRecycler;
+    public static PreHandler checkHandler;
     private PieAdapter pieAdapter;
 
     @Override
@@ -93,13 +116,34 @@ public class APerFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.atten_per_fragment,container,false);
-        initWight(view);
+        View view = inflater.inflate(R.layout.atten_per_fragment,container,false);
+        ButterKnife.bind(this, view);
+        initWight();
 
-        checkHandler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
+        checkHandler = new PreHandler(isHasCheckInfor, checkList, adapter, pieAdapter);
+        return view;
+    }
+
+    public static class PreHandler extends Handler {
+        private WeakReference<TextView> textViewWeak;
+        private WeakReference<RecyclerView> recyclerViewWeak;
+        private WeakReference<CheckInforAdapter> checkInforAdapterWeak;
+        private WeakReference<PieAdapter> pieAdapterWeak;
+
+        PreHandler(TextView textView, RecyclerView recyclerView, CheckInforAdapter checkInforAdapter, PieAdapter pieAdapter) {
+            textViewWeak = new WeakReference<>(textView);
+            recyclerViewWeak = new WeakReference<>(recyclerView);
+            checkInforAdapterWeak = new WeakReference<>(checkInforAdapter);
+            pieAdapterWeak = new WeakReference<>(pieAdapter);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            TextView isHasCheckInfor = textViewWeak.get();
+            RecyclerView checkList = recyclerViewWeak.get();
+            CheckInforAdapter adapter = checkInforAdapterWeak.get();
+            PieAdapter pieAdapter = pieAdapterWeak.get();
+            if (isHasCheckInfor != null && checkList != null && adapter != null && pieAdapter != null) {
                 switch (msg.what){
                     case 72:
                         //LogUtils.INSTANCE.e("checkInfor:",CheckList.size()+"  "+CheckList.get(2).getCourseName());
@@ -107,31 +151,15 @@ public class APerFragment extends Fragment {
                             isHasCheckInfor.setVisibility(View.GONE);
                             checkList.setVisibility(View.VISIBLE);
                         }
-                        adapter = new CheckInforAdapter(CheckList);
-                        checkList.setAdapter(adapter);
-                        pieAdapter = new PieAdapter(CheckList);
-                        chartsRecycler.setAdapter(pieAdapter);
+                        adapter.notifyDataSetChanged();
+                        pieAdapter.notifyDataSetChanged();
                         break;
                 }
             }
-        };
-
-        return view;
+        }
     }
 
-    private void initWight(View view) {
-        aimage = (ImageView) view.findViewById(R.id.attend_image);
-        aname = (TextView) view.findViewById(R.id.aname);
-        asex = (TextView) view.findViewById(R.id.asex);
-        anum = (TextView) view.findViewById(R.id.anum);
-        aacadem = (TextView) view.findViewById(R.id.aacade);
-        aphone = (TextView) view.findViewById(R.id.aphone);
-        amajor = (TextView) view.findViewById(R.id.amajor);
-        aclass = (TextView) view.findViewById(R.id.aclass);
-        aidenti = (TextView) view.findViewById(R.id.aidentify);
-        aexit = (Button) view.findViewById(R.id.aexit);
-        isHasCheckInfor = (TextView) view.findViewById(R.id.isCheckInfor);
-
+    private void initWight() {
         aimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,24 +181,17 @@ public class APerFragment extends Fragment {
             isHasCheckInfor.setVisibility(View.VISIBLE);
         }
 
-        //考勤信息统计RecycleView;
-        checkList = (RecyclerView) view.findViewById(R.id.checkRec);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         checkList.setLayoutManager(linearLayoutManager);
 
-        //图表的考勤信息统计Charts;
-        chartsRecycler = (RecyclerView) view.findViewById(R.id.chartsRecycleView);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
         chartsRecycler.setLayoutManager(gridLayoutManager);
 
-        if(CheckList.size()>0){
-            adapter = new CheckInforAdapter(CheckList);
-            checkList.setAdapter(adapter);
-            pieAdapter = new PieAdapter(CheckList);
-            chartsRecycler.setAdapter(pieAdapter);
-        }
-
+        adapter = new CheckInforAdapter(CheckList);
+        checkList.setAdapter(adapter);
+        pieAdapter = new PieAdapter(CheckList);
+        chartsRecycler.setAdapter(pieAdapter);
 
         aexit.setOnClickListener(new View.OnClickListener() {
             @Override
