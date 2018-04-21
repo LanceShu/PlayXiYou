@@ -2,16 +2,17 @@ package com.example.xiyou3g.playxiyou.Utils
 
 import android.os.Message
 import android.util.Log
+import com.example.xiyou3g.playxiyou.AttendFragment.ACheckFragment
 import com.example.xiyou3g.playxiyou.Content.AttenContent
 import com.example.xiyou3g.playxiyou.Content.EduContent
 import com.example.xiyou3g.playxiyou.DataBean.CheckBean
 import okhttp3.Response
 import org.json.JSONArray
 import org.json.JSONObject
-import java.util.ArrayList
 
 /**
- * Created by Lance on 2017/9/6.
+ * Created by Lance
+ * on 2017/9/6.
  */
 object HandleAttCheck{
 
@@ -51,7 +52,7 @@ object HandleAttCheck{
             LogUtils.e("checkBeanListSize:",AttenContent.checkBeanList.size.toString())
             val message = Message()
             message.what = 91
-            EduContent.handler.sendMessage(message)
+            ACheckFragment.checkHandler.sendMessage(message)
         }
     }
 }

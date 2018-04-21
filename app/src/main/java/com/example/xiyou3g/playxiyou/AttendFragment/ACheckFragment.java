@@ -16,73 +16,89 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.xiyou3g.playxiyou.Adapter.CheckAdapter;
-import com.example.xiyou3g.playxiyou.DataBean.CheckBean;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetAttendCheck;
 import com.example.xiyou3g.playxiyou.R;
 import com.example.xiyou3g.playxiyou.Utils.HandleAttCheck;
 import com.example.xiyou3g.playxiyou.Utils.LogUtils;
 
-import org.w3c.dom.Text;
-
 import java.io.IOException;
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
 
-import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
-import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
+import static com.example.xiyou3g.playxiyou.Content.AttenContent.attenCookie;
+import static com.example.xiyou3g.playxiyou.Content.AttenContent.checkBeanList;
 
 /**
- * Created by Lance on 2017/7/20.
+ * Created by Lance
+ * on 2017/7/20.
  */
 
-public class ACheckFragment extends Fragment implements View.OnClickListener{
+public class ACheckFragment extends Fragment {
 
-    private View view;
-    private TextView startdate;
-    private TextView enddata;
-    private CheckBox today;
-    private CheckBox week;
-    private CheckBox mon;
-    private CheckBox normal;
-    private CheckBox late;
-    private CheckBox absence;
-    private Button find;
-    private TextView isCheckData;
+    @BindView(R.id.startdate)
+    TextView startdate;
+
+    @BindView(R.id.enddate)
+    TextView enddata;
+
+    @BindView(R.id.today)
+    CheckBox today;
+
+    @BindView(R.id.week)
+    CheckBox week;
+
+    @BindView(R.id.month)
+    CheckBox mon;
+
+    @BindView(R.id.anormal)
+    CheckBox normal;
+
+    @BindView(R.id.late)
+    CheckBox late;
+
+    @BindView(R.id.absence)
+    CheckBox absence;
+
+    @BindView(R.id.find)
+    Button find;
+
+    @BindView(R.id.isCheckData)
+    TextView isCheckData;
+
+    @BindView(R.id.check_recycler)
+    RecyclerView checkRecycler;
 
     private int year;
     private int month;
     private int day;
     private String current;
 
-    private RecyclerView checkRecycler;
     private CheckAdapter checkAdapter ;
-
     private ProgressDialog progressDialog;
-
-    private ACheckHandler checkHandler;
+    public static ACheckHandler checkHandler;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.atten_check_fragment,container,false);
+        View view = inflater.inflate(R.layout.atten_check_fragment,container,false);
         current = getCurrentDay();
-
-        initWight(view);
+        ButterKnife.bind(this, view);
+        initWight();
         checkHandler = new ACheckHandler(isCheckData, checkAdapter);
         return view;
     }
 
-    static class ACheckHandler extends Handler {
+    public static class ACheckHandler extends Handler {
         private WeakReference<TextView> checkData;
         private WeakReference<CheckAdapter> adapter;
 
@@ -131,20 +147,7 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    private void initWight(View view) {
-
-        startdate = (TextView) view.findViewById(R.id.startdate);
-        enddata = (TextView) view.findViewById(R.id.enddate);
-        today = (CheckBox) view.findViewById(R.id.today);
-        week = (CheckBox) view.findViewById(R.id.week);
-        mon = (CheckBox) view.findViewById(R.id.month);
-        normal = (CheckBox) view.findViewById(R.id.anormal);
-        late = (CheckBox) view.findViewById(R.id.late);
-        absence = (CheckBox) view.findViewById(R.id.absence);
-        find = (Button) view.findViewById(R.id.find);
-        isCheckData = (TextView) view.findViewById(R.id.isCheckData);
-
-        checkRecycler = (RecyclerView) view.findViewById(R.id.check_recycler);
+    private void initWight() {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         checkRecycler.setLayoutManager(linearLayoutManager);
@@ -155,139 +158,133 @@ public class ACheckFragment extends Fragment implements View.OnClickListener{
         startdate.setText(current);
         enddata.setText(current);
 
-        startdate.setOnClickListener(this);
-        enddata.setOnClickListener(this);
-        find.setOnClickListener(this);
-
-        today.setOnClickListener(this);
-        week.setOnClickListener(this);
-        mon.setOnClickListener(this);
-
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading...");
 
     }
 
+    @OnClick(R.id.today)
+    void today() {
+        startdate.setText(current);
+        enddata.setText(current);
+        week.setChecked(false);
+        mon.setChecked(false);
+    }
+
     @SuppressLint("SetTextI18n")
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.today:
-                startdate.setText(current);
-                enddata.setText(current);
-                week.setChecked(false);
-                mon.setChecked(false);
-                break;
-            case R.id.week:
-                if(day<7){
-                    switch (month){
-                        case 2:
-                        case 4:
-                        case 6:
-                        case 9:
-                            startdate.setText(year+"-0"+(month -1)+"-"+(31 - (7 - day)));
-                            break;
-                        case 11:
-                            startdate.setText(year+"-"+(month -1)+"-"+(31 - (7 - day)));
-                            break;
-                        case 3:
-                        case 5:
-                        case 7:
-                        case 8:
-                            startdate.setText(year+"-0"+(month -1)+"-"+(30 - (7 - day)));
-                            break;
-                        case 10:
-                        case 12:
-                            startdate.setText(year+"-"+(month -1)+"-"+(30 - (7 - day)));
-                            break;
-                        case 1:
-                            startdate.setText((year-1)+"-"+12+"-"+(31 - (7 - day)));
-                            break;
+    @OnClick(R.id.week)
+    void week() {
+        if(day<7){
+            switch (month){
+                case 2:
+                case 4:
+                case 6:
+                case 9:
+                    startdate.setText(year+"-0"+(month -1)+"-"+(31 - (7 - day)));
+                    break;
+                case 11:
+                    startdate.setText(year+"-"+(month -1)+"-"+(31 - (7 - day)));
+                    break;
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                    startdate.setText(year+"-0"+(month -1)+"-"+(30 - (7 - day)));
+                    break;
+                case 10:
+                case 12:
+                    startdate.setText(year+"-"+(month -1)+"-"+(30 - (7 - day)));
+                    break;
+                case 1:
+                    startdate.setText((year-1)+"-"+12+"-"+(31 - (7 - day)));
+                    break;
+            }
+        }else{
+            if(month<10){
+                if(day < 10){
+                    if(day == 7){
+                        startdate.setText(year+"-0"+month+"-"+"01");
+                    }else{
+                        startdate.setText(year+"-0"+month+"-"+"0"+(day-7));
                     }
                 }else{
-                    if(month<10){
-                        if(day < 10){
-                            if(day == 7){
-                                startdate.setText(year+"-0"+month+"-"+"01");
-                            }else{
-                                startdate.setText(year+"-0"+month+"-"+"0"+(day-7));
-                            }
-                        }else{
-                            startdate.setText(year+"-0"+month+"-"+(day-7));
-                        }
-                    }else {
-                        if(day < 10){
-                            if(day == 7){
-                                startdate.setText(year+"-"+month+"-"+"01");
-                            }else{
-                                startdate.setText(year+"-"+month+"-"+"0"+(day-7));
-                            }
-                        }else{
-                            if(day >= 17){
-                                startdate.setText(year+"-"+month+"-"+(day-7));
-                            }else{
-                                startdate.setText(year+"-"+month+"-0"+(day-7));
-                            }
+                    startdate.setText(year+"-0"+month+"-"+(day-7));
+                }
+            }else {
+                if(day < 10){
+                    if(day == 7){
+                        startdate.setText(year+"-"+month+"-"+"01");
+                    }else{
+                        startdate.setText(year+"-"+month+"-"+"0"+(day-7));
+                    }
+                }else{
+                    if(day >= 17){
+                        startdate.setText(year+"-"+month+"-"+(day-7));
+                    }else{
+                        startdate.setText(year+"-"+month+"-0"+(day-7));
+                    }
 
-                        }
+                }
+            }
+        }
+        enddata.setText(current);
+        today.setChecked(false);
+        mon.setChecked(false);
+    }
+
+    @SuppressLint("SetTextI18n")
+    @OnClick(R.id.month)
+    void month() {
+        switch (month){
+            case 1:
+                if(day < 10){
+                    startdate.setText((year-1)+"-"+12+"-"+"0"+day);
+                }else{
+                    startdate.setText((year-1)+"-"+12+"-"+day);
+                }
+                break;
+            default:
+                if(month<=10){
+                    if(day < 10){
+                        startdate.setText(year+"-0"+(month-1)+"-"+"0"+day);
+                    }else{
+                        startdate.setText(year+"-0"+(month-1)+"-"+day);
+                    }
+                }else {
+                    if(day <10){
+                        startdate.setText(year+"-"+(month-1)+"-"+"0"+day);
+                    }else{
+                        startdate.setText(year+"-"+(month-1)+"-"+day);
                     }
                 }
-                enddata.setText(current);
-                today.setChecked(false);
-                mon.setChecked(false);
-                break;
-            case R.id.month:
-                switch (month){
-                    case 1:
-                        if(day < 10){
-                            startdate.setText((year-1)+"-"+12+"-"+"0"+day);
-                        }else{
-                            startdate.setText((year-1)+"-"+12+"-"+day);
-                        }
-                        break;
-                    default:
-                        if(month<=10){
-                            if(day < 10){
-                                startdate.setText(year+"-0"+(month-1)+"-"+"0"+day);
-                            }else{
-                                startdate.setText(year+"-0"+(month-1)+"-"+day);
-                            }
-                        }else {
-                            if(day <10){
-                                startdate.setText(year+"-"+(month-1)+"-"+"0"+day);
-                            }else{
-                                startdate.setText(year+"-"+(month-1)+"-"+day);
-                            }
-                        }
-                        break;
-                }
-                enddata.setText(current);
-                today.setChecked(false);
-                week.setChecked(false);
-                break;
-
-            case R.id.find:
-                String start = startdate.getText().toString();
-                String end = enddata.getText().toString();
-                String WaterDate = start+"a"+end;
-                int  Status = 1;
-                String Flag = "";
-                int page = 1;
-                int rows = 30;
-                if(today.isChecked()){
-                    Status = 1;
-                }else if(week.isChecked()){
-                    Status = 2;
-                }else if(mon.isChecked()){
-                    Status = 3;
-                }
-                Flag = setFlag(Flag);
-                String data = "WaterDate="+WaterDate+"&Status="+Status+"&Flag="+Flag+"&page="+page+"&rows="+rows;
-                Log.e("attend",data);
-                progressDialog.show();
-                getAttendCheeck(WaterDate,Status,Flag,page,rows,attenCookie);               //获取考勤信息;
                 break;
         }
+        enddata.setText(current);
+        today.setChecked(false);
+        week.setChecked(false);
+    }
+
+    @OnClick(R.id.find)
+    void find() {
+        String start = startdate.getText().toString();
+        String end = enddata.getText().toString();
+        String WaterDate = start+"a"+end;
+        int  Status = 1;
+        String Flag = "";
+        int page = 1;
+        int rows = 30;
+        if(today.isChecked()){
+            Status = 1;
+        }else if(week.isChecked()){
+            Status = 2;
+        }else if(mon.isChecked()){
+            Status = 3;
+        }
+        Flag = setFlag(Flag);
+        String data = "WaterDate="+WaterDate+"&Status="+Status+"&Flag="+Flag+"&page="+page+"&rows="+rows;
+        Log.e("attend",data);
+        progressDialog.show();
+        getAttendCheeck(WaterDate, Status, Flag, page, rows, attenCookie);               //获取考勤信息;
     }
 
     private void getAttendCheeck(String waterDate, int status, String flag, int page, int rows, String attenCookie) {
