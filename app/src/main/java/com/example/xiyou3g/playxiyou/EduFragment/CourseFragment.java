@@ -26,6 +26,10 @@ import com.example.xiyou3g.playxiyou.R;
 
 import java.util.Calendar;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
 
 /**
@@ -33,24 +37,47 @@ import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
  * on 2017/7/12.
  */
 
-public class CourseFragment extends Fragment implements View.OnClickListener{
+public class CourseFragment extends Fragment {
+    @BindView(R.id.course_container)
+    FrameLayout container;
 
-    private View view;
-    private FrameLayout container;
-    private TextView month;
-    private TextView day1;
-    private TextView day2;
-    private TextView day3;
-    private TextView day4;
-    private TextView day5;
-    private TextView day6;
-    private TextView day7;
-    private TextView isData;
+    @BindView(R.id.month)
+    TextView month;
+
+    @BindView(R.id.day1)
+    TextView day1;
+
+    @BindView(R.id.day2)
+    TextView day2;
+
+    @BindView(R.id.day3)
+    TextView day3;
+
+    @BindView(R.id.day4)
+    TextView day4;
+
+    @BindView(R.id.day5)
+    TextView day5;
+
+    @BindView(R.id.day6)
+    TextView day6;
+
+    @BindView(R.id.day7)
+    TextView day7;
+
+    @BindView(R.id.course_tv)
+    TextView isData;
+
+    @BindView(R.id.fab1)
+    FloatingActionButton fab;
+
+    @BindView(R.id.team1)
+    TextView team1;
+
+    @BindView(R.id.team2)
+    TextView team2;
 
     private boolean isOpenFab = false;
-    private FloatingActionButton fab;
-    private TextView team1;
-    private TextView team2;
     private int startYear1;
     private int endYear1;
     private int iteam1;
@@ -90,38 +117,20 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
             screenWidth = (int) (width/density);
             screenHeight = (int) (height/density);
         }
-        Log.e("screen=======",screenWidth+"   "+screenHeight);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.course_fragment,container,false);
-        initWight(view);
+        View view = inflater.inflate(R.layout.course_fragment,container,false);
+        ButterKnife.bind(this, view);
+        initWight();
         return view;
     }
 
-    private void initWight(View view) {
-        container = (FrameLayout) view.findViewById(R.id.course_container);
-        month = (TextView) view.findViewById(R.id.month);
-        day1 = (TextView) view.findViewById(R.id.day1);
-        day2 = (TextView) view.findViewById(R.id.day2);
-        day3 = (TextView) view.findViewById(R.id.day3);
-        day4 = (TextView) view.findViewById(R.id.day4);
-        day5 = (TextView) view.findViewById(R.id.day5);
-        day6 = (TextView) view.findViewById(R.id.day6);
-        day7 = (TextView) view.findViewById(R.id.day7);
-        fab = (FloatingActionButton) view.findViewById(R.id.fab1);
-        team1 = (TextView) view.findViewById(R.id.team1);
-        team2 = (TextView) view.findViewById(R.id.team2);
-        isData = (TextView) view.findViewById(R.id.course_tv);
-
+    private void initWight() {
         team1.setVisibility(View.GONE);
         team2.setVisibility(View.GONE);
-
-        fab.setOnClickListener(this);
-        team1.setOnClickListener(this);
-        team2.setOnClickListener(this);
 
         if(stuname.equals("null")){
             fab.setVisibility(View.GONE);
@@ -402,49 +411,49 @@ public class CourseFragment extends Fragment implements View.OnClickListener{
         return day;
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.fab1:
-                if(!isOpenFab){
-                    openMenu(v);
-                }else{
-                    closeMenu(v);
-                }
-                break;
-            case R.id.team1:
-                Log.e("click","team1");
-                courseList.clear();
-                container.removeAllViews();
-                new GetCourseData(startYear1,endYear1,iteam1,0);
-                dialog = new ProgressDialog(getContext());
-                dialog.setMessage("正在努力加载...");
-                dialog.show();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        initWight(view);
-                        dialog.dismiss();
-                    }
-                },500);
-                break;
-            case R.id.team2:
-                Log.e("click","team2");
-                courseList.clear();
-                container.removeAllViews();
-                new GetCourseData(startYear2,endYear2,iteam2,1);
-                dialog = new ProgressDialog(getContext());
-                dialog.setMessage("正在努力加载...");
-                dialog.show();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        initWight(view);
-                        dialog.dismiss();
-                    }
-                },500);
-                break;
+    @OnClick(R.id.fab1)
+    void fab1() {
+        if(!isOpenFab){
+            openMenu(fab);
+        }else{
+            closeMenu(fab);
         }
+    }
+
+    @OnClick(R.id.team1)
+    void team1() {
+        Log.e("click","team1");
+        courseList.clear();
+        container.removeAllViews();
+        new GetCourseData(startYear1,endYear1,iteam1,0);
+        dialog = new ProgressDialog(getContext());
+        dialog.setMessage("正在努力加载...");
+        dialog.show();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                initWight();
+                dialog.dismiss();
+            }
+        },500);
+    }
+
+    @OnClick(R.id.team2)
+    void team2() {
+        Log.e("click","team2");
+        courseList.clear();
+        container.removeAllViews();
+        new GetCourseData(startYear2,endYear2,iteam2,1);
+        dialog = new ProgressDialog(getContext());
+        dialog.setMessage("正在努力加载...");
+        dialog.show();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                initWight();
+                dialog.dismiss();
+            }
+        },500);
     }
 
     private void closeMenu(View v) {

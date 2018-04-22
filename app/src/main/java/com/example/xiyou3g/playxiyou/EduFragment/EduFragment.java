@@ -12,12 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.xiyou3g.playxiyou.Adapter.EduAdapter;
-import com.example.xiyou3g.playxiyou.MeFragment.MajorFragment;
-import com.example.xiyou3g.playxiyou.MeFragment.ProjectFragment;
 import com.example.xiyou3g.playxiyou.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Lance
@@ -25,24 +26,11 @@ import java.util.List;
  */
 
 public class EduFragment extends Fragment{
+    @BindView(R.id.tab)
+    TabLayout tabLayout;
 
-    private View view;
-
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private EduAdapter eduAdapter;
-
-    private List<Fragment> fragmentList;
-    private List<String> tabList;
-
-    //课程表的Fragment;
-    private CourseFragment courseFragment;
-    //成绩查询的Fragment；
-    private ScoreFragment scoreFragment;
-    //培养计划的Fragment;
-    private ProjectFragment projectFragment;
-    //学分统计的Fragment;
-    private MajorFragment majorFragment;
+    @BindView(R.id.viewpager)
+    ViewPager viewPager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,27 +40,29 @@ public class EduFragment extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = LayoutInflater.from(getContext()).inflate(R.layout.edu_fragment,container,false);
-        initWight(view);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.edu_fragment,container,false);
+        ButterKnife.bind(this, view);
+        initWight();
         return view;
     }
 
-    private void initWight(View view) {
-        tabLayout = (TabLayout) view.findViewById(R.id.tab);
-        viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+    private void initWight() {
+        //课程表的Fragment;
+        CourseFragment courseFragment = new CourseFragment();
+        //成绩查询的Fragment；
+        ScoreFragment scoreFragment = new ScoreFragment();
+        //培养计划的Fragment;
+//        ProjectFragment projectFragment = new ProjectFragment();
+        //学分统计的Fragment;
+//        MajorFragment majorFragment = new MajorFragment();
 
-        courseFragment = new CourseFragment();
-        scoreFragment = new ScoreFragment();
-//        projectFragment = new ProjectFragment();
-//        majorFragment = new MajorFragment();
-
-        fragmentList = new ArrayList<>();
+        List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(courseFragment);
         fragmentList.add(scoreFragment);
 //        fragmentList.add(projectFragment);
 //        fragmentList.add(majorFragment);
 
-        tabList = new ArrayList<>();
+        List<String> tabList = new ArrayList<>();
         tabList.add("课程表");
         tabList.add("成绩查询");
 //        tabList.add("培养计划");
@@ -84,7 +74,7 @@ public class EduFragment extends Fragment{
 //        tabLayout.addTab(tabLayout.newTab().setText(tabList.get(2)));
 //        tabLayout.addTab(tabLayout.newTab().setText(tabList.get(3)));
 
-        eduAdapter = new EduAdapter(getChildFragmentManager(),fragmentList,tabList);
+        EduAdapter eduAdapter = new EduAdapter(getChildFragmentManager(),fragmentList,tabList);
         viewPager.setAdapter(eduAdapter);
         tabLayout.setupWithViewPager(viewPager);
 

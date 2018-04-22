@@ -3,7 +3,6 @@ package com.example.xiyou3g.playxiyou.EduFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,21 +16,32 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+
 import com.example.xiyou3g.playxiyou.Adapter.ScoreAdapter;
 import com.example.xiyou3g.playxiyou.Adapter.ScoreTeamAdapter;
 import com.example.xiyou3g.playxiyou.DataBean.ScoreYearAndTeam;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetScoreData;
 import com.example.xiyou3g.playxiyou.R;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+import static com.example.xiyou3g.playxiyou.Content.EduContent.Team;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.Year;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.currentScore;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.handler;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.popupWindow;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.sYear;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.scoreInfos;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.stuYear;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.stuname;
 
 /**
  * Created by Lance
@@ -41,23 +51,26 @@ import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
 
 public class ScoreFragment extends Fragment {
 
-    private RecyclerView scoreRecyc;
-    private TextView isData;
+    @BindView(R.id.score_recycler)
+    RecyclerView scoreRecyc;
 
-    private View view;
-    private LinearLayoutManager linearLayoutManager2;
-    private TextView current;
+    @BindView(R.id.score_tv)
+    TextView isData;
+
+    @BindView(R.id.score_time)
+    TextView current;
+
+    @BindView(R.id.bttest)
+    ImageView bselect;
+
+    @BindView(R.id.score_layout)
+    CoordinatorLayout main_layout;
+
+    @BindView(R.id.refresh)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private List<ScoreYearAndTeam> yearList;
-    private ScoreAdapter scoreAdapter;
-
     private ProgressDialog dialog;
-
-    private ImageView bselect;
-    private List<String> select;
-    private CoordinatorLayout main_layout;
-
-    private SwipeRefreshLayout swipeRefreshLayout;
     private int isrefresh = 0;
 
     @Override
@@ -72,15 +85,29 @@ public class ScoreFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.score_fragment,container,false);
+        View view = inflater.inflate(R.layout.score_fragment,container,false);
+        ButterKnife.bind(this, view);
         yearList = new ArrayList<>();
+        if(sYear != 0){
+            dialog.dismiss();
+        }
+        if(yearList.size() == 0 && !stuname.equals("null")){
+            getYearAndTeam();
+        }
+        initWight();
 
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         handler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 switch (msg.what){
                     case 2:
-                        initWight(view);
+                        initWight();
                         Log.e("accept success","666666666666");
                         dialog.dismiss();
                         break;
@@ -93,15 +120,6 @@ public class ScoreFragment extends Fragment {
                 }
             }
         };
-        if(sYear != 0){
-            dialog.dismiss();
-        }
-        if(yearList.size() == 0 && !stuname.equals("null")){
-            getYearAndTeam();
-        }
-        initWight(view);
-
-        return view;
     }
 
     //学期的各学期的成绩;
@@ -143,16 +161,7 @@ public class ScoreFragment extends Fragment {
         }
     }
 
-    private void initWight(View view) {
-
-        scoreRecyc = (RecyclerView) view.findViewById(R.id.score_recycler);
-        current = (TextView) view.findViewById(R.id.score_time);
-        isData = (TextView) view.findViewById(R.id.score_tv);
-
-        bselect = (ImageView) view.findViewById(R.id.bttest);
-        main_layout = (CoordinatorLayout) view.findViewById(R.id.score_layout);
-
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh);
+    private void initWight() {
         swipeRefreshLayout.setColorSchemeResources(R.color.days,R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -167,14 +176,14 @@ public class ScoreFragment extends Fragment {
         if(stuname.equals("null")){
             isData.setVisibility(View.VISIBLE);
         }else{
-            linearLayoutManager2 = new LinearLayoutManager(getContext());
+            LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext());
             linearLayoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
             scoreRecyc.setLayoutManager(linearLayoutManager2);
 
-            scoreAdapter = new ScoreAdapter(scoreInfos);
+            ScoreAdapter scoreAdapter = new ScoreAdapter(scoreInfos);
             scoreRecyc.setAdapter(scoreAdapter);
 
-            select = new ArrayList<>();
+            List<String> select = new ArrayList<>();
             for(int i =yearList.size()-1;i>=0;i--){
                 select.add(yearList.get(i).getYear()+"   第"+yearList.get(i).getTeam()+"学期");
             }
