@@ -1,6 +1,5 @@
 package com.example.xiyou3g.playxiyou.Content;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Handler;
 import android.support.v4.app.FragmentManager;
@@ -10,16 +9,14 @@ import com.android.volley.RequestQueue;
 import com.example.xiyou3g.playxiyou.DataBean.CourseBean;
 import com.example.xiyou3g.playxiyou.DataBean.MajorBean;
 import com.example.xiyou3g.playxiyou.DataBean.ProjectBean;
-import com.example.xiyou3g.playxiyou.DataBean.ScoreBean;
 import com.example.xiyou3g.playxiyou.DataBean.ScoreInfo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Created by Lance on 2017/7/12.
+ * Created by Lance
+ * on 2017/7/12.
  */
 
 public class EduContent {

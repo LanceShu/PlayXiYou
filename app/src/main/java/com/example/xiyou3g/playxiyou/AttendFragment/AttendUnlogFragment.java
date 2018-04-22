@@ -22,7 +22,8 @@ import com.example.xiyou3g.playxiyou.R;
 import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
 
 /**
- * Created by Lance on 2017/7/18.
+ * Created by Lance
+ * on 2017/7/18.
  */
 
 public class AttendUnlogFragment extends Fragment implements View.OnClickListener{

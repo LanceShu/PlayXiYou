@@ -22,7 +22,8 @@ import java.util.List;
 import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
 
 /**
- * Created by Lance on 2017/7/19.
+ * Created by Lance
+ * on 2017/7/19.
  */
 
 public class AttendLogFragment extends Fragment {
