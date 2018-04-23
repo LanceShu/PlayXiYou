@@ -1,12 +1,12 @@
 package com.example.xiyou3g.playxiyou.Adapter;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.xiyou3g.playxiyou.DataBean.ScoreBean;
 import com.example.xiyou3g.playxiyou.DataBean.ScoreInfo;
 import com.example.xiyou3g.playxiyou.R;
 
@@ -20,7 +20,7 @@ import java.util.List;
 
 public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ViewHolder> {
 
-    List<ScoreInfo> scoreBeanList = new ArrayList<>();
+    private List<ScoreInfo> scoreBeanList = new ArrayList<>();
 
     public ScoreAdapter(List<ScoreInfo> scoreBeen){
         scoreBeanList = scoreBeen;
@@ -34,11 +34,12 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.ViewHolder> 
         return holder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         ScoreInfo scoreBean = scoreBeanList.get(position);
         holder.sName.setText(scoreBean.getScoName());
-        holder.sFinalScore.setText("最终成绩： "+scoreBean.getScoFinalScore());
+        holder.sFinalScore.setText("最终成绩： " + scoreBean.getScoFinalScore());
         holder.sNum.setText(scoreBean.getScoNum());
         holder.sEndScore.setText(scoreBean.getScoEndtermScore());
         holder.sComScore.setText(scoreBean.getScoCommonScore());

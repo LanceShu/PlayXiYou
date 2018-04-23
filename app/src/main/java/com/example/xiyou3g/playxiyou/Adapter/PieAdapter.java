@@ -2,7 +2,6 @@ package com.example.xiyou3g.playxiyou.Adapter;
 
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +32,6 @@ public class PieAdapter extends RecyclerView.Adapter<PieAdapter.ViewHolder> {
     private float late;
     private float absence;
     private PieChartData pieChartData;
-    private List<SliceValue> sliceValues;
 
     public PieAdapter(List<CheckInforBean> checkInforBeen){
         checkInforBeanList = checkInforBeen;
@@ -54,7 +52,7 @@ public class PieAdapter extends RecyclerView.Adapter<PieAdapter.ViewHolder> {
         late = Float.parseFloat(checkInforBean.getLate());
         absence = Float.parseFloat(checkInforBean.getAbsence());
 
-        initPieCharts(checkInforBean.getCourseName(),holder.chartView);
+        initPieCharts(checkInforBean.getCourseName(), holder.chartView);
 
         holder.chartView.setPieChartData(pieChartData);
         holder.chartView.setValueSelectionEnabled(false);
@@ -64,9 +62,9 @@ public class PieAdapter extends RecyclerView.Adapter<PieAdapter.ViewHolder> {
 
     }
 
-    private void initPieCharts(String courseName,PieChartView chartView) {
+    private void initPieCharts(String courseName, PieChartView chartView) {
 
-        sliceValues = new ArrayList<>();
+        List<SliceValue> sliceValues = new ArrayList<>();
         sliceValues.clear();
 
         sliceValues.add(new SliceValue(attend, Color.parseColor("#78cc63")));

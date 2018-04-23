@@ -18,15 +18,12 @@
         android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></FrameLayout>
+        android:layout_weight="1"/>
 
     <com.ashokvarma.bottomnavigation.BottomNavigationBar
         android:id="@+id/main_bottom"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:bnbActiveColor="#5693b7"
-        app:bnbBackgroundColor="#fff">
-
-    </com.ashokvarma.bottomnavigation.BottomNavigationBar>
-
+        app:bnbBackgroundColor="#fff"/>
 </LinearLayout>
