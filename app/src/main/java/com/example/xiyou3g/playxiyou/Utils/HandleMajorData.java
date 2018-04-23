@@ -10,11 +10,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import static com.example.xiyou3g.playxiyou.Content.EduContent.handler;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.majorBeanList;
 
 /**
- * Created by Lance on 2017/9/5.
+ * Created by Lance
+ * on 2017/9/5.
  */
 
 public class HandleMajorData {

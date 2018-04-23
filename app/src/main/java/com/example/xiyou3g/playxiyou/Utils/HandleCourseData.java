@@ -12,7 +12,8 @@ import static com.example.xiyou3g.playxiyou.Content.EduContent.courseList;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.course_content;
 
 /**
- * Created by Lance on 2017/9/5.
+ * Created by Lance
+ * on 2017/9/5.
  */
 
 public class HandleCourseData {

@@ -11,26 +11,29 @@ import android.webkit.WebViewClient;
 
 import com.example.xiyou3g.playxiyou.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
- * Created by Lance on 2017/7/23.
+ * Created by Lance
+ * on 2017/7/23.
  */
 
 public class SportFragment extends Fragment {
 
-    private View view;
-    private WebView webView;
+    @BindView(R.id.sport_web)
+    WebView webView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        view = inflater.inflate(R.layout.sport_fragment,container,false);
-        init(view);
+        View view = inflater.inflate(R.layout.sport_fragment,container,false);
+        ButterKnife.bind(this, view);
+        initWight();
         return view;
     }
 
-    private void init(View view) {
-        webView = (WebView) view.findViewById(R.id.sport_web);
+    private void initWight() {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl("http://yddx.boxkj.com/wx/loginout");

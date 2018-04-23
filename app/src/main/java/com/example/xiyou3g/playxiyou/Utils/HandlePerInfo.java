@@ -15,7 +15,8 @@ import static com.example.xiyou3g.playxiyou.Content.EduContent.stumajor;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.stuname;
 
 /**
- * Created by Lance on 2017/9/5.
+ * Created by Lance
+ * on 2017/9/5.
  */
 
 public class HandlePerInfo {
