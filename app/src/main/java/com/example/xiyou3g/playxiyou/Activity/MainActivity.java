@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private void initWight() {
         if(stuname == null || stuname.equals("null")){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("温馨提示：");
+            builder.setTitle(R.string.information_tips);
             builder.setMessage("您还未进行教师评价，因此暂无内容展示，请您先到官网进行教师评价，谢谢！");
             builder.setPositiveButton("好的",null).create().show();
         }
@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         Timer timer;
         if(!isExit){
             isExit = true;
-            Snackbar.make(bottomNavigationBar,"再按一次退出程序",Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(bottomNavigationBar, R.string.exit_click, Snackbar.LENGTH_SHORT).show();
             timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
@@ -284,9 +284,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.e("onTouch","touch1");
+        Log.e("onTouch", "touch1");
         if(popupWindow != null && popupWindow.isShowing()){
-            Log.e("onTouch","touch2");
+            Log.e("onTouch", "touch2");
             popupWindow.dismiss();
             popupWindow = null;
         }

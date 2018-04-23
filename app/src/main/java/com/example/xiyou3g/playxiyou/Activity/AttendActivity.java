@@ -20,6 +20,9 @@ import com.example.xiyou3g.playxiyou.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Lance
  * on 2017/7/22.
@@ -27,30 +30,24 @@ import java.util.List;
 
 public class AttendActivity extends AppCompatActivity {
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-    private AttendAdapter attendAdapter;
+    @BindView(R.id.atab)
+    TabLayout tabLayout;
 
-    private List<Fragment> fragmentList;
-    private List<String> tabList;
+    @BindView(R.id.aviewpager)
+    ViewPager viewPager;
 
-    private AClassFragment aClassFragment;
-    private ACheckFragment aCheckFragment;
-    private APerFragment aPerFragment;
-
-    private ImageView back;
+    @BindView(R.id.back)
+    ImageView back;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.atten_login_fragment);
+        ButterKnife.bind(this);
         initWight();
-
     }
 
     private void initWight() {
-
-        back = (ImageView) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,19 +55,16 @@ public class AttendActivity extends AppCompatActivity {
             }
         });
 
-        tabLayout = (TabLayout)findViewById(R.id.atab);
-        viewPager = (ViewPager)findViewById(R.id.aviewpager);
+        AClassFragment aClassFragment = new AClassFragment();
+        ACheckFragment aCheckFragment = new ACheckFragment();
+        APerFragment aPerFragment = new APerFragment();
 
-        aClassFragment = new AClassFragment();
-        aCheckFragment = new ACheckFragment();
-        aPerFragment = new APerFragment();
-
-        fragmentList = new ArrayList<>();
+        List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(aClassFragment);
         fragmentList.add(aCheckFragment);
         fragmentList.add(aPerFragment);
 
-        tabList = new ArrayList<>();
+        List<String> tabList = new ArrayList<>();
         tabList.add("教室情况");
         tabList.add("考勤信息");
         tabList.add("基本信息");
@@ -80,7 +74,7 @@ public class AttendActivity extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText(tabList.get(1)));
         tabLayout.addTab(tabLayout.newTab().setText(tabList.get(2)));
 
-        attendAdapter = new AttendAdapter(getSupportFragmentManager(),fragmentList,tabList);
+        AttendAdapter attendAdapter = new AttendAdapter(getSupportFragmentManager(), fragmentList, tabList);
 
         viewPager.setAdapter(attendAdapter);
         tabLayout.setupWithViewPager(viewPager);

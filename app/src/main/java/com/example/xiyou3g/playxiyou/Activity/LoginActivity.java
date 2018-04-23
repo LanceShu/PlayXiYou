@@ -20,7 +20,6 @@ import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -42,7 +41,6 @@ import com.example.xiyou3g.playxiyou.MeFragment.GuideActivity;
 import com.example.xiyou3g.playxiyou.R;
 import com.example.xiyou3g.playxiyou.Utils.HandleCourseData;
 
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -58,8 +56,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
-import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
+import static com.example.xiyou3g.playxiyou.Content.AttenContent.islogin;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.COURSE_CACHE;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.cookies;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.isCache;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.loginCheckCode;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.loginName;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.loginPassword;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.mqueue;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.student_name;
 
 /**
  * Created by Lance
@@ -183,7 +188,7 @@ public class LoginActivity extends AppCompatActivity{
 
         final String url = "http://222.24.62.120/default2.aspx";
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("信息提示：");
+        builder.setTitle(R.string.information_tips);
 
         loginName = username.getText().toString();
         loginPassword = password.getText().toString();
@@ -222,7 +227,7 @@ public class LoginActivity extends AppCompatActivity{
                         }
                     }).create().show();
                 } else {
-                    builder.setMessage("登录失败，请重新登录");
+                    builder.setMessage(R.string.login_failure);
                     builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -366,7 +371,7 @@ public class LoginActivity extends AppCompatActivity{
         Timer timer;
         if(!isExit){
             isExit = true;
-            Snackbar.make(login,"再按一次退出程序",Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(login,R.string.exit_click, Snackbar.LENGTH_SHORT).show();
             timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
