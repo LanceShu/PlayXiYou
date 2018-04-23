@@ -6,7 +6,8 @@ import com.example.xiyou3g.playxiyou.R
 import kotlinx.android.synthetic.main.major_activity.*
 
 /**
- * Created by Lance on 2017/10/7.
+ * Created by Lance
+ * on 2017/10/7.
  */
 
 class MajortActivity : AppCompatActivity() {

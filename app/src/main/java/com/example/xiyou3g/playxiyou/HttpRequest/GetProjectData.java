@@ -69,7 +69,6 @@ public class GetProjectData {
                 }
             };
             mqueue.add(stringRequest);
-
         }
     }
 }

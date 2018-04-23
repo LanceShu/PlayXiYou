@@ -4,6 +4,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.example.xiyou3g.playxiyou.DataBean.ProjectBean;
+import com.example.xiyou3g.playxiyou.MeFragment.ProjectFragment;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -25,19 +26,15 @@ public class HandleProjectData {
             Elements td = tr.get(i).getElementsByTag("td");
             ProjectBean projectBean = new ProjectBean();
             projectBean.setCname(td.get(1).text());
-
-            Log.e("project name   "+ team,td.get(1).text());
-
             projectBean.setCstatue(td.get(5).text());
             projectBean.setCid(td.get(0).text());
             projectBean.setCscore(td.get(2).text());
             projectBean.setCgpa(td.get(3).text());
             projectBean.setCteam(td.get(4).text());
             proList.get(team-1).add(projectBean);
-
         }
         Message message = Message.obtain();
         message.what = 6;
-        handler.sendMessage(message);
+        ProjectFragment.projectHandler.sendMessage(message);
     }
 }

@@ -4,6 +4,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.example.xiyou3g.playxiyou.DataBean.MajorBean;
+import com.example.xiyou3g.playxiyou.MeFragment.MajorFragment;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -49,6 +50,6 @@ public class HandleMajorData {
         }
         Message message = Message.obtain();
         message.what = 5;
-        handler.sendMessage(message);
+        MajorFragment.majorHandler.sendMessage(message);
     }
 }

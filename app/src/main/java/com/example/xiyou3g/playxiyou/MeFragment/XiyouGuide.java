@@ -1,7 +1,8 @@
 package com.example.xiyou3g.playxiyou.MeFragment;
 
 /**
- * Created by Lance on 2017/8/1.
+ * Created by Lance
+ * on 2017/8/1.
  */
 
 public class XiyouGuide {

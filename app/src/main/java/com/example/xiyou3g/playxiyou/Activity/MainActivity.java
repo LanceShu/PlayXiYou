@@ -28,8 +28,8 @@ import com.example.xiyou3g.playxiyou.EduFragment.EduFragment;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetScoreData;
 import com.example.xiyou3g.playxiyou.MeFragment.MeFragment;
 import com.example.xiyou3g.playxiyou.R;
-import com.example.xiyou3g.playxiyou.SportFragment.SportFragment;
 import com.example.xiyou3g.playxiyou.Utils.HandleScoreData;
+import com.example.xiyou3g.playxiyou.Utils.LogUtils;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                     try {
                         __viewstate[0] = URLEncoder.encode(__viewstate[0],"GBK");
                     } catch (UnsupportedEncodingException e) {
-                        Log.e("error","123456789");
+                        e.printStackTrace();
                     }
                     Log.e("viewstate      ",__viewstate[0]);
                     list.add(__viewstate[0]);
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError volleyError) {
-                    Log.e("failure",volleyError+"");
+                    LogUtils.INSTANCE.e("VolleyError",volleyError+"");
                 }
             }){
                 @Override
@@ -182,13 +182,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
             endYear = year;
             team = 1;
         }
-        Year = startYear+"-"+endYear;
-        Team = team+"";
-        currentScore = Year+"   第"+Team+"学期";
+        Year = startYear + "-" + endYear;
+        Team = team + "";
+        currentScore = Year + "   第" + Team + "学期";
     }
 
     private void initWight() {
-        if(stuname.equals("null") || stuname == null){
+        if(stuname == null || stuname.equals("null")){
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("温馨提示：");
             builder.setMessage("您还未进行教师评价，因此暂无内容展示，请您先到官网进行教师评价，谢谢！");
@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.main_bottom);
         bottomNavigationBar.addItem(new BottomNavigationItem(R.mipmap.jiaowu,"教务处"))
-                .addItem(new BottomNavigationItem(R.mipmap.tiyu,"体育部"))
+//                .addItem(new BottomNavigationItem(R.mipmap.tiyu,"体育部"))
                 .addItem(new BottomNavigationItem(R.mipmap.kaoqin,"智慧考勤"))
                 .addItem(new BottomNavigationItem(R.mipmap.me,"个人信息"))
                 .setFirstSelectedPosition(0)
@@ -229,17 +229,17 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
             case 0:
                 replaceFragment(new EduFragment());
                 break;
+//            case 1:
+//                replaceFragment(new SportFragment());
+//                break;
             case 1:
-                replaceFragment(new SportFragment());
-                break;
-            case 2:
 //                if(islogin == 0){
                     replaceFragment(new AttendUnlogFragment());
 //                }else{
 //                    replaceFragment(new AttendLogFragment());
 //                }
                 break;
-            case 3:
+            case 2:
                 replaceFragment(new MeFragment());
                 break;
         }

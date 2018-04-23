@@ -15,65 +15,90 @@ import android.view.ViewGroup;
 import com.chaychan.viewlib.NumberRunningTextView;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetMajorData;
 import com.example.xiyou3g.playxiyou.R;
+
+import java.lang.ref.WeakReference;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
 
 /**
- * Created by Lance on 2017/7/12.
+ * Created by Lance
+ * on 2017/7/12.
  */
 
 public class MajorFragment extends Fragment {
 
-    private NumberRunningTextView bneed;
-    private NumberRunningTextView bget;
-    private NumberRunningTextView bunget;
-    private NumberRunningTextView bwant;
-    private NumberRunningTextView xneed;
-    private NumberRunningTextView xget;
-    private NumberRunningTextView xunget;
-    private NumberRunningTextView xwant;
+    @BindView(R.id.bneed)
+    NumberRunningTextView bneed;
 
-    private View view;
+    @BindView(R.id.bget)
+    NumberRunningTextView bget;
+
+    @BindView(R.id.bunget)
+    NumberRunningTextView bunget;
+
+    @BindView(R.id.bwant)
+    NumberRunningTextView bwant;
+
+    @BindView(R.id.xneed)
+    NumberRunningTextView xneed;
+
+    @BindView(R.id.xget)
+    NumberRunningTextView xget;
+
+    @BindView(R.id.xunget)
+    NumberRunningTextView xunget;
+
+    @BindView(R.id.xwant)
+    NumberRunningTextView xwant;
+
     private ProgressDialog progressDialog ;
-    private  int flag = 0;
+    private static int flag = 0;
+    public static MajorHandler majorHandler;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.e("MajorFragment","onCreateView");
-        view = inflater.inflate(R.layout.major_fragment,container,false);
+        View view = inflater.inflate(R.layout.major_fragment,container,false);
+        ButterKnife.bind(this, view);
         if(majorBeanList.size()!=0){
-            initWight(view);
+            initWight();
             if(flag == 1){
                 progressDialog.dismiss();
                 flag = 0;
             }
         }
-        handler = new Handler(){
-            @Override
-            public void handleMessage(Message msg) {
+        majorHandler = new MajorHandler(progressDialog);
+        return view;
+    }
+
+    public class MajorHandler extends Handler {
+        private WeakReference<ProgressDialog> dialogWeakReference;
+
+        MajorHandler(ProgressDialog dialog) {
+            dialogWeakReference = new WeakReference<>(dialog);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            ProgressDialog dialog = dialogWeakReference.get();
+            if (dialog != null) {
                 switch (msg.what){
                     case 5:
-                        initWight(view);
-                        progressDialog.dismiss();
+                        initWight();
+                        dialog.dismiss();
                         flag = 0;
                         break;
                 }
             }
-        };
-        return view;
+        }
     }
 
-    private void initWight(View view) {
-        bneed = (NumberRunningTextView) view.findViewById(R.id.bneed);
-        bget = (NumberRunningTextView) view.findViewById(R.id.bget);
-        bunget = (NumberRunningTextView) view.findViewById(R.id.bunget);
-        bwant = (NumberRunningTextView) view.findViewById(R.id.bwant);
-        xneed = (NumberRunningTextView) view.findViewById(R.id.xneed);
-        xget = (NumberRunningTextView) view.findViewById(R.id.xget);
-        xunget = (NumberRunningTextView) view.findViewById(R.id.xunget);
-        xwant = (NumberRunningTextView) view.findViewById(R.id.xwant);
-
-        handler.postDelayed(new Runnable() {
+    private void initWight() {
+        majorHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 bneed.setContent(majorBeanList.get(0).getmNeedScore());
