@@ -1,7 +1,6 @@
 package com.example.xiyou3g.playxiyou.HttpRequest;
 
 import android.os.Message;
-import android.util.Base64;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
@@ -9,25 +8,28 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.xiyou3g.playxiyou.DataBean.ScoreBean;
-import com.example.xiyou3g.playxiyou.DataBean.ScoreInfo;
-import com.example.xiyou3g.playxiyou.DataBean.StuScoreInfo;
 import com.example.xiyou3g.playxiyou.Utils.HandleScoreData;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
+
+import static com.example.xiyou3g.playxiyou.Content.EduContent.SCORE_CACHE;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.cookies;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.handler;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.loginName;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.mqueue;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.scoreInfos;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.student_name;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.stuname;
 
 /**
- * Created by Lance on 2017/7/15.
+ * Created by Lance
+ * on 2017/7/15.
  */
 
 public class GetScoreData{
@@ -56,7 +58,7 @@ public class GetScoreData{
                    try {
                        __viewstate[0] = URLEncoder.encode(__viewstate[0],"GBK");
                    } catch (UnsupportedEncodingException e) {
-
+                        e.printStackTrace();
                    }
                    Log.e("viewstate",__viewstate[0]);
                }

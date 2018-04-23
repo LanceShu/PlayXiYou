@@ -7,19 +7,19 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
-import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
+import static com.example.xiyou3g.playxiyou.Content.AttenContent.isGet;
+import static com.example.xiyou3g.playxiyou.Content.AttenContent.siliuBean;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.mqueue;
 
 /**
- * Created by Lance on 2017/7/24.
+ * Created by Lance
+ * on 2017/7/24.
  */
 
 public class GetSiliuData {

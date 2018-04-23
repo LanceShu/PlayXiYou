@@ -1,14 +1,14 @@
 package com.example.xiyou3g.playxiyou.HttpRequest;
 
-import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
-import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
+
+import static com.example.xiyou3g.playxiyou.Content.AttenContent.attenCookie;
 
 /**
- * Created by Lance on 2017/7/20.
+ * Created by Lance
+ * on 2017/7/20.
  */
 
 public class GetAttendPer {

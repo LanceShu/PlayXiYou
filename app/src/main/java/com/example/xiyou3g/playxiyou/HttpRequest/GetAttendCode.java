@@ -20,12 +20,13 @@ import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
 import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
 
 /**
- * Created by Lance on 2017/7/18.
+ * Created by Lance
+ * on 2017/7/18.
  */
 
 public class GetAttendCode implements Runnable {
 
-    final String codeUrl = "http://jwkq.xupt.edu.cn:8080/Common/GetValidateCode?time="+System.currentTimeMillis();
+    private final String codeUrl = "http://jwkq.xupt.edu.cn:8080/Common/GetValidateCode?time=" + System.currentTimeMillis();
     private byte[] imageBtye ;
     private ImageView acodeImage;
 

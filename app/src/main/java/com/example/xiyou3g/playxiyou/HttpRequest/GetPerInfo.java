@@ -10,15 +10,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.xiyou3g.playxiyou.Utils.HandlePerInfo;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 import java.util.HashMap;
 import java.util.Map;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
+
+import static com.example.xiyou3g.playxiyou.Content.EduContent.cookies;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.loginName;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.mqueue;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.student_name;
 
 /**
- * Created by Lance on 2017/7/14.
+ * Created by Lance
+ * on 2017/7/14.
  */
 
 public class GetPerInfo {

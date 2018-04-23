@@ -2,12 +2,12 @@ package com.example.xiyou3g.playxiyou.HttpRequest
 
 import com.example.xiyou3g.playxiyou.Content.AttenContent
 import com.example.xiyou3g.playxiyou.DataBean.CheckBean
-import kotlinx.android.synthetic.main.check_item.*
 import okhttp3.*
 import org.json.JSONObject
 
 /**
- * Created by Lance on 2017/10/10.
+ * Created by Lance
+ * on 2017/10/10.
  */
 object RequestAppeal {
 

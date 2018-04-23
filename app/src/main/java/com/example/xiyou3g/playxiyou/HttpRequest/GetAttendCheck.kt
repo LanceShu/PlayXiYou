@@ -1,10 +1,13 @@
 package com.example.xiyou3g.playxiyou.HttpRequest
 
-import okhttp3.*
-import org.json.JSONObject
+import okhttp3.Callback
+import okhttp3.FormBody
+import okhttp3.OkHttpClient
+import okhttp3.Request
 
 /**
- * Created by Lance on 2017/9/6.
+ * Created by Lance
+ * on 2017/9/6.
  */
 
 object GetAttendCheck{

@@ -4,7 +4,8 @@ import com.example.xiyou3g.playxiyou.Content.AttenContent
 import okhttp3.*
 
 /**
- * Created by Lance on 2017/10/8.
+ * Created by Lance
+ * on 2017/10/8.
  */
 object GetCheckInfor {
 
