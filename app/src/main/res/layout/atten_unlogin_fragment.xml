@@ -16,7 +16,7 @@
         android:layout_height="75dp"
         android:text="智慧教室门户"
         android:textColor="@color/days"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginTop="80dp"
@@ -33,6 +33,5 @@
         android:text="立即登录"
         android:textSize="20sp"
         android:textColor="#fff"/>
-
 
 </RelativeLayout>

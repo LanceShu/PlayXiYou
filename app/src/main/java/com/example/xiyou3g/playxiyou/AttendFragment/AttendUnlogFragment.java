@@ -19,6 +19,10 @@ import com.example.xiyou3g.playxiyou.Activity.AttenLoginActivity;
 import com.example.xiyou3g.playxiyou.Activity.MainActivity;
 import com.example.xiyou3g.playxiyou.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
 
 /**
@@ -26,17 +30,16 @@ import static com.example.xiyou3g.playxiyou.Content.AttenContent.*;
  * on 2017/7/18.
  */
 
-public class AttendUnlogFragment extends Fragment implements View.OnClickListener{
-
-    private View view;
-    private Button isUnlogin;
+public class AttendUnlogFragment extends Fragment {
+    @BindView(R.id.aunlogin)
+    Button isUnlogin;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        view = LayoutInflater.from(getContext()).inflate(R.layout.atten_unlogin_fragment,container,false);
-        initWight(view);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.atten_unlogin_fragment,container,false);
+        ButterKnife.bind(this, view);
 
 //        attenHandler = new Handler(){
 //            @Override
@@ -60,18 +63,9 @@ public class AttendUnlogFragment extends Fragment implements View.OnClickListene
         fragmentTransaction.commit();
     }
 
-    private void initWight(View view) {
-        isUnlogin = (Button) view.findViewById(R.id.aunlogin);
-        isUnlogin.setOnClickListener(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.aunlogin:
-                    Intent intent = new Intent(getContext(),AttenLoginActivity.class);
-                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
-                break;
-        }
+    @OnClick(R.id.aunlogin)
+    void unLogin() {
+        Intent intent = new Intent(getContext(),AttenLoginActivity.class);
+        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle());
     }
 }
