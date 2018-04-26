@@ -9,8 +9,8 @@ android {
         applicationId "com.example.xiyou3g.playxiyou"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 4
-        versionName "2.4.2"
+        versionCode 5
+        versionName "2.5.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -38,7 +38,7 @@ dependencies {
     compile 'com.ashokvarma.android:bottom-navigation-bar:1.4.1'
     compile 'com.loopeer.library:cardstack:1.0.2'
     compile 'com.github.chaychan:PowerfulViewLibrary:1.1.0'
-    compile 'com.squareup.okhttp3:okhttp:3.5.0'
+    compile 'com.squareup.okhttp3:okhttp:3.7.0'
     compile 'org.jetbrains.kotlin:kotlin-stdlib:1.1.1'
     compile 'org.jetbrains.anko:anko-sdk25:0.10.0-beta-1'
     compile 'org.jetbrains.anko:anko-appcompat-v7:0.10.0-beta-1'
