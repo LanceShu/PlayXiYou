@@ -4,23 +4,15 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <com.example.xiyou3g.playxiyou.MyView.RoundImageView
         android:id="@+id/logo"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginTop="60dp">
-
-        <com.example.xiyou3g.playxiyou.MyView.RoundImageView
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:src="@drawable/schoollogo"
-            app:borderRadius="180dp"
-            app:imageType="round"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/roundImageView" />
-
-    </RelativeLayout>
+        android:layout_marginTop="60dp"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:src="@drawable/schoollogo"
+        app:borderRadius="180dp"
+        app:imageType="round"
+        android:layout_centerHorizontal="true" />
 
     <LinearLayout
         android:layout_width="match_parent"

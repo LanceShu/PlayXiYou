@@ -29,11 +29,10 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash);
-
         //使状态栏透明；
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        setContentView(R.layout.splash);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -42,6 +41,6 @@ public class SplashActivity extends AppCompatActivity {
                 SplashActivity.this.startActivity(intent);
                 SplashActivity.this.finish();
             }
-        },2500);
+        },1500);
     }
 }

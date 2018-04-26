@@ -3,4 +3,5 @@
     <string name="information_tips">小贴士：</string>
     <string name="login_failure">登录失败，请重新登录</string>
     <string name="exit_click">再按一次退出程序</string>
+    <string name="splash_content">带你遨游充满知识的西邮</string>
 </resources>
