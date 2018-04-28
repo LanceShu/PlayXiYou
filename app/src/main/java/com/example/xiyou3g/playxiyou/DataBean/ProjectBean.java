@@ -1,17 +1,18 @@
 package com.example.xiyou3g.playxiyou.DataBean;
 
 /**
- * Created by Lance on 2017/7/14.
+ * Created by Lance
+ * on 2017/7/14.
  */
 
 public class ProjectBean {
 
-    public String cname;
-    public String cstatue;
-    public String cid;
-    public String cscore;
-    public String cgpa;
-    public String cteam;
+    private String cname;
+    private String cstatue;
+    private String cid;
+    private String cscore;
+    private String cgpa;
+    private String cteam;
 
     public void setCgpa(String cgpa) {
         this.cgpa = cgpa;

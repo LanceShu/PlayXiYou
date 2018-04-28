@@ -1,18 +1,19 @@
 package com.example.xiyou3g.playxiyou.DataBean;
 
 /**
- * Created by Lance on 2017/7/20.
+ * Created by Lance
+ * on 2017/7/20.
  */
 
 public class AttendPerBean {
-    String name;
-    String sex;
-    String num;
-    String academy;
-    String phone;
-    String major;
-    String classroom;
-    String identity;
+    private String name;
+    private String sex;
+    private String num;
+    private String academy;
+    private String phone;
+    private String major;
+    private String classroom;
+    private String identity;
 
     public void setAcademy(String academy) {
         this.academy = academy;

@@ -1,7 +1,8 @@
 package com.example.xiyou3g.playxiyou.DataBean;
 
 /**
- * Created by Lance on 2017/8/2.
+ * Created by Lance
+ * on 2017/8/2.
  */
 
 public class GuideBean {

@@ -1,15 +1,16 @@
 package com.example.xiyou3g.playxiyou.DataBean;
 
 /**
- * Created by Lance on 2017/7/16.
+ * Created by Lance
+ * on 2017/7/16.
  */
 
 public class CourseBean {
 
-    String cName;
-    String cTeacher;
-    String cPlace;
-    int cColor;
+    private String cName;
+    private String cTeacher;
+    private String cPlace;
+    private int cColor;
 
     public void setcColor(int cColor) {
         this.cColor = cColor;

@@ -1,7 +1,8 @@
 package com.example.xiyou3g.playxiyou.DataBean;
 
 /**
- * Created by Lance on 2017/10/8.
+ * Created by Lance
+ * on 2017/10/8.
  */
 
 //基本信息->考勤信息统计

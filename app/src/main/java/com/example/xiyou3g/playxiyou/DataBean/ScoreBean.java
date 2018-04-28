@@ -1,17 +1,18 @@
 package com.example.xiyou3g.playxiyou.DataBean;
 
 /**
- * Created by Lance on 2017/7/15.
+ * Created by Lance
+ * on 2017/7/15.
  */
 
 public class ScoreBean {
 
-    String sName;
-    String sChengji;
-    String sScore;
-    String sGpa;
-    String sTeam;
-    String sPlace;
+    private String sName;
+    private String sChengji;
+    private String sScore;
+    private String sGpa;
+    private String sTeam;
+    private String sPlace;
 
     public void setsChengji(String sChengji) {
         this.sChengji = sChengji;

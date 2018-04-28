@@ -1,7 +1,8 @@
 package com.example.xiyou3g.playxiyou.DataBean;
 
 /**
- * Created by Lance on 2017/10/7.
+ * Created by Lance
+ * on 2017/10/7.
  */
 
 public class CheckBean {

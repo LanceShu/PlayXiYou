@@ -1,15 +1,16 @@
 package com.example.xiyou3g.playxiyou.DataBean;
 
 /**
- * Created by Lance on 2017/7/21.
+ * Created by Lance
+ * on 2017/7/21.
  */
 
 public class ClassroomBean {
 
-    String cname;
-    String cflow;
-    String cplace;
-    String ccount;
+    private String cname;
+    private String cflow;
+    private String cplace;
+    private String ccount;
 
     public void setCcount(String ccount) {
         this.ccount = ccount;
