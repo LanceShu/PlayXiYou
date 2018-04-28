@@ -1,20 +1,21 @@
 package com.example.xiyou3g.playxiyou.DataBean;
 
 /**
- * Created by Lance on 2017/7/24.
+ * Created by Lance
+ * on 2017/7/24.
  */
 
 public class SiliuBean {
 
-    String sid;
-    String wlisten;
-    String wread;
-    String write;
-    String wtotal;
-    String school;
-    String sname;
-    String lid;
-    String llevel;
+    private String sid;
+    private String wlisten;
+    private String wread;
+    private String write;
+    private String wtotal;
+    private String school;
+    private String sname;
+    private String lid;
+    private String llevel;
 
     public void setLid(String lid) {
         this.lid = lid;
