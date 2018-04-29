@@ -19,7 +19,8 @@
             android:id="@+id/help_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center|left"
+            android:autoLink="all"
+            android:gravity="center|start"
             android:textColor="@color/weeks"
             android:textSize="16sp"
             android:padding="6dp"/>
