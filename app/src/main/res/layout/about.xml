@@ -8,7 +8,7 @@
         android:id="@+id/tv1"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:text="关于APP"
+        android:text="@string/about_title"
         android:gravity="center"
         android:textSize="16sp"
         android:textColor="@color/weeks"
@@ -20,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:layout_below="@id/tv1">
+        android:layout_below="@id/tv1"
+        android:baselineAligned="false">
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -76,17 +77,17 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="适用范围："
+            android:text="@string/about_range_1"
             android:textColor="@color/days"
             android:textSize="14sp"
-            android:gravity="center|right"
+            android:gravity="center|end"
             android:id="@+id/textView5" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="match_parent"
-            android:text="西邮学子"
+            android:text="@string/about_range_2"
             android:textColor="#535353"
             android:textSize="14sp"
             android:gravity="center"/>
@@ -107,16 +108,16 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="关于作者："
+            android:text="@string/about_author_1"
             android:textColor="@color/days"
             android:textSize="14sp"
-            android:gravity="center|right"/>
+            android:gravity="center|end"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="match_parent"
-            android:text="LanceShu"
+            android:text="@string/about_author_2"
             android:textColor="#535353"
             android:textSize="14sp"
             android:gravity="center"/>
@@ -137,17 +138,17 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="Github："
+            android:text="@string/about_github_1"
             android:textColor="@color/days"
             android:textSize="14sp"
-            android:gravity="center|right"/>
+            android:gravity="center|end"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="match_parent"
             android:autoLink="web"
-            android:text="https://github.com/LanceShu"
+            android:text="@string/about_github_2"
             android:textColor="#535353"
             android:textSize="12sp"
             android:gravity="center"/>
@@ -168,17 +169,17 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="CSDN博客："
+            android:text="@string/about_csdn_1"
             android:textColor="@color/days"
             android:textSize="14sp"
-            android:gravity="center|right"/>
+            android:gravity="center|end"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="match_parent"
             android:autoLink="web"
-            android:text="http://my.csdn.net/shu_lance"
+            android:text="@string/about_csdn_2"
             android:textColor="#535353"
             android:textSize="12sp"
             android:gravity="center"/>
@@ -190,8 +191,8 @@
         android:layout_marginTop="6dp"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:text=" Copyright © 2017-2018  All Rights Reserved "
+        android:text="@string/about_statement"
         android:gravity="center"
-        android:textSize="10sp"/>
+        android:textSize="12sp"/>
 
 </RelativeLayout>

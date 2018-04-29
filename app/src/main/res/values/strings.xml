@@ -4,4 +4,16 @@
     <string name="login_failure">登录失败，请重新登录</string>
     <string name="exit_click">再按一次退出程序</string>
     <string name="splash_content">带你遨游充满知识的西邮</string>
+
+
+    <string name="about_title">关于APP</string>
+    <string name="about_range_1">适用范围：</string>
+    <string name="about_range_2">西邮学子</string>
+    <string name="about_author_1">关于作者：</string>
+    <string name="about_author_2">LanceShu</string>
+    <string name="about_github_1">Github：</string>
+    <string name="about_github_2">https://github.com/LanceShu</string>
+    <string name="about_csdn_1">CSDN博客：</string>
+    <string name="about_csdn_2">http://my.csdn.net/shu_lance</string>
+    <string name="about_statement">Copyright © 2017–2018  All Rights Reserved</string>
 </resources>

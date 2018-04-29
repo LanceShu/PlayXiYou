@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.xiyou3g.playxiyou.Activity.LoginActivity;
@@ -25,6 +26,7 @@ import com.example.xiyou3g.playxiyou.MyView.RoundImageView;
 import com.example.xiyou3g.playxiyou.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -59,31 +61,31 @@ public class MeFragment extends Fragment {
     TextView stuNum;
 
     @BindView(R.id.stuinfo)
-    TextView stuinfo;
+    LinearLayout stuinfo;
 
     @BindView(R.id.siliu)
-    TextView siliu;
+    LinearLayout siliu;
 
     @BindView(R.id.project)
-    TextView project;
+    LinearLayout project;
 
     @BindView(R.id.major)
-    TextView major;
+    LinearLayout major;
 
     @BindView(R.id.place)
-    TextView place;
+    LinearLayout place;
 
     @BindView(R.id.help)
-    TextView help;
+    LinearLayout help;
 
     @BindView(R.id.question)
-    TextView question;
+    LinearLayout question;
 
     @BindView(R.id.about)
-    TextView about;
+    LinearLayout about;
 
     @BindView(R.id.exit)
-    TextView exit;
+    LinearLayout exit;
 
     @BindView(R.id.logo)
     RoundImageView logo;
@@ -241,9 +243,7 @@ public class MeFragment extends Fragment {
                 ,"体育部官网：\nhttp://yddx.boxkj.com/admin/login"
                 ,"智慧教室官网：\nhttp://jwkq.xupt.edu.cn:8080/"
                 ,"四六级查询（99宿舍）：\nhttp://cet.99sushe.com/"};
-        for(int i =0;i<array.length;i++){
-            helpList.add(array[i]);
-        }
+        Collections.addAll(helpList, array);
         HelpAdapter helpAdapter = new HelpAdapter(helpList);
         recyclerView.setAdapter(helpAdapter);
         bottomSheetDialog.setContentView(dialogView);
