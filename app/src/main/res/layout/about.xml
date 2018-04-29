@@ -10,7 +10,7 @@
         android:layout_height="45dp"
         android:text="关于APP"
         android:gravity="center"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:textColor="@color/weeks"
         android:background="@color/days"/>
 
@@ -69,8 +69,8 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp">
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp">
 
         <TextView
             android:layout_width="0dp"
@@ -78,8 +78,8 @@
             android:layout_height="match_parent"
             android:text="适用范围："
             android:textColor="@color/days"
-            android:textSize="16sp"
-            android:gravity="center"
+            android:textSize="14sp"
+            android:gravity="center|right"
             android:id="@+id/textView5" />
 
         <TextView
@@ -100,8 +100,8 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp">
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp">
 
         <TextView
             android:layout_width="0dp"
@@ -109,8 +109,8 @@
             android:layout_height="match_parent"
             android:text="关于作者："
             android:textColor="@color/days"
-            android:textSize="16sp"
-            android:gravity="center"/>
+            android:textSize="14sp"
+            android:gravity="center|right"/>
 
         <TextView
             android:layout_width="0dp"
@@ -130,8 +130,8 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp">
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp">
 
         <TextView
             android:layout_width="0dp"
@@ -139,13 +139,14 @@
             android:layout_height="match_parent"
             android:text="Github："
             android:textColor="@color/days"
-            android:textSize="16sp"
-            android:gravity="center"/>
+            android:textSize="14sp"
+            android:gravity="center|right"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="match_parent"
+            android:autoLink="web"
             android:text="https://github.com/LanceShu"
             android:textColor="#535353"
             android:textSize="12sp"
@@ -160,8 +161,8 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
-        android:layout_marginLeft="18dp"
-        android:layout_marginRight="18dp">
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp">
 
         <TextView
             android:layout_width="0dp"
@@ -169,13 +170,14 @@
             android:layout_height="match_parent"
             android:text="CSDN博客："
             android:textColor="@color/days"
-            android:textSize="16sp"
-            android:gravity="center"/>
+            android:textSize="14sp"
+            android:gravity="center|right"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="match_parent"
+            android:autoLink="web"
             android:text="http://my.csdn.net/shu_lance"
             android:textColor="#535353"
             android:textSize="12sp"
@@ -188,7 +190,7 @@
         android:layout_marginTop="6dp"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:text=" Copyright © 1997-2017  All Rights Reserved "
+        android:text=" Copyright © 2017-2018  All Rights Reserved "
         android:gravity="center"
         android:textSize="10sp"/>
 
