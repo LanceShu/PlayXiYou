@@ -1,6 +1,7 @@
 package com.example.xiyou3g.playxiyou.Activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +25,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.example.xiyou3g.playxiyou.AttendFragment.AttendUnlogFragment;
+import com.example.xiyou3g.playxiyou.Content.EduContent;
 import com.example.xiyou3g.playxiyou.EduFragment.EduFragment;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetScoreData;
 import com.example.xiyou3g.playxiyou.MeFragment.MeFragment;
@@ -49,12 +51,14 @@ import static com.example.xiyou3g.playxiyou.Content.EduContent.Team;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.ViewStatelist;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.Year;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.cookies;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.courseList;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.currentScore;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.fragmentManager;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.isCache;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.loginName;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.mqueue;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.popupWindow;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.scoreInfos;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.student_name;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.stuname;
 
@@ -297,5 +301,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     protected void onDestroy() {
         super.onDestroy();
         mainHandler.removeCallbacksAndMessages(0);
+        if (courseList.size() != 0 || scoreInfos.size() != 0) {
+            EduContent.courseList.clear();
+            EduContent.scoreInfos.clear();
+        }
     }
 }

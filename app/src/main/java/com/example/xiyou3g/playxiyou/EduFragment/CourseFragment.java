@@ -90,9 +90,8 @@ public class CourseFragment extends Fragment {
     private int screenWidth;
     private int screenHeight;
     private float density;
-    private  ProgressDialog dialog;
+    private ProgressDialog dialog;
 
-    private int color;
     private final int[] item = {R.drawable.course_item_1,R.drawable.course_item_2,R.drawable.course_item_3,
             R.drawable.course_item_4,R.drawable.course_item_5,R.drawable.course_item_6,R.drawable.course_item_7,
             R.drawable.course_item_8,R.drawable.course_item_9,R.drawable.course_item_10};
@@ -101,14 +100,9 @@ public class CourseFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics dm = new DisplayMetrics();
-        if (wm.getDefaultDisplay() != null) {
+        if (wm != null && wm.getDefaultDisplay() != null) {
+            DisplayMetrics dm = new DisplayMetrics();
             wm.getDefaultDisplay().getMetrics(dm);
             width = dm.widthPixels;                 //屏幕宽度像素；
             height = dm.heightPixels;               //屏幕高度像素;
@@ -117,6 +111,11 @@ public class CourseFragment extends Fragment {
             screenWidth = (int) (width/density);
             screenHeight = (int) (height/density);
         }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Nullable
@@ -196,66 +195,66 @@ public class CourseFragment extends Fragment {
     private void setCourse() {
         int x = 0;
         int y = 0;
-        color = 0;
-        for(int i=0;i<courseList.size();i++){
-            if(courseList.get(i).getcName().equals("")){
-                FrameLayout fl = new FrameLayout(getContext());
-                int flWidth = (int) ((width - (45 * density))/7);
-                FrameLayout.LayoutParams flp = new FrameLayout.LayoutParams(flWidth, (int) (100*density));
-                flp.setMargins(x*flWidth, (int)(y*100*density),0,0);
-                fl.setLayoutParams(flp);
+        if (courseList.size() != 0) {
+            for(int i=0; i<courseList.size(); i++){
+                if(courseList.get(i).getcName().equals("")){
+                    FrameLayout fl = new FrameLayout(getContext());
+                    int flWidth = (int) ((width - (45 * density))/7);
+                    FrameLayout.LayoutParams flp = new FrameLayout.LayoutParams(flWidth, (int) (100*density));
+                    flp.setMargins(x*flWidth, (int)(y*100*density),0,0);
+                    fl.setLayoutParams(flp);
 
-                TextView tv = new TextView(getContext());
-                FrameLayout.LayoutParams flp2 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
-                tv.setLayoutParams(flp2);
-                tv.setText("");
-                tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,10);
-                tv.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(isOpenFab)
-                            closeMenu(fab);
-                    }
-                });
-                fl.addView(tv);
+                    TextView tv = new TextView(getContext());
+                    FrameLayout.LayoutParams flp2 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+                    tv.setLayoutParams(flp2);
+                    tv.setText("");
+                    tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,10);
+                    tv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(isOpenFab)
+                                closeMenu(fab);
+                        }
+                    });
+                    fl.addView(tv);
 
-                container.addView(fl);
-            }else{
-                final FrameLayout fl = new FrameLayout(getContext());
-                int flWidth = (int) ((width - (45 * density))/7);
-                FrameLayout.LayoutParams flp = new FrameLayout.LayoutParams(flWidth, (int) (100*density));
-                flp.setMargins(x*flWidth, (int)(y*100*density),0,0);
-                fl.setLayoutParams(flp);
-                fl.setBackgroundResource(item[courseList.get(i).getcColor()%10]);
+                    container.addView(fl);
+                }else{
+                    final FrameLayout fl = new FrameLayout(getContext());
+                    int flWidth = (int) ((width - (45 * density))/7);
+                    FrameLayout.LayoutParams flp = new FrameLayout.LayoutParams(flWidth, (int) (100*density));
+                    flp.setMargins(x*flWidth, (int)(y*100*density),0,0);
+                    fl.setLayoutParams(flp);
+                    fl.setBackgroundResource(item[courseList.get(i).getcColor()%10]);
 
-                TextView tv = new TextView(getContext());
-                FrameLayout.LayoutParams flp2 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
-                tv.setLayoutParams(flp2);
-                tv.setTextColor(Color.WHITE);
-                tv.setGravity(Gravity.CENTER);
-                Log.e("current course=====",courseList.get(i).getcName()+" "+courseList.get(i).getcTeacher()+" "+courseList.get(i).getcPlace());
-                tv.setText(courseList.get(i).getcName() + "\n" + courseList.get(i).getcTeacher() + "\n" + courseList.get(i).getcPlace());
-                tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,10);
-                tv.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(isOpenFab)
-                            closeMenu(fab);
-                        ObjectAnimator animator = ObjectAnimator.ofFloat(fl,"rotation",0,-30,30,0);
-                        animator.setDuration(500);
-                        animator.start();
-                    }
-                });
-                fl.addView(tv);
-                container.addView(fl);
-            }
-            x++;
-            if(x % 7 == 0){
-                y++;
-                x = 0;
+                    TextView tv = new TextView(getContext());
+                    FrameLayout.LayoutParams flp2 = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+                    tv.setLayoutParams(flp2);
+                    tv.setTextColor(Color.WHITE);
+                    tv.setGravity(Gravity.CENTER);
+                    Log.e("current course=====",courseList.get(i).getcName()+" "+courseList.get(i).getcTeacher()+" "+courseList.get(i).getcPlace());
+                    tv.setText(courseList.get(i).getcName() + "\n" + courseList.get(i).getcTeacher() + "\n" + courseList.get(i).getcPlace());
+                    tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,10);
+                    tv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if(isOpenFab)
+                                closeMenu(fab);
+                            ObjectAnimator animator = ObjectAnimator.ofFloat(fl,"rotation",0,-30,30,0);
+                            animator.setDuration(500);
+                            animator.start();
+                        }
+                    });
+                    fl.addView(tv);
+                    container.addView(fl);
+                }
+                x++;
+                if(x % 7 == 0){
+                    y++;
+                    x = 0;
+                }
             }
         }
-
     }
 
     @SuppressLint("SetTextI18n")

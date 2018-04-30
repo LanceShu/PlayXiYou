@@ -35,6 +35,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.xiyou3g.playxiyou.Content.EduContent;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetCourseData;
 import com.example.xiyou3g.playxiyou.HttpRequest.GetPerInfo;
 import com.example.xiyou3g.playxiyou.MeFragment.GuideActivity;
@@ -59,11 +60,13 @@ import butterknife.OnClick;
 import static com.example.xiyou3g.playxiyou.Content.AttenContent.islogin;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.COURSE_CACHE;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.cookies;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.courseList;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.isCache;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.loginCheckCode;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.loginName;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.loginPassword;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.mqueue;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.scoreInfos;
 import static com.example.xiyou3g.playxiyou.Content.EduContent.student_name;
 
 /**
@@ -205,8 +208,9 @@ public class LoginActivity extends AppCompatActivity{
                     Log.e("student_name:", student_name);
 
                     new GetPerInfo();                           //获取个人信息;
-                    getCurrentCourse();                         //获取当前课表;
-
+                    if (courseList.size() == 0) {
+                        getCurrentCourse();                         //获取当前课表;
+                    }
                     builder.setMessage("欢迎您，"+student_name+"同学！");
                     builder.setPositiveButton("继续", new DialogInterface.OnClickListener() {
                         @Override
@@ -354,7 +358,6 @@ public class LoginActivity extends AppCompatActivity{
         }else{
             new GetCourseData(year,month,1);
         }
-
     }
 
     @Override
@@ -388,5 +391,9 @@ public class LoginActivity extends AppCompatActivity{
     protected void onDestroy() {
         super.onDestroy();
         loginHanlder.removeCallbacksAndMessages(0);
+        if (courseList.size() != 0 || scoreInfos.size() != 0) {
+            EduContent.courseList.clear();
+            EduContent.scoreInfos.clear();
+        }
     }
 }
