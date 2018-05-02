@@ -138,7 +138,7 @@ public class LoginActivity extends AppCompatActivity{
 
         @Override
         public void handleMessage(Message msg) {
-            LoginActivity loginActivity = activity.get();
+//            LoginActivity loginActivity = activity.get();
             SharedPreferences.Editor loginEditor = editor.get();
             if (activity != null && loginEditor != null) {
                 switch (msg.what){
