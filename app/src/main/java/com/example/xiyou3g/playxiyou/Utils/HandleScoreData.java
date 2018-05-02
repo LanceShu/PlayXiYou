@@ -2,7 +2,6 @@ package com.example.xiyou3g.playxiyou.Utils;
 
 import android.os.Message;
 import android.util.Base64;
-import android.util.Log;
 
 import com.example.xiyou3g.playxiyou.DataBean.ScoreInfo;
 import com.example.xiyou3g.playxiyou.DataBean.StuScoreInfo;
@@ -36,7 +35,6 @@ public class HandleScoreData {
         String[] array = str.split("<Text;>;l<");
         stuScoreInfo.setScoreDate(handleContent(array[3]) + "  " + "第 " + handleContent(array[4]) + " 学期");
         for (int i = 4; i < array.length;i += 29 ) {
-//            System.out.println(array[i]);
             ScoreInfo scoreInfo = new ScoreInfo();
             scoreInfo.setScoNum(handleContent(array[i+1]));
             scoreInfo.setScoName(handleContent(array[i+2]));
@@ -69,7 +67,6 @@ public class HandleScoreData {
                 scoreInfo.setScoCollege(handleContent(array[i+17]));
             }
             scoreInfos.add(scoreInfo);
-            Log.e("score:", scoreInfo.getScoName() + ":" + scoreInfo.getScoMidtermScore());
             if(array[i+27].contains("至今未通过课程成绩")) {
                 break;
             }

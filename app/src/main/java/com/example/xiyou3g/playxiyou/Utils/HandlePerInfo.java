@@ -33,7 +33,6 @@ public class HandlePerInfo {
             stueducation = document.getElementById("lbl_CC").text();
             stuSex = document.getElementById("lbl_xb").text();
             stuYear = document.getElementById("lbl_dqszj").text();
-            Log.e("person2222222",stuname+"--"+stuid+"--"+stuacademy+"--"+stumajor+"--"+stuclass+"--"+stueducation);
         }else{
             stuname = "null";
         }

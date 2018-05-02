@@ -1,7 +1,8 @@
 package com.example.xiyou3g.playxiyou.Utils
 
 /**
- * Created by Lance on 2017/9/10.
+ * Created by Lance
+ * on 2017/9/10.
  */
 object LogUtils{
     val VERBOSE = 1

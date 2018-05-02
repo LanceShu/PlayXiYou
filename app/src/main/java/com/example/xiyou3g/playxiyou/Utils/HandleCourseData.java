@@ -1,7 +1,5 @@
 package com.example.xiyou3g.playxiyou.Utils;
 
-import android.util.Log;
-
 import com.example.xiyou3g.playxiyou.DataBean.CourseBean;
 
 import org.jsoup.Jsoup;
@@ -28,11 +26,7 @@ public class HandleCourseData {
             if(i==4||i==8||i==12){
                 for(int j = 2;j<td.size();j++){
                     Elements td1 = td.get(j).getElementsByTag("td");
-
                     if((td1.get(0)+"").length()>60){
-
-                        Log.e("courese content"+td1.get(0).toString().length()+":",td1.get(0).toString());
-
                         String a = (td1.get(0) + "").substring(25,(td1.get(0)+"").length());
                         String[] b = a.split(">");
                         String[] c = b[1].split("<");
@@ -42,18 +36,13 @@ public class HandleCourseData {
                         String[] e = b[4].split("<");
                         String course_place = e[0];
                         String infor = course_name+"\n"+course_teacher+"\n"+course_place;
-                        Log.e("view66666666666666",infor);
                         CourseBean courseBean = new CourseBean();
                         courseBean.setcName(course_name);
                         courseBean.setcTeacher(course_teacher);
                         courseBean.setcPlace(course_place);
-                        Log.e("current course=====",course_name+" "+course_teacher+" "+course_place);
                         courseBean.setcColor(isExists(courseBean.getcName()));
                         courseList.add(courseBean);
                     } else{
-
-                        Log.e("courese content"+td1.get(0).toString().length()+":",td1.get(0).toString());
-
                         CourseBean courseBean = new CourseBean();
                         courseBean.setcName("");
                         courseBean.setcTeacher("");
@@ -65,9 +54,6 @@ public class HandleCourseData {
                 for(int j = 1;j<td.size();j++){
                     Elements td1 = td.get(j).getElementsByTag("td");
                     if((td1.get(0)+"").length()>60){
-
-                        Log.e("courese content"+td1.get(0).toString().length()+":",td1.get(0).toString());
-
                         String a = (td1.get(0) + "").substring(25,(td1.get(0)+"").length());
                         String[] b = a.split(">");
                         String[] c = b[1].split("<");
@@ -77,18 +63,13 @@ public class HandleCourseData {
                         String[] e = b[4].split("<");
                         String course_place = e[0];
                         String infor = course_name+"\n"+course_teacher+"\n"+course_place;
-                        Log.e("view66666666666666",infor);
                         CourseBean courseBean = new CourseBean();
                         courseBean.setcName(course_name);
                         courseBean.setcTeacher(course_teacher);
                         courseBean.setcPlace(course_place);
-                        Log.e("current course=====",course_name+" "+course_teacher+" "+course_place);
                         courseBean.setcColor(isExists(courseBean.getcName()));
                         courseList.add(courseBean);
                     } else{
-
-                        Log.e("courese content"+td1.get(0).toString().length()+":",td1.get(0).toString());
-
                         CourseBean courseBean = new CourseBean();
                         courseBean.setcName("");
                         courseBean.setcTeacher("");
@@ -100,7 +81,6 @@ public class HandleCourseData {
         }
 
         course_content = document.getElementsByTag("tr").text();
-        Log.e("Content:",course_content);
     }
 
     private static int isExists(String s) {
