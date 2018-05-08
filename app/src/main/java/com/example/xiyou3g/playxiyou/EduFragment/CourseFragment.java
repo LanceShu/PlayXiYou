@@ -217,7 +217,6 @@ public class CourseFragment extends Fragment {
                         }
                     });
                     fl.addView(tv);
-
                     container.addView(fl);
                 }else{
                     final FrameLayout fl = new FrameLayout(getContext());
