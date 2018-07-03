@@ -173,11 +173,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
     private void getCurrentYearAndTeam() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH)+1;
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH) + 1;
         int team;
         int startYear;
         int endYear;
-        if(month >= 7){
+        if(month > 7 && day > 20){
             startYear = year -1;
             endYear = year;
             team = 2;

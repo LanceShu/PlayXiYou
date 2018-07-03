@@ -11,9 +11,7 @@ import okhttp3.Request
  */
 
 object GetAttendCheck{
-
     fun getAttendCheck(WaterDate: String,Status: Int,Flag: String,page: Int,rows: Int,cookie: String,callback: Callback){
-
         val client = OkHttpClient()
         val formBody = FormBody.Builder()
                 .add("WaterDate",WaterDate)
