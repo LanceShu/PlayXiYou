@@ -164,5 +164,4 @@ public class AClassFragment extends Fragment {
             e.printStackTrace();
         }
     }
-
 }
