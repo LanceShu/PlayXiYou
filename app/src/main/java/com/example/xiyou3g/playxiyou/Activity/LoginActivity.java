@@ -1,5 +1,6 @@
 package com.example.xiyou3g.playxiyou.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -58,16 +59,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.example.xiyou3g.playxiyou.Content.AttenContent.islogin;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.COURSE_CACHE;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.cookies;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.courseList;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.isCache;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.loginCheckCode;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.loginName;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.loginPassword;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.mqueue;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.scoreInfos;
-import static com.example.xiyou3g.playxiyou.Content.EduContent.student_name;
+import static com.example.xiyou3g.playxiyou.Content.EduContent.*;
 
 /**
  * Created by Lance
@@ -112,6 +104,7 @@ public class LoginActivity extends AppCompatActivity{
 
     private LoginHanlder loginHanlder;
 
+    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,6 +118,18 @@ public class LoginActivity extends AppCompatActivity{
         pref = PreferenceManager.getDefaultSharedPreferences(this);
         initWight();                    //实例化控件;
         loginHanlder = new LoginHanlder(pref.edit(), this);
+        EduContent.handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                switch (msg.what) {
+                    case EduContent.GET_COURSE_DATA:
+                        if (courseList.size() == 0) {
+                            getCurrentCourse();                     //获取当前课表;
+                        }
+                        break;
+                }
+            }
+        };
     }
 
     static class LoginHanlder extends Handler {
@@ -206,10 +211,9 @@ public class LoginActivity extends AppCompatActivity{
                     student_name = document1.getElementById("xhxm").text();
                     student_name = student_name.substring(0, student_name.length() - 2);
                     Log.e("student_name:", student_name);
-
-                    new GetPerInfo();                           //获取个人信息;
-                    if (courseList.size() == 0) {
-                        getCurrentCourse();                         //获取当前课表;
+                    if (student_name != null) {
+                        stuname = student_name;
+                        new GetPerInfo();                           //获取个人信息;
                     }
                     builder.setMessage("欢迎您，"+student_name+"同学！");
                     builder.setPositiveButton("继续", new DialogInterface.OnClickListener() {

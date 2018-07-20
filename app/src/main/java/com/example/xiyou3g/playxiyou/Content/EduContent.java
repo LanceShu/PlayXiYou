@@ -23,6 +23,7 @@ public class EduContent {
 
     public static final int COURSE_CACHE = 331;
     public static final int SCORE_CACHE = 332;
+    public static final int GET_COURSE_DATA = 666;
 
     static public int isAllRequest = 1;
     public static boolean isCache = false;       //是否缓存;
@@ -47,7 +48,7 @@ public class EduContent {
     static public String currentScore = "";
     static public int sYear = 0;
 
-    static public String stuname;       //学生姓名;
+    static public String stuname = "";       //学生姓名;
     static public String stuid;         //学号;
     static public String stuacademy;    //学院;
     static public String stumajor;      //专业;

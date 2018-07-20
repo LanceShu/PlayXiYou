@@ -131,7 +131,7 @@ public class CourseFragment extends Fragment {
         team1.setVisibility(View.GONE);
         team2.setVisibility(View.GONE);
 
-        if(stuname.equals("null")){
+        if(stuname != null && stuname.equals("null")){
             fab.setVisibility(View.GONE);
             isData.setVisibility(View.VISIBLE);
         }else{

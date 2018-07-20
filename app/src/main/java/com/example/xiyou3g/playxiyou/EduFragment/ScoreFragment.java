@@ -91,7 +91,7 @@ public class ScoreFragment extends Fragment {
         if(sYear != 0){
             dialog.dismiss();
         }
-        if(yearList.size() == 0 && !stuname.equals("null")){
+        if(yearList.size() == 0 && stuname != null && !stuname.equals("null")){
             getYearAndTeam();
         }
         initWight();
@@ -129,35 +129,33 @@ public class ScoreFragment extends Fragment {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH)+1;
-        if(month >= 9){
-            for(int i =0;i<year - sYear;i++){
-                sYear = sYear + i;
+        if(year > sYear && month >= 7){
+            for(int i = 0; i < year - sYear; i++){
                 ScoreYearAndTeam scoreYearAndTeam1 = new ScoreYearAndTeam();
-                scoreYearAndTeam1.setYear(sYear+"-"+(sYear+1));
+                scoreYearAndTeam1.setYear((sYear+i)+"-"+(sYear+i+1));
                 scoreYearAndTeam1.setTeam("1");
                 yearList.add(scoreYearAndTeam1);
                 ScoreYearAndTeam scoreYearAndTeam2 = new ScoreYearAndTeam();
-                scoreYearAndTeam2.setYear(sYear+"-"+(sYear+1));
+                scoreYearAndTeam2.setYear((sYear+i)+"-"+(sYear+i+1));
                 scoreYearAndTeam2.setTeam("2");
                 yearList.add(scoreYearAndTeam2);
             }
-//            sYear = sYear + 1;
-//            ScoreYearAndTeam scoreYearAndTeam1 = new ScoreYearAndTeam();
-//            scoreYearAndTeam1.setYear(sYear+"-"+(sYear+1));
-//            scoreYearAndTeam1.setTeam("1");
-//            yearList.add(scoreYearAndTeam1);
-        }else{
-            for(int i =0;i<year - sYear;i++){
-                sYear = sYear + i;
+        } else if(year > sYear && month >= 2){
+            int i;
+            for(i = 0; i < year - sYear - 1; i++){
                 ScoreYearAndTeam scoreYearAndTeam1 = new ScoreYearAndTeam();
-                scoreYearAndTeam1.setYear(sYear+"-"+(sYear+1));
+                scoreYearAndTeam1.setYear((sYear+i)+"-"+(sYear+i+1));
                 scoreYearAndTeam1.setTeam("1");
                 yearList.add(scoreYearAndTeam1);
                 ScoreYearAndTeam scoreYearAndTeam2 = new ScoreYearAndTeam();
-                scoreYearAndTeam2.setYear(sYear+"-"+(sYear+1));
+                scoreYearAndTeam2.setYear((sYear+i)+"-"+(sYear+i+1));
                 scoreYearAndTeam2.setTeam("2");
                 yearList.add(scoreYearAndTeam2);
             }
+            ScoreYearAndTeam scoreYearAndTeam = new ScoreYearAndTeam();
+            scoreYearAndTeam.setYear((sYear+i)+"-"+(sYear+i+1));
+            scoreYearAndTeam.setTeam("1");
+            yearList.add(scoreYearAndTeam);
         }
     }
 

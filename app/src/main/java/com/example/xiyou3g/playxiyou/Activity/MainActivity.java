@@ -178,12 +178,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         int team;
         int startYear;
         int endYear;
-        if(month > 7 && day > 20){
+        if(month >= 7 && day >= 15){
             startYear = year -1;
             endYear = year;
             team = 2;
         }else{
-            startYear = year -1;
+            startYear = year - 1;
             endYear = year;
             team = 1;
         }
